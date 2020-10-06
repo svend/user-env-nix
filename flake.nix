@@ -20,36 +20,19 @@
 
       utils = import ./lib/utils.nix { inherit lib; };
 
-      # pkgImport = pkgs:
-      #   import pkgs {
-      #     inherit system;
-      #     overlays = attrValues self.overlays;
-      #     config = { allowUnfree = true; };
-      #   };
-
-      nixosFor = forAllSystems (
-        system:
-        import nixos {
+      pkgImport = pkgs: forAllSystems (system:
+        import pkgs {
           inherit system;
+          overlays = attrValues self.overlays;
           config = {
             allowUnfree = true;
             allowUnsupportedSystem = true;
           };
-          overlays = attrValues self.overlays;
         }
       );
 
-      nixpkgsFor = forAllSystems (
-        system:
-        import nixpkgs-unstable {
-          inherit system;
-          config = {
-            allowUnfree = true;
-            allowUnsupportedSystem = true;
-          };
-          overlays = attrValues self.overlays;
-        }
-      );
+      nixosFor = pkgImport nixos;
+      nixpkgsFor = pkgImport nixpkgs-unstable;
     in
     {
       overlays =

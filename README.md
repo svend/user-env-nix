@@ -19,7 +19,7 @@ nix profile install github:svend/user-env-nix/<commit-sha>
 Update lock file:
 
 ``` shell
-nix flake update --update-input nixos --update-input master
+nix flake update --update-input nixos --update-input nixpkgs-unstable
 ```
 
 
