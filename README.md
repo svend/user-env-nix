@@ -1,5 +1,7 @@
 # Nix User Environment Flake
 
+> Reproducible development environment powered by Nix Flakes
+
 ## Initial Setup
 
 See  https://nixos.wiki/wiki/Flakes
