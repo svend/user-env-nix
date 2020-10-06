@@ -13,12 +13,10 @@
       inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
       inherit (utils) pathsToImportedAttrs;
 
-      systems = [
+      forAllSystems = lib.genAttrs [
         "x86_64-linux"
         "x86_64-darwin"
       ];
-
-      forAllSystems = f: lib.genAttrs systems (system: f system);
 
       utils = import ./lib/utils.nix { inherit lib; };
 
