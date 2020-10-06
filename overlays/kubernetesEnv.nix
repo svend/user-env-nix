@@ -1,6 +1,6 @@
-self: super:
+final: prev:
 {
-  kubernetesEnv = with self; super.buildEnv {
+  kubernetesEnv = with final; prev.buildEnv {
     name = "kubernetesEnv";
     paths = [
       helm

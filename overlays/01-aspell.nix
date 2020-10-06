@@ -1,4 +1,4 @@
-self: super:
+final: prev:
 {
-  aspellWithDicts = with super; aspellWithDicts (ps: with ps; [ en ]);
+  aspellWithDicts = with prev; aspellWithDicts (ps: with ps; [ en ]);
 }

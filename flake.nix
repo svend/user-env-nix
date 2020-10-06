@@ -2,8 +2,8 @@
   description = "User environment";
 
   inputs = {
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/release-20.03";
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
   };
 
   outputs = { self, nixos, nixpkgs-unstable }:
@@ -31,7 +31,6 @@
         }
       );
 
-      nixosFor = pkgImport nixos;
       nixpkgsFor = pkgImport nixpkgs-unstable;
     in
     {
@@ -43,18 +42,8 @@
         in
         utils.pathsToImportedAttrs overlayPaths;
 
-      packages = forAllSystems (system:
-        let
-          packages = nixpkgsFor.${system};
-          overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
-          overlayPkgs =
-            lib.genAttrs
-              (attrNames overlays)
-              (name: (overlays."${name}" nixosFor nixosFor)."${name}");
-        in
-        lib.recursiveUpdate packages overlayPkgs
-      );
+      packages = nixpkgsFor;
 
-      defaultPackage = forAllSystems (system: self.packages."${system}".userEnv);
+      defaultPackage = forAllSystems (system: self.packages."${system}".commonEnv);
     };
 }

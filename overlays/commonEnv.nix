@@ -1,6 +1,6 @@
-self: super:
+final: prev:
 {
-  commonEnv = with self; super.buildEnv {
+  commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
     paths = [
       aspellWithDicts

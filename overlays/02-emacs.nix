@@ -1,7 +1,7 @@
-self: super:
+final: prev:
 {
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs
-  emacsHead = (super.emacs.override {
+  emacsHead = (prev.emacs.override {
     # Not building from source tarball
     srcRepo = true;
   }).overrideAttrs (oldAttrs:
@@ -20,14 +20,14 @@ self: super:
       # tramp-detect-wrapped-gvfsd.patch fails to apply
       patches = builtins.filter (p: baseNameOf p != "tramp-detect-wrapped-gvfsd.patch") oldAttrs.patches;
 
-      src = super.fetchgit {
+      src = prev.fetchgit {
         inherit url rev sha256;
       };
     });
 
   # https://github.com/NixOS/nixpkgs/blob/76dbece8e8240a911fcc5722f813a8453f90406f/pkgs/build-support/emacs/wrapper.nix
-  emacs = with self; let customEmacsPackages =
-    emacsPackagesNg.overrideScope' (self: super: {
+  emacs = with final; let customEmacsPackages =
+    emacsPackagesNg.overrideScope' (final: prev: {
       # use a custom version of emacs
       # emacs = emacsHead;
     });

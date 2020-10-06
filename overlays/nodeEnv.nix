@@ -1,6 +1,6 @@
-self: super:
+final: prev:
 {
-  nodeEnv = with self; super.buildEnv {
+  nodeEnv = with final; prev.buildEnv {
     name = "nodeEnv";
     paths = [
       nodejs-14_x

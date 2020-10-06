@@ -1,6 +1,6 @@
-self: super:
+final: prev:
 {
-  rubyEnv = with self; super.buildEnv {
+  rubyEnv = with final; prev.buildEnv {
     name = "rubyEnv";
     paths = [
       ruby
