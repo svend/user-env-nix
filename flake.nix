@@ -2,11 +2,11 @@
   description = "User environment";
 
   inputs = {
-    master.url = "nixpkgs/master";
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     nixos.url = "nixpkgs/release-20.03";
   };
 
-  outputs = { self, nixos, master }:
+  outputs = { self, nixos, nixpkgs-unstable }:
     let
       inherit (builtins) attrNames attrValues readDir;
       inherit (nixos) lib;
@@ -29,7 +29,7 @@
 
       nixosFor = forAllSystems (
         system:
-        import master {
+        import nixos {
           inherit system;
           config = {
             allowUnfree = true;
@@ -41,7 +41,7 @@
 
       nixpkgsFor = forAllSystems (
         system:
-        import master {
+        import nixpkgs-unstable {
           inherit system;
           config = {
             allowUnfree = true;
