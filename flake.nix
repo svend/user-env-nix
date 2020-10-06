@@ -13,6 +13,13 @@
       inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
       inherit (utils) pathsToImportedAttrs;
 
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+      ];
+
+      forAllSystems = f: lib.genAttrs systems (system: f system);
+
       utils = import ./lib/utils.nix { inherit lib; };
 
       pkgImport = pkgs:
@@ -51,9 +58,6 @@
         in
         recursiveUpdate packages overlayPkgs;
 
-      # defaultPackage.${system} = self.packages.${system}.multi-x509;
-
-      # packages.${system}.hello = nixos.legacyPackages.${system}.hello;
-      defaultPackage.${system} = self.packages.${system}.userEnv;
+      defaultPackage = forAllSystems (system: self.packages."${system}".userEnv);
     };
 }
