@@ -12,8 +12,13 @@ Install flake into profile:
 
 ``` shell
 nix profile install github:svend/user-env-nix/master
-# or
-nix profile install github:svend/user-env-nix/<commit-sha>
+```
+
+To update:
+
+``` shell
+nix flake update github:svend/user-env-nix/master
+nix profile upgrade 1
 ```
 
 ## Updating
