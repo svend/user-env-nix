@@ -18,7 +18,7 @@ To update:
 
 ``` shell
 nix flake update github:svend/user-env-nix/master
-nix profile upgrade 1
+nix profile upgrade '.*'
 ```
 
 ## Updating
