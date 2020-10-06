@@ -50,8 +50,6 @@
           overlays = attrValues self.overlays;
         }
       );
-
-      system = "x86_64-linux";
     in
     {
       overlays =
