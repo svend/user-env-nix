@@ -10,15 +10,14 @@
     let
       inherit (builtins) attrNames attrValues readDir;
       inherit (nixos) lib;
-      inherit (utils) pathsToImportedAttrs;
+
+      utils = import ./lib/utils.nix { inherit lib; };
 
       systems = [
         "x86_64-darwin"
         "x86_64-linux"
       ];
       forAllSystems = f: lib.genAttrs systems (system: f system);
-
-      utils = import ./lib/utils.nix { inherit lib; };
 
       pkgImport = pkgs: forAllSystems (system:
         import pkgs {
@@ -41,7 +40,7 @@
           fullPath = name: overlayDir + "/${name}";
           overlayPaths = map fullPath (attrNames (readDir overlayDir));
         in
-        pathsToImportedAttrs overlayPaths;
+        utils.pathsToImportedAttrs overlayPaths;
 
       packages = forAllSystems (system:
         let
