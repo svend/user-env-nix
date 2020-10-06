@@ -29,7 +29,7 @@
 
       system = "x86_64-linux";
     in with pkgset; {
-      overlay = import ./pkgs;
+      # overlay = import ./pkgs;
 
       overlays =
         let
@@ -42,7 +42,7 @@
 
       packages."${system}" =
         let
-          packages = self.overlay osPkgs osPkgs;
+          packages = osPkgs;
           overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
           overlayPkgs =
             genAttrs
@@ -54,6 +54,6 @@
       # defaultPackage.${system} = self.packages.${system}.multi-x509;
 
       # packages.${system}.hello = nixos.legacyPackages.${system}.hello;
-      defaultPackage.${system} = self.packages.${system}.multi-x509;
+      defaultPackage.${system} = self.packages.${system}.clojureEnv;
     };
 }
