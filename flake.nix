@@ -2,8 +2,8 @@
   description = "User environment";
 
   inputs = {
-      master.url = "nixpkgs/master";
-      nixos.url = "nixpkgs/release-20.03";
+    master.url = "nixpkgs/master";
+    nixos.url = "nixpkgs/release-20.03";
   };
 
   outputs = { self, nixos, master }:
@@ -35,7 +35,8 @@
       };
 
       system = "x86_64-linux";
-    in with pkgset; {
+    in
+    with pkgset; {
       # overlay = import ./pkgs;
 
       overlays =
@@ -46,8 +47,7 @@
         in
         pathsToImportedAttrs overlayPaths;
 
-
-      packages."${system}" =
+      packages = forAllSystems (system:
         let
           packages = pkgs;
           overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
@@ -56,7 +56,8 @@
               (attrNames overlays)
               (name: (overlays."${name}" osPkgs osPkgs)."${name}");
         in
-        recursiveUpdate packages overlayPkgs;
+        recursiveUpdate packages overlayPkgs
+      );
 
       defaultPackage = forAllSystems (system: self.packages."${system}".userEnv);
     };
