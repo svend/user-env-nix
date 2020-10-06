@@ -10,7 +10,6 @@
     let
       inherit (builtins) attrNames attrValues readDir;
       inherit (nixos) lib;
-      inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
       inherit (utils) pathsToImportedAttrs;
 
       forAllSystems = lib.genAttrs [
@@ -50,11 +49,11 @@
           packages = pkgs;
           overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
           overlayPkgs =
-            genAttrs
+            lib.genAttrs
               (attrNames overlays)
               (name: (overlays."${name}" osPkgs osPkgs)."${name}");
         in
-        recursiveUpdate packages overlayPkgs
+        lib.recursiveUpdate packages overlayPkgs
       );
 
       defaultPackage = forAllSystems (system: self.packages."${system}".userEnv);
