@@ -34,8 +34,6 @@
       system = "x86_64-linux";
     in
     with pkgset; {
-      # overlay = import ./pkgs;
-
       overlays =
         let
           overlayDir = ./overlays;
