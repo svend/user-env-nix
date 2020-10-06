@@ -54,6 +54,6 @@
       # defaultPackage.${system} = self.packages.${system}.multi-x509;
 
       # packages.${system}.hello = nixos.legacyPackages.${system}.hello;
-      defaultPackage.${system} = self.packages.${system}.clojureEnv;
+      defaultPackage.${system} = self.packages.${system}.userEnv;
     };
 }

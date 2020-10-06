@@ -3,28 +3,28 @@
 with rustPlatform;
 
 buildRustPackage rec {
-  name = "multi-x509-${version}";
+  name = "rust-scripts-${version}";
   version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "svend";
-    repo = "multi-x509";
+    repo = "rust-scripts";
     # rev = "${version}";
-    rev = "cef61c7900de156fc24444767b39d05eef2a1a53";
-    sha256 = "00mpshjii1hlaa0hy2zd039vy6m1w0qcp2i9ia25ijwjafkk394s";
+    rev = "761dc59755ee95de59766545cb0eda2b9166aa83";
+    sha256 = "0id75iscyd3cr52jaiq3lx9v115x1ix44y5nwaq382cdchsmzs1i";
   };
 
   # buildRustPackage requires a cargoSha256 attribute which is computed over all
   # crate sources of this package. Currently it is obtained by inserting a fake
   # checksum into the expression and building the package once. The correct
   # checksum can be then take from the failed build.
-  cargoSha256 = "1ylp57mzfqav8c2hkz55grxv0lgf2cbhql7adri1bgc44wv30akq";
+  cargoSha256 = "1dx3mmzxsbvwpr8wf2g4gglv8cfyv8d4gmx1w52cqpvwqgwdkn2f";
 
   buildInputs = stdenv.lib.optional stdenv.isDarwin Security;
 
   meta = with stdenv.lib; {
-    description = "Run a command on each x509 certificate";
-    homepage = https://github.com/svend/multi-x509;
+    description = "Various rust scripts";
+    homepage = https://github.com/svend/rust-scripts;
     license = with licenses; [ unlicense ];
     maintainers = [ ];
     platforms = platforms.all;
