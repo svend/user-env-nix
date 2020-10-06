@@ -42,7 +42,7 @@
 
       packages."${system}" =
         let
-          packages = osPkgs;
+          packages = pkgs;
           overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
           overlayPkgs =
             genAttrs
