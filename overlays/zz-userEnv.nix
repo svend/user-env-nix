@@ -10,7 +10,7 @@ self: super:
       nodeEnv
       pythonEnv
       rubyEnv
-      # rustEnv
+      rustEnv
     ];
   };
 }

@@ -14,9 +14,9 @@ self: super:
 
       # latest.rustChannels.stable.rust
 
-      # cargo
-      # rustc
-      # rustfmt
+      cargo
+      rustc
+      rustfmt
       rust-analyzer # collision with rust from nixpkgs-mozilla
     ];
   };
