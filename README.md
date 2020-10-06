@@ -11,13 +11,13 @@ See  https://nixos.wiki/wiki/Flakes
 Install flake into profile:
 
 ``` shell
-nix profile install github:svend/user-env-nix/master
+nix profile install github:svend/user-env-nix
 ```
 
 To update:
 
 ``` shell
-nix flake update github:svend/user-env-nix/master
+nix flake update github:svend/user-env-nix
 nix profile upgrade '.*'
 ```
 
