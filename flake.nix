@@ -31,7 +31,10 @@
         system:
         import master {
           inherit system;
-          config = { allowUnfree = true; };
+          config = {
+            allowUnfree = true;
+            allowUnsupportedSystem = true;
+          };
           overlays = attrValues self.overlays;
         }
       );
