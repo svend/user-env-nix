@@ -12,28 +12,42 @@
       inherit (nixos) lib;
       inherit (utils) pathsToImportedAttrs;
 
-      forAllSystems = lib.genAttrs [
-        "x86_64-linux"
+      systems = [
         "x86_64-darwin"
+        "x86_64-linux"
       ];
+      forAllSystems = f: lib.genAttrs systems (system: f system);
 
       utils = import ./lib/utils.nix { inherit lib; };
 
-      pkgImport = pkgs:
-        import pkgs {
-          inherit system;
-          overlays = attrValues self.overlays;
-          config = { allowUnfree = true; };
-        };
+      # pkgImport = pkgs:
+      #   import pkgs {
+      #     inherit system;
+      #     overlays = attrValues self.overlays;
+      #     config = { allowUnfree = true; };
+      #   };
 
-      pkgset = {
-        osPkgs = pkgImport nixos;
-        pkgs = pkgImport master;
-      };
+      nixosFor = forAllSystems (
+        system:
+        import master {
+          inherit system;
+          config = { allowUnfree = true; };
+          overlays = attrValues self.overlays;
+        }
+      );
+
+      nixpkgsFor = forAllSystems (
+        system:
+        import master {
+          inherit system;
+          config = { allowUnfree = true; };
+          overlays = attrValues self.overlays;
+        }
+      );
 
       system = "x86_64-linux";
     in
-    with pkgset; {
+    {
       overlays =
         let
           overlayDir = ./overlays;
@@ -44,12 +58,12 @@
 
       packages = forAllSystems (system:
         let
-          packages = pkgs;
+          packages = nixpkgsFor.${system};
           overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
           overlayPkgs =
             lib.genAttrs
               (attrNames overlays)
-              (name: (overlays."${name}" osPkgs osPkgs)."${name}");
+              (name: (overlays."${name}" nixosFor nixosFor)."${name}");
         in
         lib.recursiveUpdate packages overlayPkgs
       );
