@@ -9,9 +9,7 @@ See  https://nixos.wiki/wiki/Flakes
 Install flake into profile:
 
 ``` shell
-nix profile install github:svend/user-env-nix
-# or
-nix profile install github:svend/user-env-nix/<commit-sha>
+nix profile install github:svend/user-env-nix/master
 ```
 
 ## Updating
