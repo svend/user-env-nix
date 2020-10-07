@@ -42,6 +42,6 @@
         in
         utils.pathsToImportedAttrs overlayPaths;
 
-      defaultPackage = forAllSystems (system: nixpkgsFor."${system}".commonEnv);
+      defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
     };
 }
