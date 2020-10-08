@@ -17,8 +17,7 @@ nix profile install github:svend/user-env-nix
 To update:
 
 ``` shell
-nix flake update github:svend/user-env-nix
-nix profile upgrade '.*'
+nix flake update github:svend/user-env-nix && nix profile upgrade '.*'
 ```
 
 ## Updating
