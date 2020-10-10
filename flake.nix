@@ -4,14 +4,12 @@
   inputs = {
     nixos.url = "nixpkgs/release-20.03";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, nixos, nixpkgs-unstable }:
+  outputs = { self, nixos, nixpkgs-unstable, emacs-overlay }:
     let
-      inherit (builtins) attrNames attrValues readDir;
       inherit (nixos) lib;
-
-      utils = import ./lib/utils.nix { inherit lib; };
 
       systems = [
         "x86_64-darwin"
@@ -23,7 +21,7 @@
       pkgImport = pkgs: forAllSystems (system:
         import pkgs {
           inherit system;
-          overlays = attrValues self.overlays;
+          overlays = self.overlays;
           config = {
             allowUnfree = true;
             allowUnsupportedSystem = true;
@@ -35,12 +33,11 @@
     in
     {
       overlays =
-        let
-          overlayDir = ./overlays;
-          fullPath = name: overlayDir + "/${name}";
-          overlayPaths = map fullPath (attrNames (readDir overlayDir));
-        in
-        utils.pathsToImportedAttrs overlayPaths;
+        [ emacs-overlay.overlay ] ++
+        # All overlays in the overlays directory
+        map
+          (name: import (./overlays + "/${name}"))
+          (builtins.attrNames (builtins.readDir ./overlays));
 
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
     };
