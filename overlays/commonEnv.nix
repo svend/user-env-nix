@@ -13,7 +13,7 @@ final: prev:
       dhall
       dhall-json
       dtach
-      emacs
+      myEmacs
       etcdctl
       file
       findutils

@@ -1,5 +1,10 @@
 final: prev:
 {
+  myEmacs = prev.emacsWithPackagesFromUsePackage {
+    alwaysEnsure = true;
+    config = ../emacs.org;
+  };
+
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs
   emacsHead = (prev.emacs.override {
     # Not building from source tarball
