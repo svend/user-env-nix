@@ -20,32 +20,6 @@ rec {
       '';
     };
 
-  # # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs
-  # emacsHead = (prev.emacs.override {
-  #   # Not building from source tarball
-  #   srcRepo = true;
-  # }).overrideAttrs
-  #   (oldAttrs:
-  #     let
-  #       # nix-prefetch-git git://git.sv.gnu.org/emacs.git
-  #       # nix-prefetch-git --rev refs/heads/emacs-27 git://git.sv.gnu.org/emacs.git
-  #       version = "master";
-  #       url = git://git.sv.gnu.org/emacs.git;
-  #       rev = "5b0d8d0f288fd505ca90bd30df709a5e7ab540d6";
-  #       sha256 = "17i0rwy9qgykbm65bm5i6pizfx6ph7asdi2ddaxfs0sfcl5kcn79";
-  #     in
-  #     rec {
-  #       name = "emacs-${version}${versionModifier}";
-  #       versionModifier = "-git-${builtins.substring 0 7 rev}";
-
-  #       # tramp-detect-wrapped-gvfsd.patch fails to apply
-  #       patches = builtins.filter (p: baseNameOf p != "tramp-detect-wrapped-gvfsd.patch") oldAttrs.patches;
-
-  #       src = prev.fetchgit {
-  #         inherit url rev sha256;
-  #       };
-  #     });
-
   myEmacs = prev.emacsWithPackages (epkgs:
     [ emacsConfig ] ++
     (with epkgs.melpaStablePackages;
