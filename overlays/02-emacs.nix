@@ -1,44 +1,55 @@
 final: prev:
-{
-  myEmacs = prev.emacsWithPackagesFromUsePackage {
-    alwaysEnsure = true;
-    config = ../emacs.org;
-  };
+rec {
+  emacsConfig = prev.stdenv.mkDerivation
+    {
+      name = "emacs-config";
+      buildInputs = [ prev.emacs ];
+      src = ../emacs.org;
 
-  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs
-  emacsHead = (prev.emacs.override {
-    # Not building from source tarball
-    srcRepo = true;
-  }).overrideAttrs (oldAttrs:
-    let
-      # nix-prefetch-git git://git.sv.gnu.org/emacs.git
-      # nix-prefetch-git --rev refs/heads/emacs-27 git://git.sv.gnu.org/emacs.git
-      version = "master";
-      url = git://git.sv.gnu.org/emacs.git;
-      rev = "5b0d8d0f288fd505ca90bd30df709a5e7ab540d6";
-      sha256 = "17i0rwy9qgykbm65bm5i6pizfx6ph7asdi2ddaxfs0sfcl5kcn79";
-    in
-    rec {
-      name = "emacs-${version}${versionModifier}";
-      versionModifier = "-git-${builtins.substring 0 7 rev}";
+      unpackPhase = ''
+        cp $src ./init.org
+      '';
 
-      # tramp-detect-wrapped-gvfsd.patch fails to apply
-      patches = builtins.filter (p: baseNameOf p != "tramp-detect-wrapped-gvfsd.patch") oldAttrs.patches;
+      buildPhase = ''
+        emacs --batch --load ob-tangle --eval "(org-babel-tangle-file \"init.org\" \"init.el\" \"emacs-lisp\")"
+      '';
 
-      src = prev.fetchgit {
-        inherit url rev sha256;
-      };
-    });
+      installPhase = ''
+        mkdir -p $out/share/emacs/site-lisp
+        cp init.el $out/share/emacs/site-lisp/default.el
+      '';
+    };
 
-  # https://github.com/NixOS/nixpkgs/blob/76dbece8e8240a911fcc5722f813a8453f90406f/pkgs/build-support/emacs/wrapper.nix
-  emacs = with final; let customEmacsPackages =
-    emacsPackagesNg.overrideScope' (final: prev: {
-      # use a custom version of emacs
-      # emacs = emacsHead;
-    });
-  in
-  customEmacsPackages.emacsWithPackages (epkgs:
-    (with epkgs.melpaStablePackages; [
+  # # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/emacs
+  # emacsHead = (prev.emacs.override {
+  #   # Not building from source tarball
+  #   srcRepo = true;
+  # }).overrideAttrs
+  #   (oldAttrs:
+  #     let
+  #       # nix-prefetch-git git://git.sv.gnu.org/emacs.git
+  #       # nix-prefetch-git --rev refs/heads/emacs-27 git://git.sv.gnu.org/emacs.git
+  #       version = "master";
+  #       url = git://git.sv.gnu.org/emacs.git;
+  #       rev = "5b0d8d0f288fd505ca90bd30df709a5e7ab540d6";
+  #       sha256 = "17i0rwy9qgykbm65bm5i6pizfx6ph7asdi2ddaxfs0sfcl5kcn79";
+  #     in
+  #     rec {
+  #       name = "emacs-${version}${versionModifier}";
+  #       versionModifier = "-git-${builtins.substring 0 7 rev}";
+
+  #       # tramp-detect-wrapped-gvfsd.patch fails to apply
+  #       patches = builtins.filter (p: baseNameOf p != "tramp-detect-wrapped-gvfsd.patch") oldAttrs.patches;
+
+  #       src = prev.fetchgit {
+  #         inherit url rev sha256;
+  #       };
+  #     });
+
+  myEmacs = prev.emacsWithPackages (epkgs:
+    [ emacsConfig ] ++
+    (with epkgs.melpaStablePackages;
+    [
       ace-link
       ace-window
       aggressive-indent
@@ -54,7 +65,7 @@ final: prev:
       gnuplot
       hydra
       magit
-      # notmuch # FTB: Invalid version syntax: `0.31.-1.1'
+      notmuch
       nov
       package-lint
       projectile
@@ -96,7 +107,6 @@ final: prev:
       kubernetes
       native-complete
       nix-mode
-      notmuch # stable FTB: Invalid version syntax: `0.31.-1.1'
       ob-go
       ob-rust
       password-store
@@ -127,6 +137,6 @@ final: prev:
     (with epkgs.elpaPackages; [
       csv-mode
     ]) ++
-    ([ emacsPackagesNg.pdf-tools ])
+    ([ prev.emacsPackagesNg.pdf-tools ])
   );
 }
