@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: use-package
+# key: use-package
+# binding: direct-keybinding
+# --
+** $1
+
+#+begin_src emacs-lisp
+(use-package $1
+  :ensure t
+  :defer t)
+#+end_src

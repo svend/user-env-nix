@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: get-type
+# key: get-type
+# binding: direct-keybinding
+# --
+let _: () = $1;

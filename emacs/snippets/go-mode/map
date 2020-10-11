@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: map
+# key: map
+# binding: direct-keybinding
+# --
+$1 := make([]$2, len($3))
+for i, v := range $3 {
+    $1[i] = fn(v)
+}

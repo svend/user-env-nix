@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: knife-delete
+# key: knife-delete
+# binding: direct-keybinding
+# --
+knife node delete "$1" --yes; knife client delete "$1" --yes

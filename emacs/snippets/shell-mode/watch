@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: watch
+# key: watch
+# binding: direct-keybinding
+# --
+while :; do $1; sleep ${0:2}; done

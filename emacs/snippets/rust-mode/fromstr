@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: fromstr
+# key: fromstr
+# binding: direct-keybinding
+# --
+use std::str::FromStr;
+
+impl FromStr for $1 {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        unimplemented!()
+    }
+}

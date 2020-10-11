@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: display
+# key: display
+# binding: direct-keybinding
+# --
+use std::fmt;
+
+impl fmt::Display for $1 {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        // write!(f, "{}", self)
+        unimplemented!()
+    }
+}

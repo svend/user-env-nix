@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dtach
+# key: dtach
+# binding: direct-keybinding
+# --
+dtach `(mapconcat 'identity explicit-dtach-args " ")`

@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: debug
+# key: debug
+# binding: direct-keybinding
+# --
+fmt.Printf("debug: %#v\n", $1);
