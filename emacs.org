@@ -181,8 +181,9 @@ old theme.
   (interactive)
   (disable-all-themes)
   (call-interactively 'load-theme)
-  (load-theme 'svend t)
-  (load-theme 'svend-font-dejavu t))
+  ;; (load-theme 'svend t)
+  ;; (load-theme 'svend-font-dejavu t)
+  )
 #+end_src
 
 Treat all themes as safe.
@@ -195,9 +196,9 @@ Treat all themes as safe.
 Load themes.
 
 #+begin_src emacs-lisp
-(load-theme 'tango-plus)
-(load-theme 'svend 't)
-(load-theme 'svend-font-dejavu t)
+(load-theme 'modus-vivendi)
+;; (load-theme 'svend 't)
+;; (load-theme 'svend-font-dejavu t)
 #+end_src
 
 * Emacs settings
@@ -2118,7 +2119,7 @@ Load load config stored outside =~/.emacs.d=.
 #+begin_src emacs-lisp
 (when (file-exists-p "~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
-(load-file "~/.emacs.d/conf/ob-ansible-playbook.el")
+;; (load-file "~/.emacs.d/conf/ob-ansible-playbook.el")
 #+end_src
 
 * Easy Customization
@@ -2126,8 +2127,8 @@ Load load config stored outside =~/.emacs.d=.
 Save customization in =conf/emacs-custom.el= instead of =init.el=.
 
 #+begin_src emacs-lisp
-(setq custom-file "~/.emacs.d/conf/emacs-custom.el")
-(load custom-file)
+;; (setq custom-file "~/.emacs.d/conf/emacs-custom.el")
+;; (load custom-file)
 #+end_src
 
 * Full screen
