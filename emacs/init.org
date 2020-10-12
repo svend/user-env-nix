@@ -181,31 +181,30 @@ old theme.
   (interactive)
   (disable-all-themes)
   (call-interactively 'load-theme)
-  ;; (load-theme 'svend t)
-  ;; (load-theme 'svend-font-dejavu t)
-  )
+  (load-theme 'svend t)
+  (load-theme 'svend-font-dejavu t))
 #+end_src
 
 Treat all themes as safe.
 
 #+begin_src emacs-lisp
 (setq custom-safe-themes t)
-(message "foo")
-(message load-file-name)
-(message (file-truename load-file-name))
-(message (file-name-directory (file-truename load-file-name)))
-(message (file-name-as-directory (file-name-directory (file-truename load-file-name))))
+#+end_src
+
+Custom exist in the =themes/= directory alongside the Emacs init file.
+
+#+begin_src emacs-lisp
 (when load-file-name
-  (add-to-list 'custom-theme-load-path
-               (file-name-as-directory (file-name-directory (file-truename load-file-name)))))
+  (let ((config-dir (file-name-as-directory (file-name-directory (file-truename load-file-name)))))
+    (add-to-list 'custom-theme-load-path (concat config-dir "themes/"))))
 #+end_src
 
 Load themes.
 
 #+begin_src emacs-lisp
 (load-theme 'tango-plus)
-;; (load-theme 'svend 't)
-;; (load-theme 'svend-font-dejavu t)
+(load-theme 'svend 't)
+(load-theme 'svend-font-dejavu t)
 #+end_src
 
 * Emacs settings

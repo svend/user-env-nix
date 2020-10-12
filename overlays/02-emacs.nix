@@ -17,7 +17,7 @@ rec {
       installPhase = ''
         mkdir -p $out/share/emacs/site-lisp
         cp init.el $out/share/emacs/site-lisp/default.el
-        cp themes/*.el $out/share/emacs/site-lisp
+        cp -r themes $out/share/emacs/site-lisp/
       '';
     };
 
