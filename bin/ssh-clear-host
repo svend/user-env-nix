@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for i in "$@"; do
+  sed -i "${i}d" ~/.ssh/known_hosts
+done

@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+
+def run(repo=None):
+    """Run the application."""
+    password_command = None
+    if repo is None:
+        repo = os.environ.get("RESTIC_REPOSITORY")
+    if repo is not None:
+        gpgfile = Path(repo).with_suffix(".gpg")
+        if gpgfile.exists():
+            password_command = f"gpg --decrypt '{gpgfile}'"
+    if password_command is None:
+        env = os.environ
+    else:
+        env = {"RESTIC_PASSWORD_COMMAND": password_command, **os.environ}
+    command = sys.argv[1:]
+    proc = subprocess.run(["restic"] + command, env=env)
+    return proc.returncode
+
+
+def parser():
+    """Return the command line parser for the application."""
+    parser = argparse.ArgumentParser(
+        usage="%(prog)s command [arguments]",
+        description="Run restic with GPG encrypted password",
+        add_help=False,
+    )
+    parser.add_argument("-r", "--repo", help="repository to backup to or restore from")
+    return parser
+
+
+if __name__ == "__main__":
+    (args, _) = parser().parse_known_args()
+    sys.exit(run(**vars(args)))

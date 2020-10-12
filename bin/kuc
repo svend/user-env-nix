@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CONTEXT_FILE=$HOME/.kube-old-context
+
+case $1 in
+-)
+  [ -f "$CONTEXT_FILE" ] || kubectl config current-context > "$CONTEXT_FILE"
+  old_context=$(cat "$CONTEXT_FILE")
+  kubectl config current-context > "$CONTEXT_FILE"
+  kubectl config use-context "$old_context"
+  ;;
+*)
+  kubectl config current-context > "$CONTEXT_FILE"
+  kubectl config use-context "$1"
+  ;;
+esac

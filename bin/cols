@@ -1,0 +1,19 @@
+#!/bin/bash
+# Print a series of numbers with letters used for the tens digit.
+#
+# This can be useful to determine how many columns wide a terminal is.  The
+# program outputs 260 (10 * 26) chars.
+
+letters="a b c d e f g h i j k l m n o p q r s t u v w x y z"
+numbers=$(seq 1 9)
+
+for c in $letters; do
+  for i in $numbers; do
+    echo -n "$i"
+  done
+
+  echo -n "$c"
+done
+
+# Print newline
+echo

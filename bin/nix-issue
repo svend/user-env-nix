@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cat <<EOF
+## Issue description
+
+
+
+### Steps to reproduce
+
+
+
+## Technical details
+EOF
+nix-shell -p nix-info --run "nix-info -m"

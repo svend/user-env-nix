@@ -1,0 +1,4 @@
+#!/bin/sh
+# Check spelling of arguments
+
+echo "$@" | aspell -a

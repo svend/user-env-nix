@@ -1,0 +1,21 @@
+#!/bin/sh
+# Commit current state of working tree
+set -e
+
+# git add --all flag requires git >= 1.6.0
+git add --all .
+
+# From etckeeper commit.d/50vcs-commit
+hostname=`hostname`
+dnsdomainname=`dnsdomainname 2>/dev/null || true`
+if [ -n "$dnsdomainname" ]; then
+	hostname="$hostname.$dnsdomainname"
+fi
+
+if [ -z "$GIT_COMMITTER_EMAIL" ]; then
+	export GIT_COMMITTER_EMAIL=`whoami`"@$hostname"
+fi
+
+# Commit changes (supress "nothing to commit" message if there are no changes)
+# Git exits with 1 if there is nothing to commit
+git commit --quiet -m "Auto commit" >/dev/null || true

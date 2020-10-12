@@ -1,0 +1,88 @@
+#!/bin/sh
+
+set -e
+
+GPG=gpg
+
+is_uuid()
+{
+  expr "$1" : '\w\{8\}-\w\{4\}-\w\{4\}-\w\{4\}-\w\{12\}$' >/dev/null
+}
+
+cmd_close()
+{
+  if is_uuid "$1"; then
+    UUID=$1
+  else
+    UUID=$(sudo blkid -o value -s UUID "$1")
+  fi
+
+  # Try to close luks device, even if udisks fails
+  udisksctl unmount --block-device "/dev/mapper/luks-uuid-$UUID" || true
+  sudo cryptsetup luksClose "luks-uuid-$UUID"
+}
+
+cmd_open()
+{
+  if is_uuid "$1"; then
+    UUID=$1
+    DEV=$(sudo blkid -U "$UUID")
+  else
+    DEV=$1
+    UUID=$(sudo blkid -o value -s UUID "$DEV")
+  fi
+  KEY=$2
+
+  case "$KEY" in
+  -)
+    key_cmd="cat"
+    ;;
+  *.gpg)
+    key_cmd="$GPG -d -q \"$KEY\""
+    ;;
+  *)
+    key_cmd="cat \"$KEY\""
+  esac
+
+  # "udiskctl unlock --key-file" added in udisks 2.6.4; this may allow non-sudo unlocking
+  # https://github.com/storaged-project/udisks/blob/4dcc25208e7b17eb8db8cddda58f94e00affb5c4/NEWS#L543
+  eval "$key_cmd" |
+    sudo cryptsetup --key-file - luksOpen "$DEV" "luks-uuid-$UUID" || true
+  udisksctl mount --block-device "/dev/mapper/luks-uuid-$UUID"
+}
+
+cmd_format()
+{
+  if is_uuid "$1"; then
+    UUID=$1
+    DEV=$(sudo blkid -U "$UUID")
+  else
+    DEV=$1
+  fi
+  KEY=$2
+
+  head -c 256 /dev/random | $GPG -e > "$KEY"
+
+  $GPG -d -q "$KEY" | sudo cryptsetup --key-file - luksFormat "$DEV"
+  # luksFormat changes the partition UUID
+  UUID=$(sudo blkid -o value -s UUID "$DEV")
+
+  $GPG -d -q "$KEY" |
+    sudo cryptsetup --key-file - luksOpen "$DEV" "luks-uuid-$UUID"
+  sudo mkfs.ext4 "/dev/mapper/luks-uuid-$UUID"
+}
+
+case "$1" in
+close|format|open)
+  command=$1
+  ;;
+*)
+  echo "Usage: $0 open <device|UUID> <keyfile>" >&2
+  echo "Usage: $0 close <device|UUID>" >&2
+  echo "Usage: $0 format <device|UUID> <keyfile>" >&2
+  exit 3
+  ;;
+esac
+shift
+
+"cmd_$command" "$@"

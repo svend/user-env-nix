@@ -1,0 +1,15 @@
+#!/bin/sh
+
+file1=$1
+if [ -p "$file1" ]; then
+  file1=$(mktemp)
+  cat "$1" > "$file1"
+fi
+
+file2=$2
+if [ -p "$file2" ]; then
+  file2=$(mktemp)
+  cat "$2" > "$file2"
+fi
+
+emacsclient --eval '(ediff-files "'$file1'" "'$file2'")'

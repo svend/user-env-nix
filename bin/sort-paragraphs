@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Sort paragraphs of text, separated by blank lines
+
+# A blank line is required after the last paragraph
+(cat "$@"; echo) |
+sed '/./{H;d};x;y/\n/\v/' |
+sort |
+sed '1s/\v//;y/\v/\n/'

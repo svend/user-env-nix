@@ -1,0 +1,13 @@
+#!/bin/sh
+# Print a series of increasing numbers, one per row.
+#
+# This can be useful to determine how many columns tall a terminal is.
+#
+# Usage: $0 [rows]
+
+# Number of rows to print (default is 80)
+last=${1:-24}
+
+for i in `seq $last -1 1`; do
+	echo $i
+done

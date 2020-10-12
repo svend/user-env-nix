@@ -1,0 +1,22 @@
+#!/bin/sh
+# Generate a .mrconfig containing all public repos
+
+gen_mrconfig ()
+{
+	while read s; do
+		echo "[$(basename $s)]"
+		echo "checkout = git clone ssh://git@git.ciffer.net/$s.git"
+		echo
+	done
+}
+
+ssh git@git.ciffer.net expand |
+# gitolite outputs list with DOS line endings
+tr -d '\r' |
+# Last field contains the repo name
+awk '{print $NF}' |
+# All public repos are under svend/
+grep '^svend/' |
+gen_mrconfig |
+# Delete last empty line
+sed '$d'

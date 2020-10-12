@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -e
+
+# Check if HEAD is already taggged
+if git describe --exact-match --tags HEAD >/dev/null 2>&1; then
+	echo "HEAD is already tagged"
+	exit
+fi
+
+MAJOR=0
+YMD=$(date +%Y%m%d)
+
+i=0
+
+while :; do
+	tag=$(printf '%s.%s%02d\n' $MAJOR $YMD $i)
+
+	if git show-ref --tag -q $tag; then
+		i=$(($i + 1))
+	else
+		git tag -a -m "Tagging version $tag" "$@" $tag
+		echo "Tagged version $tag"
+		break
+	fi
+done

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+TZS=(America/Los_Angeles EST Europe/Budapest UTC)
+
+DATE="${1:-now}"
+shift
+
+print_dates() {
+  echo -n "default:	"
+  date -d "$DATE" "$@"
+
+  for TZ in "${TZS[@]}"; do
+    echo -n "$TZ:	"
+    TZ=$TZ date -d "$DATE" "$@"
+  done
+}
+
+print_dates "$@" | column -s'	' -t

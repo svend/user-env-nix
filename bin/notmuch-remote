@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# Work around issue with warning being printed on remote host. This
+# warning message is output to stderr and breaks notmuch-emacs.
+#
+# bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)
+unset  LC_ALL
+
+printf -v ARGS "%q " "$@"
+exec ssh notmuch notmuch ${ARGS}

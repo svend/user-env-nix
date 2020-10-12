@@ -1,0 +1,79 @@
+#!/bin/sh
+set -e
+
+# Check if argument is an IP address (crude)
+is_addr()
+{
+	echo $1 |
+	grep -q -e '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*'
+}
+
+# Check that the PTR string matches for the given IP addresses
+check_addr_ptr()
+{
+	addr=$1
+
+	# Get PTR string for address; strip off trailing dot
+	name=$(dig -x "$addr" +short | sed 's/\.$//')
+
+	if [ -z "$name" ]; then
+		echo "$addr failed to resolve" 2>&1
+		return 1
+	fi
+
+	# Look up address of name
+	revaddr=$(dig $name +short | tail -n1)
+
+	# If PTR string doesn't match the original name, print both
+	if [ "$revaddr" != "$addr" ]; then
+		# If PTR string was empty, set it to "NULL"
+		: ${revaddr:=NULL}
+
+		echo "$addr != $revaddr" 2>&1
+		return 1
+	fi
+}
+
+# Check that the PTR string matches for the given name
+check_name_ptr()
+{
+	name=$1
+
+	# Look up address of name
+	addr=$(dig $name +short | tail -n1)
+
+	if [ -z "$addr" ]; then
+		echo "$name failed to resolve" 2>&1
+		return 1
+	fi
+
+	# Get PTR string for address; strip off trailing dot
+	revname=$(dig -x "$addr" +short | sed 's/\.$//')
+
+	# If PTR string doesn't match the original name, print both
+	if [ "$revname" != "$name" ]; then
+		# If PTR string was empty, set it to "NULL"
+		: ${revname:=NULL}
+
+		echo "$name != $revname" 2>&1
+		return 1
+	fi
+}
+
+if [ $# -eq 0 ]; then
+	while read arg; do
+		if is_addr $arg; then
+			check_addr_ptr $arg
+		else
+			check_name_ptr $arg
+		fi
+	done
+else
+	for arg in "$@"; do
+		if is_addr $arg; then
+			check_addr_ptr $arg
+		else
+			check_name_ptr $arg
+		fi
+	done
+fi

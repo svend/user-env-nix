@@ -1,0 +1,10 @@
+#!/bin/sh
+# `pipenv run` command if pipenv venv exists
+
+set -e
+
+if pipenv --venv >/dev/null 2>&1; then
+  exec pipenv run "$@"
+else
+  exec "$@"
+fi
