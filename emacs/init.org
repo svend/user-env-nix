@@ -190,7 +190,7 @@ Treat all themes as safe.
 
 #+begin_src emacs-lisp
 (setq custom-safe-themes t)
-(setq custom-theme-directory "~/.emacs.d/conf/")
+(add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
 #+end_src
 
 Load themes.
