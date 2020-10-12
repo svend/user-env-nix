@@ -10,7 +10,8 @@ final: prev:
 
       # rustup
 
-      cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
+      # FTB on darwin: 2020-10-11
+      # cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
 
       # latest.rustChannels.stable.rust
 
