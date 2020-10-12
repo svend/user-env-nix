@@ -190,6 +190,8 @@ Treat all themes as safe.
 
 #+begin_src emacs-lisp
 (setq custom-safe-themes t)
+(message "foo")
+(message (file-name-as-directory (file-name-directory load-file-name)))
 (add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name))))
 #+end_src
 
