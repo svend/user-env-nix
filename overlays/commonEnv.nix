@@ -96,6 +96,7 @@ final: prev:
       source-code-pro
 
       # Nix
+      nix-info # https://github.com/NixOS/nix/issues/3085
       nix-prefetch-scripts
       nixfmt
       nixpkgs-fmt
