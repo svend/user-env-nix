@@ -191,8 +191,13 @@ Treat all themes as safe.
 #+begin_src emacs-lisp
 (setq custom-safe-themes t)
 (message "foo")
-(message (file-name-as-directory (file-name-directory load-file-name)))
-(add-to-list 'custom-theme-load-path (file-name-as-directory (file-name-directory load-file-name)))
+(message load-file-name)
+(message (file-truename load-file-name))
+(message (file-name-directory (file-truename load-file-name)))
+(message (file-name-as-directory (file-name-directory (file-truename load-file-name))))
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (file-name-as-directory (file-name-directory (file-truename load-file-name)))))
 #+end_src
 
 Load themes.
