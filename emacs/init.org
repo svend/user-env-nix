@@ -196,7 +196,7 @@ Treat all themes as safe.
 Load themes.
 
 #+begin_src emacs-lisp
-(load-theme 'modus-vivendi)
+(load-theme 'tango-plus')
 ;; (load-theme 'svend 't)
 ;; (load-theme 'svend-font-dejavu t)
 #+end_src
@@ -2114,26 +2114,9 @@ layouts.
 
 * External config
 
-Load load config stored outside =~/.emacs.d=.
+Load external configuration.
 
 #+begin_src emacs-lisp
 (when (file-exists-p "~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
-;; (load-file "~/.emacs.d/conf/ob-ansible-playbook.el")
 #+end_src
-
-* Easy Customization
-
-Save customization in =conf/emacs-custom.el= instead of =init.el=.
-
-#+begin_src emacs-lisp
-;; (setq custom-file "~/.emacs.d/conf/emacs-custom.el")
-;; (load custom-file)
-#+end_src
-
-* Full screen
-
-#+begin_src emacs-lisp
-(toggle-frame-fullscreen)
-#+end_src
-
