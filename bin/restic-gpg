@@ -15,7 +15,7 @@ def run(repo=None):
     if repo is not None:
         gpgfile = Path(repo).with_suffix(".gpg")
         if gpgfile.exists():
-            password_command = f"gpg --decrypt '{gpgfile}'"
+            password_command = f"gpg --decrypt --quiet '{gpgfile}'"
     if password_command is None:
         env = os.environ
     else:
