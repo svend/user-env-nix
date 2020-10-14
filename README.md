@@ -27,7 +27,7 @@ Update lock file:
 ``` shell
 nix flake update --recreate-lock-file
 # or
-nix flake update --update-input nixos --update-input nixpkgs-unstable
+nix flake update --update-input nixpkgs-unstable
 ```
 
 

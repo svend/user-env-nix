@@ -10,8 +10,7 @@ final: prev:
 
       # rustup
 
-      # FTB on darwin: https://github.com/NixOS/nixpkgs/pull/100289
-      # cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
+      cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
 
       # latest.rustChannels.stable.rust
 
