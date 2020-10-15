@@ -12,6 +12,7 @@ final: prev:
       coreutils
       dhall
       dhall-json
+      display-switch
       dtach
       myEmacs
       etcdctl
