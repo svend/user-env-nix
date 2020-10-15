@@ -12,7 +12,6 @@ final: prev:
       coreutils
       dhall
       dhall-json
-      display-switch
       dtach
       myEmacs
       etcdctl
@@ -107,6 +106,7 @@ final: prev:
       pinentry_mac
       terminal-notifier
     ] ++ lib.optionals stdenv.isLinux [
+      display-switch # FTB darwin: libaio-0.3.111
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils
       isync # mbsync
