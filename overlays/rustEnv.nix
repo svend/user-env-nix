@@ -10,14 +10,15 @@ final: prev:
 
       # rustup
 
-      cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
-
       # latest.rustChannels.stable.rust
 
       cargo
       rustc
       rustfmt
       rust-analyzer # collision with rust from nixpkgs-mozilla
-    ];
+    ] ++ lib.optionals stdenv.isDarwin [
+      # FTB on darwin: https://github.com/NixOS/nixpkgs/pull/100289
+      cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
+     ];
   };
 }
