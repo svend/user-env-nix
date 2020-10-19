@@ -69,7 +69,7 @@ def backup(repo, dry_run):
 
     start_time = time.time()
     run_command(
-        ["restic-gpg", "backup", "--one-file-system",] + excludes + targets(),
+        ["restic-gpg", "backup", "--one-file-system"] + excludes + targets(),
         dry_run=dry_run,
     )
     end_time = time.time()
