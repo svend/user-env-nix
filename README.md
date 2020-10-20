@@ -30,4 +30,13 @@ nix flake update --recreate-lock-file
 nix flake update --update-input nixpkgs-unstable
 ```
 
+## Development
+
+Running `nix build` will create `result/` which is a link to the build.
+
+To run Emacs from the build, run:
+
+``` shell
+EMACSLOADPATH= result/bin/emacs
+```
 

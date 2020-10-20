@@ -11,7 +11,10 @@ rec {
       '';
 
       buildPhase = ''
-        emacs --batch --load ob-tangle --eval "(org-babel-tangle-file \"init.org\" \"init.el\" \"emacs-lisp\")"
+        emacs \
+          --batch \
+          --load ob-tangle \
+          --eval "(org-babel-tangle-file \"init.org\" \"init.el\" \"emacs-lisp\")"
       '';
 
       installPhase = ''
