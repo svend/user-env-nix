@@ -897,7 +897,9 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 
   (add-hook 'desktop-save-mode-hook (lambda () (my-desktop-remove-stale-lock "~/.emacs.d")))
 
-  (desktop-save-mode 1))
+  ;; TODO: Trying Emacs without desktop save enabled
+  ;; (desktop-save-mode 1)
+  )
 #+end_src
 
 ** dired
