@@ -29,8 +29,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 
 * Initialize exec-path-from-shell
 
-Function that gets environmental variables from bash. This uses printenv from
-nixpkgs on macOS.
+Function that gets environmental variables from bash.
 
 #+begin_src emacs-lisp
 (defun bash-shell-variables()
