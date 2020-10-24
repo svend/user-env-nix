@@ -368,6 +368,7 @@ version-control.
 
 #+begin_src emacs-lisp
 (setq auto-save-default nil)
+(setq auto-save-list-file-prefix nil)
 (setq make-backup-files nil)
 #+end_src
 
