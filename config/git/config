@@ -1,0 +1,78 @@
+# Git config file
+
+[alias]
+	# Print current branch name
+	br = rev-parse --abbrev-ref HEAD
+
+	# Print branches, sorted by date
+	branches-by-date = branch --format='%(creatordate:short) %(refname:short) %(contents:subject)' --sort=creatordate
+
+	# Delete local branches that have been merged to master
+	branch-cleanup = ! git branch --merged master | grep -v master | xargs git branch -d
+
+	# Print tags, sorted by date
+	tags-by-date = tag --format='%(creatordate:short) %(refname:short)' --sort=creatordate
+
+	# Configure git to fetch GitHub pull request references
+	# (https://help.github.com/en/articles/checking-out-pull-requests-locally#modifying-an-inactive-pull-request-locally)
+	pr-init = "! \
+	git config --replace-all remote.origin.fetch \
+	'+refs/pull/*/head:refs/remotes/origin/pull/*' \
+	'^\\+refs/pull/\\*/head:refs/remotes/origin/pull/\\*$' \
+	&& git fetch origin"
+
+	# List GitHub pull requests
+	prs = "! \
+	git pr-init 2>/dev/null \
+	&& git branch --all --list 'origin/pull/*' --sort=creatordate"
+
+	# Check out GitHub pull request (`git pr 1234`)
+	pr = "! \
+	git pr-init 2>/dev/null \
+	&& git checkout pull/$1 \
+	&& git config --replace-all branch.pull/$1.merge refs/pull/$1/head"
+
+[diff]
+	# Omit a/b prefix so that find-file-at-point works
+	noprefix = true
+
+# TODO: This can fail when the right AWS environment is not configured, which
+# breaks "git diff/show/...". Disable for now.
+# [diff "sopsdiffer"]
+# 	textconv = sops -d
+
+[github]
+	user = svend
+
+[hub]
+	protocol = https
+
+[merge]
+	tool = ediff
+
+[mergetool "ediff"]
+	cmd = emacsclient --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+	# cmd = emacsclient --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
+[pull]
+	ff = only
+
+[tag]
+	sort = version:refname
+
+[url "git@github.com:"]
+	pushInsteadOf = https://github.com/
+
+[url "git@gist.github.com:"]
+	pushInsteadOf = https://gist.github.com/
+
+[url "ssh://git@git.zx2c4.com/"]
+	pushInsteadOf = https://git.zx2c4.com/
+
+[user]
+	name = Svend Sorensen
+	email = svend@svends.net
+
+# This include must come last
+[include]
+	path = ~/.config/git/config.local

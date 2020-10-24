@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+BASE_URL=https://raw.githubusercontent.com/github/gitignore/master
+IGNORES='
+Global/Emacs.gitignore
+Global/Vim.gitignore
+Global/macOS.gitignore
+'
+
+cat ignore.local
+
+for s in ${IGNORES}; do
+  curl -sS --fail "${BASE_URL}/${s}"
+done

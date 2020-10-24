@@ -1,13 +1,33 @@
 final: prev:
 {
-  myNotmuch = with final; prev.runCommand "myNotmuch" {
-    nativeBuildInputs = [ prev.makeWrapper ];
-    inherit notmuch;
-    config = ../config/notmuch-config;
-  } ''
+  gitConfig = prev.runCommand "gitConfig"
+    {
+      config = ../config/git;
+    } ''
+    mkdir -p "$out"
+    cp -r "$config" "$out/git"
+  '';
+
+  myGit = with final; prev.runCommand "myGit"
+    {
+      nativeBuildInputs = [ prev.makeWrapper ];
+      git = gitMinimal;
+      config = gitConfig;
+    } ''
+    mkdir -p "$out/bin"
+    bin=bin/git
+    makeWrapper "$git/$bin" "$out/$bin" --set XDG_CONFIG_HOME "$config"
+  '';
+
+  myNotmuch = with final; prev.runCommand "myNotmuch"
+    {
+      nativeBuildInputs = [ prev.makeWrapper ];
+      inherit notmuch;
+      config = ../config/notmuch-config;
+    } ''
     mkdir -p "$out/bin"
     bin=bin/notmuch
-    makeWrapper "$notmuch/$bin" "$out/$bin" --set-default NOTMUCH_CONFIG $config
+    makeWrapper "$notmuch/$bin" "$out/$bin" --set-default NOTMUCH_CONFIG "$config"
   '';
 
   commonEnv = with final; prev.buildEnv {
@@ -31,7 +51,7 @@ final: prev:
       gettext # for envsubst
       git-crypt
       gitAndTools.hub
-      gitMinimal
+      myGit
       gnugrep
       gnuplot
       gnused
@@ -40,7 +60,6 @@ final: prev:
       gzip
       htop
       imagemagick
-      jq
       jsonnet
       keychain
       github-cli
