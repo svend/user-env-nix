@@ -1,6 +1,6 @@
 final: prev:
 {
-  myScripts = prev.stdenv.runCommand "myScripts"
+  myScripts = prev.runCommand "myScripts"
     {
       scripts = ../config/scripts;
     } ''
