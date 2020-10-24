@@ -23,7 +23,7 @@ final: prev:
     {
       nativeBuildInputs = [ prev.makeWrapper ];
       inherit notmuch;
-      config = ../config/notmuch-config;
+      config = ../config/notmuch/notmuch-config;
     } ''
     mkdir -p "$out/bin"
     bin=bin/notmuch
