@@ -151,7 +151,7 @@ final: prev:
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils
       isync # mbsync
-      # librecad # TODO: https://github.com/NixOS/nixpkgs/pull/96248
+      librecad
       myNotmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
