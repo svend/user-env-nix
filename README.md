@@ -6,6 +6,25 @@
 
 See  https://nixos.wiki/wiki/Flakes
 
+For NixOS, add the following to `/etc/nixos/configuration.nix`:
+
+``` nix
+  nix = {
+    package = pkgs.nixUnstable;
+    extraOptions = ''
+      experimental-features = nix-command flakes ca-references
+    '';
+  };
+```
+
+Setting experimental-features in ~/.config/nix/nix.conf generates a warning on
+NixOS, so set it in /etc/nix/nix.conf on non-NixOS systems:
+
+``` shell
+sudo mkdir -p /etc/nix
+echo 'experimental-features = nix-command flakes ca-references' | sudo tee /etc/nix/nix.conf
+```
+
 ## Installation
 
 Install flake into profile:
