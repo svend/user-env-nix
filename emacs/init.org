@@ -358,19 +358,23 @@ http://lists.gnu.org/archive/html/emacs-devel/2011-07/msg01020.html
 
 ** Backup and auto-saves
 
-Put all backup and auto-saves into =~/.emacs.d= instead of the current
-directory.
+Disable auto-saves (which are period copies of unsaved changes).
+
+Disable backups (which are a copy of original file when modifications are
+saved).
+
+I use the super-save package to save all changes. Backups are handled by
+version-control.
 
 #+begin_src emacs-lisp
-(setq backup-directory-alist
-      `((".*" . ,(expand-file-name "backup/" user-emacs-directory))))
-(setq auto-save-file-name-transforms
-      `((".*" ,(expand-file-name "backup/" user-emacs-directory) t)))
+(setq auto-save-default nil)
+(setq make-backup-files nil)
 #+end_src
 
 ** Revert
 
-Enable global auto-revert mode.
+Enable global auto-revert mode. This reloads a buffer when the file changes on
+disk.
 
 #+begin_src emacs-lisp
 (global-auto-revert-mode 1)
@@ -395,26 +399,7 @@ Press =C-c C-h= to show all of these.
 
 ** Space as control key
 
-Use space as control key using [[https://github.com/alols/xcape][xcape]] on Linux and [[https://pqrs.org/osx/karabiner/][Karabiner]] on macOS.
-
-xcape:
-
-#+begin_src sh
-# Map an unused modifier's keysym to the spacebar's keycode and make
-# it a control modifier. It needs to be an existing key so that emacs
-# won't spazz out when you press it. Hyper_L is a good candidate.
-spare_modifier="Hyper_L"
-xmodmap -e "keycode 65 = $spare_modifier"
-xmodmap -e "remove mod4 = $spare_modifier" # hyper_l is mod4 by default
-xmodmap -e "add Control = $spare_modifier"
-
-# Map space to an unused keycode (to keep it around for xcape to use).
-xmodmap -e "keycode any = space"
-
-# Finally use xcape to cause the space bar to generate a space when
-# tapped.
-xcape -e "$spare_modifier=space"
-#+end_src
+Use space as control key using [[https://github.com/alols/xcape][dual-function-keys]] on Linux and [[https://pqrs.org/osx/karabiner/][Karabiner]] on macOS.
 
 Karabiner:
 
@@ -1817,7 +1802,7 @@ See http://stackoverflow.com/a/11255996
   :config
   (add-to-list 'display-buffer-alist
                '("^\\*shell\\*" . ((display-buffer-reuse-window display-buffer-same-window))))
-  ;; bash-completion only loaded for login shells; note that "--login" must come
+  ;; bash-co1mpletion only loaded for login shells; note that "--login" must come
   ;; before short options like "-i"
   (add-to-list 'explicit-bash-args "--login")
   (setq explicit-shell-file-name "bash")
