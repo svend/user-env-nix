@@ -6,7 +6,8 @@ final: prev:
     config = ../config/notmuch-config;
   } ''
     mkdir -p "$out/bin"
-    makeWrapper "$notmuch/bin/notmuch" "$out/bin/foo" --set NOTMUCH_CONFIG $config
+    bin=bin/notmuch
+    makeWrapper "$notmuch/$bin" "$out/$bin" --set-default NOTMUCH_CONFIG $config
   '';
 
   commonEnv = with final; prev.buildEnv {
