@@ -4,7 +4,7 @@ rec {
     {
       name = "emacs-config";
       buildInputs = [ prev.emacs ];
-      src = ../emacs;
+      src = ../config/emacs;
 
       unpackPhase = ''
         cp -r $src/* .

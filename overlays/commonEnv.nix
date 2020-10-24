@@ -1,5 +1,14 @@
 final: prev:
 {
+  myNotmuch = with final; prev.runCommand "myNotmuch" {
+    nativeBuildInputs = [ prev.makeWrapper ];
+    inherit notmuch;
+    config = ../config/notmuch-config;
+  } ''
+    mkdir -p "$out/bin"
+    makeWrapper "$notmuch/bin/notmuch" "$out/bin/foo" --set NOTMUCH_CONFIG $config
+  '';
+
   commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
     paths = [
@@ -40,7 +49,7 @@ final: prev:
       mercurial
       mr
       multi-x509
-      # notmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
+      # myNotmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
       pandoc
       parallel
       pass
@@ -111,7 +120,7 @@ final: prev:
       inetutils
       isync # mbsync
       # librecad # TODO: https://github.com/NixOS/nixpkgs/pull/96248
-      notmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
+      myNotmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
 }
