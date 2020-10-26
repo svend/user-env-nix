@@ -73,6 +73,7 @@ final: prev:
       htop
       imagemagick
       jsonnet
+      jq
       keychain
       github-cli
       gnuplot
