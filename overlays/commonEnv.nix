@@ -1,18 +1,5 @@
 final: prev:
 {
-  myDisplaySwitch = with final; prev.runCommand "myDisplaySwitch"
-    {
-      nativeBuildInputs = [ prev.makeWrapper ];
-      inherit displaySwitch;
-    } ''
-    mkdir -p "$out/bin"
-    bin=bin/display_switch
-    makeWrapper "$displaySwitch/$bin" "$out/$bin" \
-      --set-default DISPLAY_SWITCH_USB_DEVICE "1a40:0101" \
-      --set-default DISPLAY_SWITCH_ON_USB_CONNECT "DisplayPort1" \
-      --set-default DISPLAY_SWITCH_ON_USB_DISCONNECT "Hdmi1"
-  '';
-
   gitConfig = prev.runCommand "gitConfig"
     {
       config = ../config/git;
@@ -147,7 +134,7 @@ final: prev:
       pinentry_mac
       terminal-notifier
     ] ++ lib.optionals stdenv.isLinux [
-      myDisplaySwitch # FTB darwin: libaio-0.3.111
+      display-switch # FTB darwin: libaio-0.3.111
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils
       isync # mbsync
