@@ -11,7 +11,7 @@ final: prev:
   myGit = with final; prev.runCommand "myGit"
     {
       nativeBuildInputs = [ prev.makeWrapper ];
-      git = gitMinimal;
+      inherit git;
       config = gitConfig;
     } ''
     mkdir -p "$out/bin"
