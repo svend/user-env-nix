@@ -8,40 +8,51 @@ final: prev:
     cp -r "$config" "$out/git"
   '';
 
-  gitWithConfig = prev.hiPrio (with final; prev.runCommand "gitWithConfig"
-    {
-      nativeBuildInputs = [ prev.makeWrapper ];
-      inherit git;
-      config = gitConfig;
-    } ''
-    mkdir -p "$out/bin"
-    bin=bin/git
-    makeWrapper "$git/$bin" "$out/$bin" --set XDG_CONFIG_HOME "$config"
-  '');
+  gitWithConfig = with final; prev.buildEnv {
+    name = "gitWithConfig";
+    buildInputs = [ prev.makeWrapper ];
+    paths = [ final.git ];
+    postBuild = ''
+      unlink "$out/bin"
+      mkdir -p "$out/bin"
+      for path in "${git}"/bin/*; do
+        bin=$(basename "$path")
+        makeWrapper "$path" "$out/bin/$bin" --set XDG_CONFIG_HOME "${gitConfig}"
+      done
+    '';
+  };
 
-  notmuchWithConfig = prev.hiPrio (with final; prev.runCommand "notmuchWithConfig"
-    {
-      nativeBuildInputs = [ prev.makeWrapper ];
-      inherit notmuch;
-      config = ../config/notmuch/notmuch-config;
-    } ''
-    mkdir -p "$out/bin"
-    bin=bin/notmuch
-    makeWrapper "$notmuch/$bin" "$out/$bin" --set-default NOTMUCH_CONFIG "$config"
-  '');
+  notmuchWithConfig = let
+    config = ../config/notmuch/notmuch-config;
+  in with final; prev.buildEnv {
+    name = "notmuchWithConfig";
+    buildInputs = [ prev.makeWrapper ];
+    paths = [ notmuch ];
+    postBuild = ''
+      unlink "$out/bin"
+      mkdir -p "$out/bin"
+      for path in "${notmuch}"/bin/*; do
+        bin=$(basename "$path")
+        makeWrapper "$path" "$out/bin/$bin" --set-default NOTMUCH_CONFIG "${config}"
+      done
+    '';
+  };
 
-  zshWithConfig = prev.hiPrio (with final; prev.runCommand "zshWithConfig"
-    {
-      nativeBuildInputs = [ prev.makeWrapper ];
-      inherit zsh;
-      config = ../config/zsh;
-    } ''
-    mkdir -p "$out/bin"
-    for path in "$zsh"/bin/*; do
-      bin=$(basename "$path")
-      makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "$config"
-    done
-  '');
+  zshWithConfig = let
+    config = ../config/zsh;
+  in with final; prev.buildEnv {
+    name = "zshWithConfig";
+    buildInputs = [ prev.makeWrapper ];
+    paths = [ zsh ];
+    postBuild = ''
+      unlink "$out/bin"
+      mkdir -p "$out/bin"
+      for path in "${zsh}"/bin/*; do
+        bin=$(basename "$path")
+        makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${config}"
+      done
+    '';
+  };
 
   commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
@@ -63,7 +74,7 @@ final: prev:
       gettext # for envsubst
       git-crypt
       gitAndTools.hub
-      git gitWithConfig
+      gitWithConfig
       gnugrep
       gnuplot
       gnused
@@ -103,7 +114,7 @@ final: prev:
       xsv
       xz
       zookeeper
-      zsh zshWithConfig
+      zshWithConfig
       haskellPackages.ShellCheck
 
       # Network tools
@@ -153,7 +164,7 @@ final: prev:
       inetutils
       isync # mbsync
       librecad
-      notmuch notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
+      notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
 }
