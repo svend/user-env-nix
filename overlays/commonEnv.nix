@@ -63,7 +63,7 @@ final: prev:
       gettext # for envsubst
       git-crypt
       gitAndTools.hub
-      gitWithConfig
+      (prev.lowPrio git) gitWithConfig
       gnugrep
       gnuplot
       gnused
@@ -103,7 +103,7 @@ final: prev:
       xsv
       xz
       zookeeper
-      zshWithConfig
+      (prev.lowPrio zsh) zshWithConfig
       haskellPackages.ShellCheck
 
       # Network tools
@@ -153,7 +153,7 @@ final: prev:
       inetutils
       isync # mbsync
       librecad
-      notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
+      (prev.lowPrio notmuch) notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
 }
