@@ -8,7 +8,7 @@ final: prev:
     cp -r "$config" "$out/git"
   '';
 
-  myGit = with final; prev.runCommand "myGit"
+  gitWithConfig = with final; prev.runCommand "gitWithConfig"
     {
       nativeBuildInputs = [ prev.makeWrapper ];
       inherit git;
@@ -19,7 +19,7 @@ final: prev:
     makeWrapper "$git/$bin" "$out/$bin" --set XDG_CONFIG_HOME "$config"
   '';
 
-  myNotmuch = with final; prev.runCommand "myNotmuch"
+  notmuchWithConfig = with final; prev.runCommand "notmuchWithConfig"
     {
       nativeBuildInputs = [ prev.makeWrapper ];
       inherit notmuch;
@@ -28,6 +28,19 @@ final: prev:
     mkdir -p "$out/bin"
     bin=bin/notmuch
     makeWrapper "$notmuch/$bin" "$out/$bin" --set-default NOTMUCH_CONFIG "$config"
+  '';
+
+  zshWithConfig = with final; prev.runCommand "zshWithConfig"
+    {
+      nativeBuildInputs = [ prev.makeWrapper ];
+      inherit zsh;
+      config = ../config/zsh;
+    } ''
+    mkdir -p "$out/bin"
+    for path in "$zsh"/bin/*; do
+      bin=$(basename "$path")
+      makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "$config"
+    done
   '';
 
   commonEnv = with final; prev.buildEnv {
@@ -51,7 +64,7 @@ final: prev:
       gettext # for envsubst
       git-crypt
       gitAndTools.hub
-      myGit
+      gitWithConfig
       gnugrep
       gnuplot
       gnused
@@ -90,6 +103,7 @@ final: prev:
       xsv
       xz
       zookeeper
+      zshWithConfig
       haskellPackages.ShellCheck
 
       # Network tools
@@ -139,7 +153,7 @@ final: prev:
       inetutils
       isync # mbsync
       librecad
-      myNotmuch # FTB on darwin: gpg: can't connect to the agent: File name too long
+      notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
 }
