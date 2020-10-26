@@ -1,6 +1,6 @@
 final: prev:
 {
-  displaySwitch = prev.callPackage ../pkgs/display-switch { };
+  display-switch = prev.callPackage ../pkgs/display-switch { };
   github-cli = prev.callPackage ../pkgs/github-cli { };
   # gopls = prev.callPackage ../pkgs/gopls { };
   multi-x509 = prev.callPackage ../pkgs/multi-x509 { inherit (prev.darwin.apple_sdk.frameworks) Security; };
