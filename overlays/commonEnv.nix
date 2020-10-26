@@ -56,7 +56,6 @@ final: prev:
       dhall
       dhall-json
       dtach
-      myEmacs
       etcdctl
       file
       findutils
@@ -98,7 +97,7 @@ final: prev:
       time
       tokei # count lines of code
       tree
-      unzip # required for Emacs nov.el package
+      unzip
       watch
       xsv
       xz
