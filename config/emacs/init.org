@@ -1398,8 +1398,8 @@ Terraform state files are JSON.
   ;; Add = to enable completion for --option= flags
   (setq native-complete-exclude-regex "[^$(-/_~=[:alnum:]]")
 
-  (with-eval-after-load 'shell
-    (native-complete-setup-bash))
+  ;; (with-eval-after-load 'shell
+  ;;   (native-complete-setup-bash))
 
   (defun my-shell-hook ()
     (setq completion-at-point-functions '(native-complete-at-point)))
@@ -1814,7 +1814,11 @@ Start Emacs server unless one is already running. =server-running-p= requires
   ;; bash-completion only loaded for login shells; note that "--login" must come
   ;; before short options like "-i"
   (add-to-list 'explicit-bash-args "--login")
+
   (setq explicit-shell-file-name "bash")
+  ;; (setq shell-file-name "zsh")
+  ;; (setq explicit-shell-file-name "zsh")
+
   ;; Do not try to colorize comments and strings in shell mode
   (setq shell-font-lock-keywords nil)
   ;; This seems to be slowing down shell buffers
