@@ -1398,8 +1398,9 @@ Terraform state files are JSON.
   ;; Add = to enable completion for --option= flags
   (setq native-complete-exclude-regex "[^$(-/_~=[:alnum:]]")
 
-  ;; (with-eval-after-load 'shell
-  ;;   (native-complete-setup-bash))
+  (with-eval-after-load 'shell
+    (when (string-match-p "bash" shell-file-name)
+      (native-complete-setup-bash)))
 
   (defun my-shell-hook ()
     (setq completion-at-point-functions '(native-complete-at-point)))
