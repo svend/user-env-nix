@@ -12,6 +12,11 @@ alias ssh-p='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o Con
 alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
 
+# Disable echo inside EMACS
+if [[ -v INSIDE_EMACS ]]; then
+  unsetopt zle
+fi
+
 # Enable completion system
 autoload -Uz compinit
 compinit
