@@ -51,6 +51,7 @@ This needs to come before anything that uses PATH (e.g. executable-find).
 (use-package exec-path-from-shell
   :if window-system
   :init (setq exec-path-from-shell-variables (bash-shell-variables))
+  ;; TODO: make Emacs config independent of bash configuration
   ;; :config (exec-path-from-shell-initialize)
   )
 #+end_src
@@ -58,8 +59,10 @@ This needs to come before anything that uses PATH (e.g. executable-find).
 #+begin_src emacs-lisp
 ; Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH
 ; https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140
-(let ((dir (car exec-path)))
-  (setenv "PATH" (concat dir ":" (getenv "PATH"))))
+(let ((path (getenv "PATH"))
+      (dep-path (car exec-path))
+      (local-path "/usr/local/bin"))
+  (string-join (list dep-path local-path path) ":"))
 #+end_src
 
 * Emacs UI
