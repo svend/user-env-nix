@@ -60,9 +60,9 @@ This needs to come before anything that uses PATH (e.g. executable-find).
 ; Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH
 ; https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140
 (let ((path (getenv "PATH"))
-      (dep-path (car exec-path))
+      (deps-path (car exec-path))
       (local-path "/usr/local/bin"))
-  (string-join (list dep-path local-path path) ":"))
+  (setenv "PATH" (string-join (list deps-path local-path path) ":")))
 #+end_src
 
 * Emacs UI
