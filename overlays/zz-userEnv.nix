@@ -96,7 +96,6 @@ rec {
       blacken
       bpr
       company-go
-      eglot
       epresent
       flycheck-rust
       flycheck-golangci-lint
@@ -115,14 +114,16 @@ rec {
       # Themes
       modus-operandi-theme
       modus-vivendi-theme
+      nord-theme
       spacemacs-theme
       tango-plus-theme
       tao-theme
 
-      # LSP
-      company-lsp
-      lsp-mode
-      lsp-ui
+      # Language server support
+      eglot
+      # company-lsp
+      # lsp-mode
+      # lsp-ui
 
       # Modes
       dhall-mode
