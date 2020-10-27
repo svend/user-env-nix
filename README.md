@@ -59,3 +59,10 @@ To run Emacs from the build, run:
 EMACSLOADPATH= result/bin/emacs
 ```
 
+## Flake Notes
+
+Install the latest version of nix 3.0pre into user profile:
+
+``` shell
+nix profile install nixpkgs/nixpkgs-unstable#nixUnstable
+```
