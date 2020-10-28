@@ -39,6 +39,8 @@
           (name: import (./overlays + "/${name}"))
           (builtins.attrNames (builtins.readDir ./overlays));
 
+      packages = forAllSystems (system: nixpkgsFor."${system}");
+
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
     };
 }
