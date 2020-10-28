@@ -9,12 +9,14 @@ See  https://nixos.wiki/wiki/Flakes
 For NixOS, add the following to `/etc/nixos/configuration.nix`:
 
 ``` nix
+{
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
       experimental-features = nix-command flakes ca-references
     '';
   };
+}
 ```
 
 Setting experimental-features in ~/.config/nix/nix.conf generates a warning on
