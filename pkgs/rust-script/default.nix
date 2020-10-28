@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform, makeWrapper, Security }:
+{ stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -10,12 +10,12 @@ buildRustPackage rec {
     owner = "fornwall";
     repo = "rust-script";
     rev = version;
-    sha256 = "";
+    sha256 = "sha256-qf8o8gG4PtP9GNUYGtkafgNjQzlbrguEXUjrJlDiDV8=";
   };
 
-  cargoSha256 = "";
+  cargoSha256 = "sha256-KFi07KQiCtp2BGrPRPpKZbEfgmzgqamKLrh9yR/VO24=";
 
-  buildInputs = stdenv.lib.optional stdenv.isDarwin Security;
+  doCheck = false;
 
   meta = with stdenv.lib; {
     description = "Run Rust files and expressions as scripts without any setup or compilation step";

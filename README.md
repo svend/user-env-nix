@@ -66,3 +66,11 @@ Install the latest version of nix 3.0pre into user profile:
 ``` shell
 nix profile install nixpkgs/nixpkgs-unstable#nixUnstable
 ```
+
+To show build logs, use the `--print-build-logs|-L` flag. This flag does not
+show up in `--help`.
+
+``` shell
+nix build --print-build-logs
+```
+

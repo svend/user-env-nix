@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform, makeWrapper, Security }:
+{ stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -19,8 +19,6 @@ buildRustPackage rec {
   # checksum into the expression and building the package once. The correct
   # checksum can be then take from the failed build.
   cargoSha256 = "1ylp57mzfqav8c2hkz55grxv0lgf2cbhql7adri1bgc44wv30akq";
-
-  buildInputs = stdenv.lib.optional stdenv.isDarwin Security;
 
   meta = with stdenv.lib; {
     description = "Run a command on each x509 certificate";

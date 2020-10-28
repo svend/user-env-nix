@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform, makeWrapper, Security }:
+{ stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -14,13 +14,7 @@ buildRustPackage rec {
     sha256 = "0id75iscyd3cr52jaiq3lx9v115x1ix44y5nwaq382cdchsmzs1i";
   };
 
-  # buildRustPackage requires a cargoSha256 attribute which is computed over all
-  # crate sources of this package. Currently it is obtained by inserting a fake
-  # checksum into the expression and building the package once. The correct
-  # checksum can be then take from the failed build.
   cargoSha256 = "1dx3mmzxsbvwpr8wf2g4gglv8cfyv8d4gmx1w52cqpvwqgwdkn2f";
-
-  buildInputs = stdenv.lib.optional stdenv.isDarwin Security;
 
   meta = with stdenv.lib; {
     description = "Various rust scripts";
