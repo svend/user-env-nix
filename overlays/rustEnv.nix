@@ -14,13 +14,11 @@ final: prev:
 
       cargo
       rustc
-      rustfmt
-      rust-analyzer # collision with rust from nixpkgs-mozilla
 
-      rust-script
-    ] ++ lib.optionals stdenv.isLinux [
-      # FTB on darwin: https://github.com/NixOS/nixpkgs/pull/100289
       cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
-     ];
+      rust-analyzer # collision with rust from nixpkgs-mozilla
+      rust-script
+      rustfmt
+    ];
   };
 }

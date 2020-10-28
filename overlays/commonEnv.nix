@@ -22,37 +22,41 @@ final: prev:
     '';
   };
 
-  notmuchWithConfig = let
-    config = ../config/notmuch/notmuch-config;
-  in with final; prev.buildEnv {
-    name = "notmuchWithConfig";
-    buildInputs = [ prev.makeWrapper ];
-    paths = [ notmuch ];
-    postBuild = ''
-      unlink "$out/bin"
-      mkdir -p "$out/bin"
-      for path in "${notmuch}"/bin/*; do
-        bin=$(basename "$path")
-        makeWrapper "$path" "$out/bin/$bin" --set-default NOTMUCH_CONFIG "${config}"
-      done
-    '';
-  };
+  notmuchWithConfig =
+    let
+      config = ../config/notmuch/notmuch-config;
+    in
+    with final; prev.buildEnv {
+      name = "notmuchWithConfig";
+      buildInputs = [ prev.makeWrapper ];
+      paths = [ notmuch ];
+      postBuild = ''
+        unlink "$out/bin"
+        mkdir -p "$out/bin"
+        for path in "${notmuch}"/bin/*; do
+          bin=$(basename "$path")
+          makeWrapper "$path" "$out/bin/$bin" --set-default NOTMUCH_CONFIG "${config}"
+        done
+      '';
+    };
 
-  zshWithConfig = let
-    config = ../config/zsh;
-  in with final; prev.buildEnv {
-    name = "zshWithConfig";
-    buildInputs = [ prev.makeWrapper ];
-    paths = [ zsh ];
-    postBuild = ''
-      unlink "$out/bin"
-      mkdir -p "$out/bin"
-      for path in "${zsh}"/bin/*; do
-        bin=$(basename "$path")
-        makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${config}"
-      done
-    '';
-  };
+  zshWithConfig =
+    let
+      config = ../config/zsh;
+    in
+    with final; prev.buildEnv {
+      name = "zshWithConfig";
+      buildInputs = [ prev.makeWrapper ];
+      paths = [ zsh ];
+      postBuild = ''
+        unlink "$out/bin"
+        mkdir -p "$out/bin"
+        for path in "${zsh}"/bin/*; do
+          bin=$(basename "$path")
+          makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${config}"
+        done
+      '';
+    };
 
   commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
