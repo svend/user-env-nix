@@ -59,6 +59,7 @@ rec {
       edit-indirect
       exec-path-from-shell
       expand-region
+      f # required by password-store 1.7.3, this application is before the emacs package in the path
       flycheck
       gnuplot
       hydra
