@@ -3,8 +3,7 @@
 
   inputs = {
     nixos.url = "nixpkgs/release-20.09";
-    # TODO: ruby fails to compile on nixpkgs-unstable/7ad5e816faba
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
