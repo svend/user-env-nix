@@ -99,7 +99,7 @@ final: prev:
       multi-x509
       pandoc
       parallel
-      pass
+      (prev.pass.override { git = gitWithConfig; })
       plantuml
       postgresql
       pwgen
