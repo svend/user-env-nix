@@ -22,6 +22,17 @@ final: prev:
     '';
   };
 
+  isyncWithConfig = with final; prev.runCommand "isyncWithConfig"
+    {
+      nativeBuildInputs = [ prev.makeWrapper ];
+      inherit isync;
+      config = ../config/isync/mbsyncrc;
+    } ''
+    mkdir -p "$out/bin"
+    bin=bin/mbsync
+    makeWrapper "$isync/$bin" "$out/$bin"-with-config --add-flags "--config=$config"
+  '';
+
   notmuchWithConfig =
     let
       config = ../config/notmuch/notmuch-config;
@@ -166,7 +177,7 @@ final: prev:
       display-switch # FTB darwin: libaio-0.3.111
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils
-      isync # mbsync
+      isync isyncWithConfig # mbsync
       librecad
       notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
