@@ -212,7 +212,7 @@ Custom exist in the =themes/= directory alongside the Emacs init file.
 Load themes.
 
 #+begin_src emacs-lisp
-(load-theme 'tango-plus)
+(load-theme 'spacemacs-dark)
 (load-theme 'svend 't)
 (load-theme 'svend-font-dejavu t)
 #+end_src
