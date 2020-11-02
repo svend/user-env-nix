@@ -1,6 +1,6 @@
 { stdenv, fetchFromGitHub, rustPlatform, udev, pkgconfig }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "display-switch";
   version = "dev";
 

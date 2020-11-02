@@ -2,8 +2,8 @@
 
 with rustPlatform;
 
-buildRustPackage rec {
-  name = "rust-analyzer-${version}";
+buildRustPackage {
+  pname = "rust-analyzer";
   version = "2020-08-10";
 
   src = fetchFromGitHub {

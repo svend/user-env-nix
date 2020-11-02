@@ -2,8 +2,8 @@
 
 with rustPlatform;
 
-buildRustPackage rec {
-  name = "multi-x509-${version}";
+buildRustPackage {
+  pname = "multi-x509";
   version = "0.1.0";
 
   src = fetchFromGitHub {

@@ -1,6 +1,6 @@
 { stdenv, go, buildGoModule, fetchgit }:
 
-buildGoModule rec {
+buildGoModule {
   pname = "gopls";
   version = "0.4.3";
 

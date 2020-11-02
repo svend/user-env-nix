@@ -3,13 +3,13 @@
 with rustPlatform;
 
 buildRustPackage rec {
-  name = "rust-scripts-${version}";
+  pname = "rust-scripts";
   version = "0.1.0";
 
   src = fetchFromGitHub {
     owner = "svend";
     repo = "rust-scripts";
-    # rev = "${version}";
+    # rev = version;
     rev = "761dc59755ee95de59766545cb0eda2b9166aa83";
     sha256 = "0id75iscyd3cr52jaiq3lx9v115x1ix44y5nwaq382cdchsmzs1i";
   };

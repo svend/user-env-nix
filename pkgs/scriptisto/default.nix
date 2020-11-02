@@ -3,7 +3,7 @@
 with rustPlatform;
 
 buildRustPackage rec {
-  name = "scriptisto-${version}";
+  pname = "scriptisto";
   version = "v0.6.5";
 
   src = fetchFromGitHub {

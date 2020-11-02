@@ -3,7 +3,7 @@
 with rustPlatform;
 
 buildRustPackage rec {
-  name = "rust-script-${version}";
+  pname = "rust-script";
   version = "v0.7.0";
 
   src = fetchFromGitHub {
