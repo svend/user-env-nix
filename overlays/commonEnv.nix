@@ -87,9 +87,6 @@ final: prev:
       findutils
       gawk
       gettext # for envsubst
-      git-crypt
-      gitAndTools.hub
-      gitWithConfig
       gnugrep
       gnuplot
       gnused
@@ -101,11 +98,9 @@ final: prev:
       jsonnet
       jq
       keychain
-      github-cli
       gnuplot
       ledger
       less
-      mercurial
       mr
       multi-x509
       pandoc
@@ -132,6 +127,13 @@ final: prev:
       zshWithConfig
       haskellPackages.ShellCheck
 
+      # Version control
+      github-cli
+      git-crypt
+      gitAndTools.hub
+      gitWithConfig
+      mercurial
+
       # Network tools
       # netcat # use nmap/ncat
       # netcat-gnu # use nmap/ncat
@@ -152,7 +154,7 @@ final: prev:
       terraform-lsp
       tflint
 
-      # fonts
+      # Fonts
       dejavu_fonts
       fira
       fira-code
