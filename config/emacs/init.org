@@ -27,6 +27,21 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (require 'bind-key)
 #+end_src
 
+* Environment Variables
+
+Use =gpg-agent= for SSH.
+
+#+begin_src emacs-lisp
+(setenv "SSH_AUTH_SOCK" (expand-file-name "~/.gnupg/S.gpg-agent.ssh"))
+#+end_src
+
+Set PAGER to cat to disable =less= in async buffers.
+
+#+begin_src emacs-lisp
+(setenv "PAGER" "cat")
+#+end_src
+
+
 * Initialize exec-path-from-shell
 
 Function that gets environmental variables from bash.
@@ -164,14 +179,6 @@ rsync -av \
   '(diminish 'buffer-face-mode))
 #+end_src
 
-** Disable pager
-
-Set PAGER to cat to disable =less= in async buffers.
-
-#+begin_src emacs-lisp
-(setenv "PAGER" "cat")
-#+end_src
-
 * Emacs themes
 
 Disable current theme before loading new theme. This prevents artifacts from the
@@ -305,12 +312,7 @@ This replaces the selection.
 #+begin_src emacs-lisp
 (when (eq window-system 'ns)
   ;; Stop commant+t from popping up font selection window
-  (global-unset-key (kbd "s-t"))
-  ;; Menu bar auto-hides on macOS
-  (menu-bar-mode 1)
-  ;; Unset TERM_PROGRAM=Apple_Terminal, which will be set if GUI Emacs was
-  ;; launched from a terminal
-  (setenv "TERM_PROGRAM" nil))
+  (global-unset-key (kbd "s-t")))
 #+end_src
 
 ** Programming modes
