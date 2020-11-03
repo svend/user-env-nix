@@ -1,5 +1,21 @@
 final: prev:
 {
+  testSystemdService = prev.runCommand "testSystemdService"
+    {
+      config = prev.writeText "test.service" ''
+        [Unit]
+        Description=Test service
+
+        [Service]
+        Type=oneshot
+        ExecStart=date
+      '';
+    }
+    ''
+      mkdir -p "$out/etc/xdg/systemd/user"
+      cp "$config" "$out/etc/xdg/systemd/user/test.service"
+    '';
+
   gitConfig = prev.runCommand "gitConfig"
     {
       config = ../config/git;
@@ -72,6 +88,8 @@ final: prev:
   commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
     paths = [
+      testSystemdService
+
       aspellWithDicts
       bashInteractive
       bash-completion
