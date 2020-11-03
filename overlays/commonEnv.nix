@@ -3,7 +3,8 @@ final: prev:
   testSystemdService = with final; prev.runCommand "testSystemdService"
     rec {
       inherit coreutils;
-      config = prev.writeText "test.service" ''
+
+      testService = prev.writeText "test.service" ''
         [Unit]
         Description=Test service
 
@@ -11,10 +12,23 @@ final: prev:
         Type=oneshot
         ExecStart=${coreutils}/bin/date
       '';
+
+      testTimer = prev.writeText "test.timer" ''
+        [Unit]
+        Description=Start mbsync
+
+        [Timer]
+        OnBootSec=5min
+        OnUnitActiveSec=5min
+        Unit=mbsync.service
+
+        [Install]
+        WantedBy=timers.target
+      '';
     }
     ''
       mkdir -p "$out/etc/xdg/systemd/user"
-      cp "$config" "$out/etc/xdg/systemd/user/test.service"
+      cp "$testService" "$testTimer" "$out/etc/xdg/systemd/user/test.service"
     '';
 
   gitConfig = prev.runCommand "gitConfig"
@@ -198,7 +212,8 @@ final: prev:
       display-switch # FTB darwin: libaio-0.3.111
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils
-      isync isyncWithConfig # mbsync
+      isync
+      isyncWithConfig # mbsync
       librecad
       notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
