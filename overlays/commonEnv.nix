@@ -28,7 +28,8 @@ final: prev:
     }
     ''
       mkdir -p "$out/etc/xdg/systemd/user"
-      cp "$testService" "$testTimer" "$out/etc/xdg/systemd/user/test.service"
+      cp "$testService" "$out/etc/xdg/systemd/user/test.service"
+      cp "$testTimer" "$out/etc/xdg/systemd/user/test.timer"
     '';
 
   gitConfig = prev.runCommand "gitConfig"
