@@ -1,14 +1,15 @@
 final: prev:
 {
-  testSystemdService = prev.runCommand "testSystemdService"
-    {
+  testSystemdService = with final; prev.runCommand "testSystemdService"
+    rec {
+      inherit coreutils;
       config = prev.writeText "test.service" ''
         [Unit]
         Description=Test service
 
         [Service]
         Type=oneshot
-        ExecStart=date
+        ExecStart=$coreutils/bin/date
       '';
     }
     ''
