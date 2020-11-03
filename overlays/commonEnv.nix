@@ -15,12 +15,12 @@ final: prev:
 
       testTimer = prev.writeText "test.timer" ''
         [Unit]
-        Description=Start mbsync
+        Description=Start test service
 
         [Timer]
         OnBootSec=5min
         OnUnitActiveSec=5min
-        Unit=mbsync.service
+        Unit=test.service
 
         [Install]
         WantedBy=timers.target
