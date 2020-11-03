@@ -9,7 +9,7 @@ final: prev:
 
         [Service]
         Type=oneshot
-        ExecStart=$coreutils/bin/date
+        ExecStart=${coreutils}/bin/date
       '';
     }
     ''
