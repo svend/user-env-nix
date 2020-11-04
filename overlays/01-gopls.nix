@@ -1,9 +1,9 @@
-final: prev:
+self: super:
 {
   # TODO: overriding vendorSha256 has no effect
   # https://github.com/NixOS/nixpkgs/issues/86349
 
-  # gopls = with prev; gopls.overrideAttrs (old: rec {
+  # gopls = with super; gopls.overrideAttrs (old: rec {
   #   version = "0.4.3";
 
   #   src = fetchgit {

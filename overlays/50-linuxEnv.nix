@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  linuxEnv = with final; prev.buildEnv {
+  linuxEnv = with self; super.buildEnv {
     name = "linuxEnv";
     paths = [
       display-switch # FTB darwin: libaio-0.3.111

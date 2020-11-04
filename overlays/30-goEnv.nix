@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  goEnv = with final; prev.buildEnv {
+  goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
       go

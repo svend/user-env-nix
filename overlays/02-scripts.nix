@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  myScripts = prev.runCommand "myScripts"
+  myScripts = super.runCommand "myScripts"
     {
       scripts = ../config/scripts;
     } ''

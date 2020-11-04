@@ -1,7 +1,7 @@
-final: prev:
+self: super:
 {
   # See https://github.com/NixOS/nixpkgs/issues/10597#issuecomment-313908853
-  pythonEnv = with final; prev.buildEnv {
+  pythonEnv = with self; super.buildEnv {
     name = "pythonEnv";
     ignoreCollisions = true;
     paths = [

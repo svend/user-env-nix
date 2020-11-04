@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  gitConfig = prev.runCommand "gitConfig"
+  gitConfig = super.runCommand "gitConfig"
     {
       config = ../config/git;
     } ''
@@ -8,10 +8,10 @@ final: prev:
     cp -r "$config" "$out/git"
   '';
 
-  gitWithConfig = with final; prev.buildEnv {
+  gitWithConfig = with self; super.buildEnv {
     name = "gitWithConfig";
-    buildInputs = [ prev.makeWrapper ];
-    paths = [ final.git ];
+    buildInputs = [ super.makeWrapper ];
+    paths = [ self.git ];
     postBuild = ''
       unlink "$out/bin"
       mkdir -p "$out/bin"
@@ -22,9 +22,9 @@ final: prev:
     '';
   };
 
-  isyncWithConfig = with final; prev.runCommand "isyncWithConfig"
+  isyncWithConfig = with self; super.runCommand "isyncWithConfig"
     {
-      nativeBuildInputs = [ prev.makeWrapper ];
+      nativeBuildInputs = [ super.makeWrapper ];
       inherit isync;
       config = ../config/isync/mbsyncrc;
     } ''
@@ -37,9 +37,9 @@ final: prev:
     let
       config = ../config/notmuch/notmuch-config;
     in
-    with final; prev.buildEnv {
+    with self; super.buildEnv {
       name = "notmuchWithConfig";
-      buildInputs = [ prev.makeWrapper ];
+      buildInputs = [ super.makeWrapper ];
       paths = [ notmuch ];
       postBuild = ''
         unlink "$out/bin"
@@ -55,9 +55,9 @@ final: prev:
     let
       config = ../config/zsh;
     in
-    with final; prev.buildEnv {
+    with self; super.buildEnv {
       name = "zshWithConfig";
-      buildInputs = [ prev.makeWrapper ];
+      buildInputs = [ super.makeWrapper ];
       paths = [ zsh ];
       postBuild = ''
         unlink "$out/bin"
@@ -69,7 +69,7 @@ final: prev:
       '';
     };
 
-  commonEnv = with final; prev.buildEnv {
+  commonEnv = with self; super.buildEnv {
     name = "commonEnv";
     paths = [
       aspellWithDicts
@@ -105,7 +105,7 @@ final: prev:
       multi-x509
       pandoc
       parallel
-      (prev.pass.override { git = gitWithConfig; })
+      (super.pass.override { git = gitWithConfig; })
       plantuml
       postgresql
       pwgen

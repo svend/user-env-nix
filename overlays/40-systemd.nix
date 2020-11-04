@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  systemdServices = with final; prev.runCommand "systemdServices"
+  systemdServices = with self; super.runCommand "systemdServices"
     {
       config = ../config/systemd;
     }

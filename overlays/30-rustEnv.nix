@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  rustEnv = with final; prev.buildEnv {
+  rustEnv = with self; super.buildEnv {
     name = "rustEnv";
     paths = [
       # Tools required by rustc

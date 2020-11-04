@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  myPkgs = with final; prev.buildEnv {
+  myPkgs = with self; super.buildEnv {
     name = "myPkgs";
     paths = [
       myScripts
@@ -17,10 +17,10 @@ final: prev:
     ];
   };
 
-  emacsConfig = prev.stdenv.mkDerivation
+  emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
-      buildInputs = [ prev.emacs ];
+      buildInputs = [ super.emacs ];
       src = ../config/emacs;
 
       unpackPhase = ''
@@ -41,12 +41,12 @@ final: prev:
       '';
     };
 
-  emacsWithConfig = prev.emacsWithPackages (epkgs:
+  emacsWithConfig = super.emacsWithPackages (epkgs:
     [
-      final.emacsConfig
-      prev.emacsPackagesNg.pdf-tools
-      prev.unzip # required for Emacs nov.el package
-      final.myPkgs
+      self.emacsConfig
+      super.emacsPackagesNg.pdf-tools
+      super.unzip # required for Emacs nov.el package
+      self.myPkgs
     ] ++
     (with epkgs.melpaStablePackages;
     [
@@ -140,7 +140,7 @@ final: prev:
     ])
   );
 
-  userEnv = with final; prev.buildEnv {
+  userEnv = with self; super.buildEnv {
     name = "userEnv";
     paths = [
       myPkgs

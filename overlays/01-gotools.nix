@@ -1,6 +1,6 @@
-final: prev:
+self: super:
 {
-  gotools = with prev; gotools.overrideAttrs (old: rec {
+  gotools = with super; gotools.overrideAttrs (old: rec {
     # Do not install things like `link`
     postConfigure = ''
       # # Make the builtin tools available here
