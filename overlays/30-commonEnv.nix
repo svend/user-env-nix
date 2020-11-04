@@ -1,14 +1,5 @@
 final: prev:
 {
-  systemdServices = with final; prev.runCommand "systemdServices"
-    {
-      config = ../config/systemd;
-    }
-    ''
-      mkdir -p "$out/etc/xdg/systemd/user"
-      cp "$config"/* "$out/etc/xdg/systemd/user"
-    '';
-
   gitConfig = prev.runCommand "gitConfig"
     {
       config = ../config/git;
@@ -184,15 +175,6 @@ final: prev:
       passff-host # included with Firefox config on NixOS
       pinentry_mac
       terminal-notifier
-    ] ++ lib.optionals stdenv.isLinux [
-      systemdServices
-      display-switch # FTB darwin: libaio-0.3.111
-      gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
-      inetutils
-      isync
-      isyncWithConfig # mbsync
-      librecad
-      notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
     ];
   };
 }

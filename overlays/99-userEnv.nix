@@ -12,6 +12,8 @@ rec {
       pythonEnv
       rubyEnv
       rustEnv
+    ] ++ lib.optionals stdenv.isLinux [
+      linuxEnv
     ];
   };
 
@@ -143,6 +145,8 @@ rec {
     paths = [
       myPkgs
       emacsWithConfig
+    ] ++ lib.optionals stdenv.isLinux [
+      systemdServices
     ];
   };
 }
