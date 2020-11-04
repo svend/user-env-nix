@@ -1,5 +1,5 @@
 final: prev:
-rec {
+{
   myPkgs = with final; prev.buildEnv {
     name = "myPkgs";
     paths = [
@@ -43,10 +43,10 @@ rec {
 
   emacsWithConfig = prev.emacsWithPackages (epkgs:
     [
-      emacsConfig
+      final.emacsConfig
       prev.emacsPackagesNg.pdf-tools
       prev.unzip # required for Emacs nov.el package
-      myPkgs
+      final.myPkgs
     ] ++
     (with epkgs.melpaStablePackages;
     [
