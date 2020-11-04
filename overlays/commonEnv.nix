@@ -1,35 +1,12 @@
 final: prev:
 {
-  testSystemdService = with final; prev.runCommand "testSystemdService"
-    rec {
-      inherit coreutils;
-
-      testService = prev.writeText "test.service" ''
-        [Unit]
-        Description=Test service
-
-        [Service]
-        Type=oneshot
-        ExecStart=${coreutils}/bin/date
-      '';
-
-      testTimer = prev.writeText "test.timer" ''
-        [Unit]
-        Description=Start test service
-
-        [Timer]
-        OnBootSec=5min
-        OnUnitActiveSec=5min
-        Unit=test.service
-
-        [Install]
-        WantedBy=timers.target
-      '';
+  systemdServices = with final; prev.runCommand "systemdServices"
+    {
+      config = ../config/systemd;
     }
     ''
       mkdir -p "$out/etc/xdg/systemd/user"
-      cp "$testService" "$out/etc/xdg/systemd/user/test.service"
-      cp "$testTimer" "$out/etc/xdg/systemd/user/test.timer"
+      cp "$config"/* "$out/etc/xdg/systemd/user"
     '';
 
   gitConfig = prev.runCommand "gitConfig"
@@ -104,8 +81,6 @@ final: prev:
   commonEnv = with final; prev.buildEnv {
     name = "commonEnv";
     paths = [
-      testSystemdService
-
       aspellWithDicts
       bashInteractive
       bash-completion
@@ -210,6 +185,7 @@ final: prev:
       pinentry_mac
       terminal-notifier
     ] ++ lib.optionals stdenv.isLinux [
+      systemdServices
       display-switch # FTB darwin: libaio-0.3.111
       gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
       inetutils

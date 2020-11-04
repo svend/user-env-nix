@@ -1,0 +1,10 @@
+[Unit]
+Description=Start mbsync
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=5min
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target
