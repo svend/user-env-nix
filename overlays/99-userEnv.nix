@@ -44,8 +44,8 @@ self: super:
   emacsWithConfig = super.emacsWithPackages (epkgs:
     [
       self.emacsConfig
-      super.emacsPackagesNg.pdf-tools
-      super.unzip # required for Emacs nov.el package
+      self.emacsPackagesNg.pdf-tools
+      self.unzip # required for Emacs nov.el package
       self.myPkgs
     ] ++
     (with epkgs.melpaStablePackages;
