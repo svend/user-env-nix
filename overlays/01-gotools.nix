@@ -1,7 +1,7 @@
 self: super:
 {
-  gotools = with super; gotools.overrideAttrs (old: rec {
-    # Do not install things like `link`
+  gotools = super.gotools.overrideAttrs (old: rec {
+    # Do not install things like doc, link, and fix
     postConfigure = ''
       # # Make the builtin tools available here
       # mkdir -p $out/bin
@@ -12,9 +12,9 @@ self: super:
       # export GOTOOLDIR=$out/bin
     '';
 
-    # Do not install bundle
-    excludedPackages = "\\("
-      + stdenv.lib.concatStringsSep "\\|" ([ "bundle" "testdata" "gopls" ] ++ stdenv.lib.optionals (stdenv.lib.versionAtLeast go.meta.branch "1.5") [ "vet" "cover" ])
+    # Do not install bundle (conflicts with ruby bundler)
+    excludedPackages = with super; "\\("
+      + stdenv.lib.concatStringsSep "\\|" ([ "bundle" "testdata" ] ++ stdenv.lib.optionals (stdenv.lib.versionAtLeast go.meta.branch "1.5") [ "vet" "cover" ])
       + "\\)";
   });
 }
