@@ -90,13 +90,13 @@ Make the cursor a bar instead of a filled box.
 
 ** Chrome
 
+TODO: setting inhibit-startup-screen does not work in default.el.
+
 - Disable welcome screen
-- Disable menu bar
 - Disable tool bar
 
 #+begin_src emacs-lisp
-(setq inhibit-splash-screen t)
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(setq inhibit-startup-screen t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 #+end_src
 
