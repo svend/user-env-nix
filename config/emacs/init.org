@@ -29,9 +29,11 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 * Environment Variables
 
 Use =gpg-agent= for SSH.
+Use local certificate bundle.
 
 #+begin_src emacs-lisp
 (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.gnupg/S.gpg-agent.ssh"))
+(setenv "NIX_SSL_CERT_FILE" (expand-file-name "~/.certs/ca-bundle.crt"))
 #+end_src
 
 Set PAGER to cat to disable =less= in async buffers.
