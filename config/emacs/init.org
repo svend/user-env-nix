@@ -13,7 +13,6 @@
 
 #+begin_src emacs-lisp
 (setq package-archives '()) ;; All packages are installed through nixpkgs
-(package-initialize)
 #+end_src
 
 * Initialize use-package
