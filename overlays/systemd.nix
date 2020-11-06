@@ -1,6 +1,6 @@
 self: super:
 {
-  systemdServices = with self; super.runCommand "systemdServices"
+  systemdServices = super.runCommand "systemdServices"
     {
       config = ../config/systemd;
     }
