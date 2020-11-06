@@ -74,12 +74,16 @@ This needs to come before anything that uses PATH (e.g. executable-find).
   )
 #+end_src
 
+Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH.
+https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140
+
+Add =/usr/local/bin= to exec-path.
+
 #+begin_src emacs-lisp
-; Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH
-; https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140
 (let ((path (getenv "PATH"))
       (deps-path (car exec-path))
       (local-path "/usr/local/bin"))
+  (add-to-list 'exec-path local-path)
   (setenv "PATH" (string-join (list deps-path local-path path) ":")))
 #+end_src
 
