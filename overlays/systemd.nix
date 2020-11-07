@@ -2,9 +2,8 @@ self: super:
 {
   systemdServices = super.runCommand "systemdServices"
     {
-      inherit (self) gitWithConfig isync notmuch;
+      inherit (self) gitWithConfig isync mbsyncConfig notmuch;
       gitAutoCommit = self.myScripts;
-      mbsyncConfig = ../config/isync/mbsyncrc;
       notmuchConfig = ../config/notmuch/notmuch-config;
       config = ../config/systemd;
     }
