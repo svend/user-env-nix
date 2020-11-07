@@ -83,4 +83,3 @@ show up in `--help`.
 ``` shell
 nix build --print-build-logs
 ```
-
