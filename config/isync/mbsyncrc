@@ -1,7 +1,7 @@
 IMAPAccount fastmail
 Host imap.fastmail.com
 User svend@svends.net
-PassCmd "~/.nix-profile/bin/pass show general/imap.fastmail.com"
+PassCmd "@pass@/bin/pass show general/imap.fastmail.com"
 SSLType IMAPS
 
 IMAPStore fastmail-remote

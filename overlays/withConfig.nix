@@ -26,15 +26,23 @@ self: super:
       '';
     };
 
+  mbsyncConfig = super.runCommand "mbsyncrc"
+    {
+      pass = (super.pass.override { git = self.gitWithConfig; });
+      config = ../config/isync/mbsyncrc;
+    } ''
+    mkdir -p "$out"
+    substituteAll "$config" "$out"/mbsyncrc
+  '';
+
   isyncWithConfig = super.runCommand "isyncWithConfig"
     {
-      inherit (self) isync;
+      inherit (self) isync mbsyncConfig;
       nativeBuildInputs = [ super.makeWrapper ];
-      config = ../config/isync/mbsyncrc;
     } ''
     mkdir -p "$out/bin"
     bin=bin/mbsync
-    makeWrapper "$isync/$bin" "$out/$bin"-with-config --add-flags "--config=$config"
+    makeWrapper "$isync/$bin" "$out/$bin"-with-config --add-flags "--config=$mbsyncConfig/mbsyncrc"
   '';
 
   notmuchWithConfig =
