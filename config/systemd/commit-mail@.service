@@ -6,9 +6,9 @@ After=mbsync.service
 Type=oneshot
 WorkingDirectory=%h/.mail/%i
 Environment=SSH_AUTH_SOCK=%t/gnupg/S.gpg-agent.ssh
-ExecStart=%h/.nix-profile/bin/git-autocommit
-ExecStartPre=-%h/.nix-profile/bin/git pull
-ExecStartPost=-%h/.nix-profile/bin/git push
+ExecStart=@gitAutoCommit@/bin/git-autocommit
+ExecStartPre=-@gitWithConfig@/bin/git pull
+ExecStartPost=-@gitWithConfig@/bin/git push
 
 [Install]
 WantedBy=mbsync.service

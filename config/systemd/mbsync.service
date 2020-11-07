@@ -3,5 +3,6 @@ Description=mbsync service
 
 [Service]
 Type=oneshot
-ExecStart=%h/.nix-profile/bin/mbsync-with-config --all --verbose
-ExecStartPost=%h/.nix-profile/bin/notmuch new
+Environment=NOTMUCH_CONFIG=@notmuchConfig@
+ExecStart=@isync@/bin/mbsync --config @mbsyncConfig@ --all --verbose
+ExecStartPost=@notmuch@/bin/notmuch new
