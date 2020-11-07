@@ -43,6 +43,12 @@ nix flake update github:svend/user-env-nix && nix profile upgrade <n>
 nix flake update github:svend/user-env-nix && nix profile upgrade '.*'
 ```
 
+On NixOS, refresh user systemd unit files.
+
+``` shell
+systemd --user daemon-reload
+```
+
 ## Updating
 
 Update lock file:
