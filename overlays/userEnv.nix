@@ -23,7 +23,7 @@ self: super:
       myPkgs
       emacsWithConfig
     ] ++ lib.optionals stdenv.isLinux [
-      systemdServices
+      mailSyncService
     ];
   };
 }

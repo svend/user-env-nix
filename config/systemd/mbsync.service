@@ -1,8 +1,0 @@
-[Unit]
-Description=mbsync service
-
-[Service]
-Type=oneshot
-Environment=NOTMUCH_CONFIG=@notmuchConfig@
-ExecStart=@isync@/bin/mbsync --config @mbsyncConfig@/mbsyncrc --all --verbose
-ExecStartPost=@notmuch@/bin/notmuch new
