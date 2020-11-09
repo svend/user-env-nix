@@ -19,12 +19,11 @@ For NixOS, add the following to `/etc/nixos/configuration.nix`:
 }
 ```
 
-Setting experimental-features in ~/.config/nix/nix.conf generates a warning on
-NixOS, so set it in /etc/nix/nix.conf on non-NixOS systems:
+For non-NixOS systems:
 
 ``` shell
-sudo mkdir -p /etc/nix
-echo 'experimental-features = nix-command flakes ca-references' | sudo tee /etc/nix/nix.conf
+mkdir -p ~/.config/nix
+echo 'experimental-features = nix-command flakes ca-references' > ~/.config/nix/nix.conf
 ```
 
 ## Installation
