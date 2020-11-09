@@ -1,6 +1,9 @@
 self: super:
+let
+  systemdDir = "etc/xdg/systemd/user";
+in
 {
-  mbsyncService = super.writeTextDir "etc/xdg/systemd/user/mbsync.service" ''
+  mbsyncService = super.writeTextDir "${systemdDir}/mbsync.service" ''
     [Unit]
     Description=mbsync service
 
@@ -11,7 +14,7 @@ self: super:
     ExecStartPost=${self.notmuch}/bin/notmuch new
   '';
 
-  mbsyncTimer = super.writeTextDir "etc/xdg/systemd/user/mbsync.timer" ''
+  mbsyncTimer = super.writeTextDir "${systemdDir}/mbsync.timer" ''
     [Unit]
     Description=Start mbsync
 
@@ -24,7 +27,7 @@ self: super:
     WantedBy=timers.target
   '';
 
-  commitMailService = super.writeTextDir "etc/xdg/systemd/user/commitmail@.service" ''
+  commitMailService = super.writeTextDir "${systemdDir}/commitmail@.service" ''
     [Unit]
     Description=Commit state of %i mail
     After=mbsync.service
