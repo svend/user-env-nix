@@ -103,9 +103,12 @@ self: super:
       nixpkgs-fmt
     ] ++ lib.optionals stdenv.isDarwin [
       gnupg # NixOS configuration includes gnupg
-      passff-host # included with Firefox config on NixOS
       pinentry_mac
       terminal-notifier
+
+      # On macOS, link passff.json:
+      # ln -s ../../../../.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ~/'Library/Application Support/Mozilla/NativeMessagingHosts/passff.json'
+      passff-host # included with Firefox config on NixOS
     ];
   };
 }
