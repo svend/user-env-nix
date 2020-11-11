@@ -36,7 +36,7 @@ self: super:
       multi-x509
       pandoc
       parallel
-      (super.pass.override { git = gitWithConfig; })
+      (self.pass.override { git = gitWithConfig; })
       plantuml
       postgresql
       pwgen
