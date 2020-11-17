@@ -55,7 +55,7 @@ def eject_drive(path, dry_run=False):
         run_command(["diskutil", "eject", path], dry_run=dry_run)
     elif sys.platform == "linux":
         dev = device_from_path(path, dry_run=dry_run)
-        run_command(["umount", dev], dry_run=dry_run)
+        run_command(["gpg-luks", "close", dev], dry_run=dry_run)
 
 
 def targets():
