@@ -82,9 +82,10 @@ Add =/usr/local/bin= to exec-path.
 #+begin_src emacs-lisp
 (let ((path (getenv "PATH"))
       (deps-path (car exec-path))
+      (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
       (local-path "/usr/local/bin"))
   (add-to-list 'exec-path local-path)
-  (setenv "PATH" (string-join (list deps-path local-path path) ":")))
+  (setenv "PATH" (string-join (list deps-path nix-profile-path local-path path) ":")))
 #+end_src
 
 * Emacs UI
