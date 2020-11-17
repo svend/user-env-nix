@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
-
-GPG=gpg
 
 is_uuid()
 {
@@ -13,23 +11,24 @@ cmd_close()
 {
   if is_uuid "$1"; then
     UUID=$1
+    DEV=$(blkid -U "$UUID")
   else
-    UUID=$(sudo blkid -o value -s UUID "$1")
+    DEV=$1
+    UUID=$(blkid -o value -s UUID "$DEV")
   fi
 
-  # Try to close luks device, even if udisks fails
-  udisksctl unmount --block-device "/dev/mapper/luks-uuid-$UUID" || true
-  sudo cryptsetup luksClose "luks-uuid-$UUID"
+  udisksctl unmount --block-device "/dev/mapper/luks-$UUID" || true
+  udisksctl lock --block-device "$DEV"
 }
 
 cmd_open()
 {
   if is_uuid "$1"; then
     UUID=$1
-    DEV=$(sudo blkid -U "$UUID")
+    DEV=$(blkid -U "$UUID")
   else
     DEV=$1
-    UUID=$(sudo blkid -o value -s UUID "$DEV")
+    UUID=$(blkid -o value -s UUID "$DEV")
   fi
   KEY=$2
 
@@ -38,36 +37,34 @@ cmd_open()
     key_cmd="cat"
     ;;
   *.gpg)
-    key_cmd="$GPG -d -q \"$KEY\""
+    key_cmd="gpg -d -q \"$KEY\""
     ;;
   *)
     key_cmd="cat \"$KEY\""
   esac
 
-  # "udiskctl unlock --key-file" added in udisks 2.6.4; this may allow non-sudo unlocking
-  # https://github.com/storaged-project/udisks/blob/4dcc25208e7b17eb8db8cddda58f94e00affb5c4/NEWS#L543
-  eval "$key_cmd" |
-    sudo cryptsetup --key-file - luksOpen "$DEV" "luks-uuid-$UUID" || true
-  udisksctl mount --block-device "/dev/mapper/luks-uuid-$UUID"
+  udisksctl unlock --block-device "$DEV" --key-file <(eval "$key_cmd") || true
+  udisksctl mount --block-device "/dev/mapper/luks-$UUID"
 }
 
 cmd_format()
 {
   if is_uuid "$1"; then
     UUID=$1
-    DEV=$(sudo blkid -U "$UUID")
+    DEV=$(blkid -U "$UUID")
   else
     DEV=$1
+    # luksFormat changes the partition UUID
   fi
   KEY=$2
 
-  head -c 256 /dev/random | $GPG -e > "$KEY"
+  head -c 256 /dev/random | gpg -e > "$KEY"
 
-  $GPG -d -q "$KEY" | sudo cryptsetup --key-file - luksFormat "$DEV"
+  gpg -d -q "$KEY" | sudo cryptsetup --key-file - luksFormat "$DEV"
   # luksFormat changes the partition UUID
-  UUID=$(sudo blkid -o value -s UUID "$DEV")
+  UUID=$(blkid -o value -s UUID "$DEV")
 
-  $GPG -d -q "$KEY" |
+  gpg -d -q "$KEY" |
     sudo cryptsetup --key-file - luksOpen "$DEV" "luks-uuid-$UUID"
   sudo mkfs.ext4 "/dev/mapper/luks-uuid-$UUID"
 }
