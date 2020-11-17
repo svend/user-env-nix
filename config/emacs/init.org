@@ -648,7 +648,6 @@ horizontally.
 (use-package aggressive-indent
   :init
   (global-aggressive-indent-mode 1)
-  (unbind-key "C-c C-q" 'aggressive-indent-mode)
   :config
   (add-to-list 'aggressive-indent-excluded-modes 'nix-mode)
   ;; jsonnet-mode's formatting differs from jsonnetfmt command
