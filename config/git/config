@@ -32,6 +32,10 @@
 	&& git checkout pull/$1 \
 	&& git config --replace-all branch.pull/$1.merge refs/pull/$1/head"
 
+[core]
+	# Do not print ^M at end of diff lines
+	whitespace = cr-at-eol
+
 [diff]
 	# Omit a/b prefix so that find-file-at-point works
 	noprefix = true
