@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# TODO: blkid returns inconsistent results without sudo:
+# $ blkid -o value -s UUID /dev/sdb2
+# d937b8ba-4fc8-4d23-be2b-8183413fc28e
+# $ sudo blkid -o value -s UUID /dev/sdb2
+# [sudo] password for svend:
+# dd8e4e10-8b7a-480c-ac41-353a94e6ea76
+# $ blkid -o value -s UUID /dev/sdb2
+# dd8e4e10-8b7a-480c-ac41-353a94e6ea76
+
 set -e
 
 is_uuid()
@@ -11,10 +20,10 @@ cmd_close()
 {
   if is_uuid "$1"; then
     UUID=$1
-    DEV=$(blkid -U "$UUID")
+    DEV=$(sudo blkid -U "$UUID")
   else
     DEV=$1
-    UUID=$(blkid -o value -s UUID "$DEV")
+    UUID=$(sudo blkid -o value -s UUID "$DEV")
   fi
 
   udisksctl unmount --block-device "/dev/mapper/luks-$UUID" || true
@@ -25,10 +34,10 @@ cmd_open()
 {
   if is_uuid "$1"; then
     UUID=$1
-    DEV=$(blkid -U "$UUID")
+    DEV=$(sudo blkid -U "$UUID")
   else
     DEV=$1
-    UUID=$(blkid -o value -s UUID "$DEV")
+    UUID=$(sudo blkid -o value -s UUID "$DEV")
   fi
   KEY=$2
 
@@ -51,7 +60,7 @@ cmd_format()
 {
   if is_uuid "$1"; then
     UUID=$1
-    DEV=$(blkid -U "$UUID")
+    DEV=$(sudo blkid -U "$UUID")
   else
     DEV=$1
     # luksFormat changes the partition UUID
@@ -62,7 +71,7 @@ cmd_format()
 
   gpg -d -q "$KEY" | sudo cryptsetup --key-file - luksFormat "$DEV"
   # luksFormat changes the partition UUID
-  UUID=$(blkid -o value -s UUID "$DEV")
+  UUID=$(sudo blkid -o value -s UUID "$DEV")
 
   gpg -d -q "$KEY" |
     sudo cryptsetup --key-file - luksOpen "$DEV" "luks-uuid-$UUID"
