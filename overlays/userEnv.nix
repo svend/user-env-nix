@@ -4,7 +4,7 @@ self: super:
     name = "myPkgs";
     paths = [
       myScripts
-      clojureEnv
+      # clojureEnv
       commonEnv
       goEnv
       javaEnv
