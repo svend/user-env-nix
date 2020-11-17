@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# TODO: blkid returns inconsistent results without sudo:
+# TODO: blkid returns inconsistent results without sudo. After using sudo, the
+# new results seem to be cached.
+#
 # $ blkid -o value -s UUID /dev/sdb2
 # d937b8ba-4fc8-4d23-be2b-8183413fc28e
 # $ sudo blkid -o value -s UUID /dev/sdb2
