@@ -14,13 +14,14 @@ DATE_FILE = os.path.expanduser("~/.backup-laptop-dates")
 # macOS has restrictions for access for paths under ~/Library. Exclude the
 # whole thing. https://github.com/restic/restic/issues/2051
 EXCLUDES = [
+    "~/.Trash",
     "~/.cache",
     "~/.cargo",
     "~/.rnd",
-    "~/Library",
     "~/Pictures/Photos Library.photoslibrary",
     "~/go",
     "~/tmp",
+    "~/Library",
 ]
 
 
