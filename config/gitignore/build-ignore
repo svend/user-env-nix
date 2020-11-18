@@ -2,7 +2,7 @@
 
 set -e
 
-BASE_URL=https://raw.githubusercontent.com/github/gitignore/master
+BASE_URL=https://raw.githubusercontent.com/github/gitignore/HEAD
 IGNORES='
 Global/Emacs.gitignore
 Global/Vim.gitignore
