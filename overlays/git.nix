@@ -1,8 +1,23 @@
 self: super:
 {
-  gitConfig = super.runCommand "gitConfig" { } ''
-    mkdir -p "$out"
-    cp -r "${../config/git}" "$out/git"
+  gitIgnore = super.fetchFromGitHub {
+    owner = "github";
+    repo = "gitignore";
+    rev = "218a941be92679ce67d0484547e3e142b2f5f6f0";
+    sha256 = "sha256-iNpWJxBO5UZoNtfxu27u2wJxTyphk51kywn3WEkHVPk=";
+  };
+
+  gitConfig = super.runCommand "gitConfig"
+    {
+      config = ../config/git/config;
+      localIgnore = ../config/git/ignore.local;
+    } ''
+    mkdir -p "$out/git"
+    cp "$config" "$out/git"
+    cat "$localIgnore" > "$out/git/ignore"
+    for f in Global/Emacs.gitignore Global/Vim.gitignore Global/macOS.gitignore; do
+      cat "${self.gitIgnore}/$f" >> "$out/git/ignore"
+    done
   '';
 
   gitWithConfig =
