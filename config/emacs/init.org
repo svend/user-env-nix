@@ -26,7 +26,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (require 'bind-key)
 #+end_src
 
-* Environment Variables
+* Environment variables
 
 Use =gpg-agent= for SSH.
 Use Nix certificate bundle.
@@ -44,35 +44,7 @@ Set PAGER to cat to disable =less= in async buffers.
 (setenv "PAGER" "cat")
 #+end_src
 
-
-* Initialize exec-path-from-shell
-
-Function that gets environmental variables from bash.
-
-#+begin_src emacs-lisp
-(defun bash-shell-variables()
-  "Return a list of env variable names."
-  (mapcar (lambda (s) (car (split-string (string-remove-prefix "declare -x " s) "=")))
-          (split-string
-           (shell-command-to-string "bash -l -c \"declare -x\" 2>/dev/null")
-           "\n" t)))
-
-(defun my-exec-path-from-shell-initialize ()
-  "Initialize environment with all shell variables."
-  (interactive)
-  (exec-path-from-shell-copy-envs (bash-shell-variables)))
-#+end_src
-
-This needs to come before anything that uses PATH (e.g. executable-find).
-
-#+begin_src emacs-lisp
-(use-package exec-path-from-shell
-  :if window-system
-  :init (setq exec-path-from-shell-variables (bash-shell-variables))
-  ;; TODO: make Emacs config independent of bash configuration
-  ;; :config (exec-path-from-shell-initialize)
-  )
-#+end_src
+* Set executable path
 
 Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH.
 https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140

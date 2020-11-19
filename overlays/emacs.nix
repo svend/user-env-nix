@@ -42,7 +42,6 @@ self: super:
       counsel
       diminish
       edit-indirect
-      exec-path-from-shell
       expand-region
       flycheck
       gnuplot
