@@ -1269,6 +1269,7 @@ brew install golangci-lint
   :diminish ivy-mode
   :bind (("C-c s" . swiper))
   :config
+  (setq confirm-nonexistent-file-or-buffer t)
   (setq ivy-re-builders-alist '((amx-completing-read-ivy . ivy--regex-fuzzy)
                                 (t . ivy--regex-plus))
         ivy-magic-tilde nil
