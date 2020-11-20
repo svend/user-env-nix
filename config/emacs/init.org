@@ -58,7 +58,7 @@ Add =/usr/local/bin= to exec-path.
       (local-path "/usr/local/bin"))
 
   (dolist (p (list nix-profile-path local-path))
-    (add-to-list 'exec-path nix-profile-path p))
+    (add-to-list 'exec-path p))
 
   (setenv "PATH" (string-join
                   (list deps-path nix-profile-path local-path path-env)
