@@ -52,10 +52,10 @@ https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/p
 Add =/usr/local/bin= to exec-path.
 
 #+begin_src emacs-lisp
-(let ((path-env (getenv "PATH"))
-      (deps-path (car exec-path))
+(let ((deps-path (car exec-path))
       (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
-      (local-path "/usr/local/bin"))
+      (local-path "/usr/local/bin")
+      (path-env (getenv "PATH")))
 
   (dolist (p (reverse (list deps-path nix-profile-path local-path)))
     (setq exec-path (cons p (remove p exec-path))))
