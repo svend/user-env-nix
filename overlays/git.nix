@@ -15,7 +15,7 @@ self: super:
         localIgnore = ../config/git/ignore.local;
       } ''
       mkdir -p "$out/git"
-      cp "$config" "$out/git"
+      cp "$config" "$out/git/config"
       cat "$localIgnore" > "$out/git/ignore"
       for f in Global/Emacs.gitignore Global/Vim.gitignore Global/macOS.gitignore; do
         cat "${gitIgnore}/$f" >> "$out/git/ignore"
