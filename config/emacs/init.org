@@ -66,6 +66,9 @@ Add =/usr/local/bin= to exec-path.
   (setenv "PATH" (string-join
                   (list deps-path nix-profile-path local-path path-env)
                   ":")))
+
+(message "updated exec-path: %s" exec-path)
+(message "updated PATH: %s" (getenv "PATH"))
 #+end_src
 
 * Emacs UI
