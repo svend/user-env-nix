@@ -52,13 +52,17 @@ https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/p
 Add =/usr/local/bin= to exec-path.
 
 #+begin_src emacs-lisp
-(let ((path (getenv "PATH"))
+(let ((path-env (getenv "PATH"))
       (deps-path (car exec-path))
       (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
       (local-path "/usr/local/bin"))
-  (dolist (p '(nix-profile-path local-path))
+
+  (dolist (p (list nix-profile-path local-path))
     (add-to-list 'exec-path nix-profile-path p))
-  (setenv "PATH" (string-join (list deps-path nix-profile-path local-path path) ":")))
+
+  (setenv "PATH" (string-join
+                  (list deps-path nix-profile-path local-path path-env)
+                  ":")))
 #+end_src
 
 * Emacs UI
