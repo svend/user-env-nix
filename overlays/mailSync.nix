@@ -11,7 +11,7 @@ in
       [Service]
       Type=oneshot
       Environment=NOTMUCH_CONFIG=${../config/notmuch/notmuch-config}
-      ExecStart=${self.isync}/bin/mbsync --config ${../config/isync/mbsyncrc}/mbsyncrc --all --verbose
+      ExecStart=${self.isync}/bin/mbsync --config ${../config/isync/mbsyncrc} --all --verbose
       ExecStartPost=${self.notmuch}/bin/notmuch new
     '';
 
