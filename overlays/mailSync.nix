@@ -3,16 +3,17 @@ let
   systemdDir = "etc/xdg/systemd/user";
 in
 {
-  mbsyncService = super.writeTextDir "${systemdDir}/mbsync.service" ''
-    [Unit]
-    Description=mbsync service
+  mbsyncService =
+    super.writeTextDir "${systemdDir}/mbsync.service" ''
+      [Unit]
+      Description=mbsync service
 
-    [Service]
-    Type=oneshot
-    Environment=NOTMUCH_CONFIG=${../config/notmuch/notmuch-config}
-    ExecStart=${self.isync}/bin/mbsync --config @mbsyncConfig@/mbsyncrc --all --verbose
-    ExecStartPost=${self.notmuch}/bin/notmuch new
-  '';
+      [Service]
+      Type=oneshot
+      Environment=NOTMUCH_CONFIG=${../config/notmuch/notmuch-config}
+      ExecStart=${self.isync}/bin/mbsync --config ${../config/isync/mbsyncrc}/mbsyncrc --all --verbose
+      ExecStartPost=${self.notmuch}/bin/notmuch new
+    '';
 
   mbsyncTimer = super.writeTextDir "${systemdDir}/mbsync.timer" ''
     [Unit]
