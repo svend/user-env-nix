@@ -4,6 +4,32 @@ let
 in
 {
   mbsyncService =
+    let
+      mbsyncConfig = super.writeText "mbsyncrc" ''
+        IMAPAccount fastmail
+        Host imap.fastmail.com
+        User svend@svends.net
+        PassCmd "${self.pass}/bin/pass show general/imap.fastmail.com"
+        SSLType IMAPS
+
+        IMAPStore fastmail-remote
+        Account fastmail
+
+        MaildirStore fastmail-local
+        Path ~/.mail/fastmail/ # The trailing "/" is important
+        Inbox ~/.mail/fastmail/Inbox
+        SubFolders Verbatim
+
+        Channel fastmail
+        Master :fastmail-remote:
+        Slave :fastmail-local:
+        Patterns *
+        # Sync Both
+        Create Slave
+        Expunge Slave
+        SyncState *
+      '';
+    in
     super.writeTextDir "${systemdDir}/mbsync.service" ''
       [Unit]
       Description=mbsync service
@@ -11,7 +37,7 @@ in
       [Service]
       Type=oneshot
       Environment=NOTMUCH_CONFIG=${../config/notmuch/notmuch-config}
-      ExecStart=${self.isync}/bin/mbsync --config ${../config/isync/mbsyncrc} --all --verbose
+      ExecStart=${self.isync}/bin/mbsync --config ${mbsyncConfig} --all --verbose
       ExecStartPost=${self.notmuch}/bin/notmuch new
     '';
 
