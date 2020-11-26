@@ -54,7 +54,7 @@ in
     WantedBy=timers.target
   '';
 
-  commitMailService = super.writeTextDir "${systemdDir}/commitmail@.service" ''
+  commitMailService = super.writeTextDir "${systemdDir}/commit-mail@.service" ''
     [Unit]
     Description=Commit state of %i mail
     After=mbsync.service
