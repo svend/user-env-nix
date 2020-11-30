@@ -9,6 +9,7 @@ if __name__ == "__main__":
     parser.add_argument("host", type=str)
     parser.add_argument("--port", default=443, type=int)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--verbose", action="store_true")
     args = parser.parse_args()
 
     cmd = [
@@ -24,7 +25,11 @@ if __name__ == "__main__":
     if args.dry_run:
         print(" ".join(cmd + ["2>/dev/null", "</dev/null"]))
     else:
+        stdin = subprocess.DEVNULL
+        stderr = subprocess.DEVNULL
+        if args.verbose:
+            stderr = None
         ret = subprocess.check_output(
-            cmd, stdin=subprocess.DEVNULL, universal_newlines=True,
+            cmd, stdin=stdin, stderr=stderr, universal_newlines=True,
         )
         print(ret)
