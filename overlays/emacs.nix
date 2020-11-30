@@ -26,7 +26,6 @@ self: super:
 
   emacsWithConfig = super.emacsWithPackages (epkgs:
     [
-      epkgs.pdf-tools
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
       self.myPkgs
@@ -91,6 +90,7 @@ self: super:
       ob-go
       ob-rust
       password-store
+      pdf-tools
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
