@@ -39,7 +39,8 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
   (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.gnupg/S.gpg-agent.ssh")))
 (let ((custom-cert-file (expand-file-name "~/.nix-profile/etc/ssl/certs/ca-bundle.crt")))
   (when (file-exists-p custom-cert-file)
-    (setenv "NIX_SSL_CERT_FILE" custom-cert-file)))
+    (setenv "NIX_SSL_CERT_FILE" custom-cert-file)
+    (setenv "REQUESTS_CA_BUNDLE" custom-cert-file)))
 #+end_src
 
 * Set executable path
