@@ -10,6 +10,7 @@ self: super:
       # binutils # conflicts with rustEnv
       # cacert # nix default install includes nss-cacert-3.40.1
       coreutils
+      cue
       dhall
       dhall-json
       dtach
