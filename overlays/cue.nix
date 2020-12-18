@@ -1,4 +1,6 @@
 # TODO: Difficult to override go modules
+# Bug report: https://github.com/NixOS/nixpkgs/issues/86349
+# Workaround: https://discourse.nixos.org/t/inconsistent-vendoring-in-buildgomodule-when-overriding-source/9225/3
 self: super:
 {
   # cue = super.cue.overrideAttrs (old: rec {
