@@ -963,8 +963,9 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 
   (defun my-eglot-hook()
     (when (eglot-managed-p)
-      (add-hook 'before-save-hook #'eglot-organize-imports-on-save)
-      (add-hook 'before-save-hook #'eglot-format-buffer)))
+      ;; TODO: order causing "requires version X, you have version Y"
+      (add-hook 'before-save-hook #'eglot-format-buffer)
+      (add-hook 'before-save-hook #'eglot-organize-imports-on-save)))
   (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
   :hook
   (go-mode . eglot-ensure)
