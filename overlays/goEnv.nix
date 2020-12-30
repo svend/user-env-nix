@@ -10,6 +10,7 @@ self: super:
       glide
 
       # Development tools
+      gofumpt # stricter gofmt/goimports
       golangci-lint # includes golint, errcheck, govet (https://golangci-lint.run/usage/linters)
       gopls # replaces gocode and godef
       gotools # godoc (doc web server), goimports
