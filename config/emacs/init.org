@@ -33,6 +33,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 - Use Nix certificate bundle.
 
 #+begin_src emacs-lisp
+(setenv "EDITOR" "emacsclient")
 (setenv "PAGER" "cat")
 (setenv "PYTHONSTARTUP" (expand-file-name "~/.config/python-startup.py"))
 (when (eq window-system 'ns)
