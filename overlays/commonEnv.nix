@@ -12,7 +12,7 @@ self: super:
       coreutils
       cue
       dhall
-      dhall-json
+      # dhall-json # TODO: https://github.com/NixOS/nixpkgs/pull/109126
       dtach
       etcdctl
       file

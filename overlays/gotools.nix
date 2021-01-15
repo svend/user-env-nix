@@ -13,8 +13,9 @@ self: super:
     '';
 
     # Do not install bundle (conflicts with ruby bundler)
+
     excludedPackages = with super; "\\("
-      + stdenv.lib.concatStringsSep "\\|" ([ "bundle" "testdata" ] ++ stdenv.lib.optionals (stdenv.lib.versionAtLeast go.meta.branch "1.5") [ "vet" "cover" ])
+      + stdenv.lib.concatStringsSep "\\|" ([ "bundle" "testdata" "vet" "cover" ])
       + "\\)";
   });
 }
