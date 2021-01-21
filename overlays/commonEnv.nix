@@ -62,7 +62,7 @@ self: super:
       # Version control
       github-cli
       git-crypt
-      gitAndTools.hub
+      (self.gitAndTools.hub.override { git = gitWithConfig; })
       gitWithConfig
       mercurial
 
