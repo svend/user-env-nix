@@ -565,6 +565,15 @@ horizontally.
 #+end_src
 
 #+begin_src emacs-lisp
+(defun my-toggle-auto-hscroll-mode()
+  "Toggle `auto-hscroll-mode` between t and current-line."
+  (interactive)
+  (if (eq auto-hscroll-mode t)
+      (setq-local auto-hscroll-mode 'current-line)
+    (setq-local auto-hscroll-mode t)))
+#+end_src
+
+#+begin_src emacs-lisp
 (defun my-toggle-line-numbers()
   (interactive)
   (call-interactively #'display-line-numbers-mode))
@@ -1250,6 +1259,7 @@ brew install golangci-lint
    (kbd "C-c t")
    (defhydra hydra-toggle (:timout 10)
      "Toggle"
+     ("a" my-toggle-auto-hscroll-mode "hscroll-mode")
      ("b" scroll-bar-mode "scroll-bar")
      ("c" flycheck-mode "flycheck")
      ("f" variable-pitch-mode "fixed-pitch")
