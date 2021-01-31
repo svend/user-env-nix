@@ -5,8 +5,8 @@
 
 self: super:
 let
-  mapAttrs = super.stdenv.lib.mapAttrs;
-  flip = super.stdenv.lib.flip;
+  mapAttrs = super.pkgs.lib.mapAttrs;
+  flip = super.pkgs.lib.flip;
 in
 {
   # install stable rust with rust-src:
