@@ -1929,6 +1929,11 @@ M-r):
 
 ** super-save
 
+super-save must be enabled after super-save-triggers is updated, so :init will
+not work.
+
+https://github.com/bbatsov/super-save#use-package
+
 #+begin_src emacs-lisp
 (use-package super-save
   :ensure t
