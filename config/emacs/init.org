@@ -1931,11 +1931,12 @@ M-r):
 
 #+begin_src emacs-lisp
 (use-package super-save
-  :init (super-save-mode +1)
+  :ensure t
   :diminish super-save-mode
   :config
   (add-to-list 'super-save-triggers #'ace-window)
-  (setq super-save-auto-save-when-idle t))
+  (setq super-save-auto-save-when-idle t)
+  (super-save-mode +1))
 #+end_src
 
 ** swiper
