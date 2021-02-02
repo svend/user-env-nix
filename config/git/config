@@ -36,6 +36,9 @@
 	# Do not print ^M at end of diff lines
 	whitespace = cr-at-eol
 
+[init]
+	defaultBranch = main
+
 [diff]
 	# Omit a/b prefix so that find-file-at-point works
 	noprefix = true
