@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -16,7 +16,7 @@ buildRustPackage rec {
 
   cargoSha256 = "1dx3mmzxsbvwpr8wf2g4gglv8cfyv8d4gmx1w52cqpvwqgwdkn2f";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Various rust scripts";
     homepage = https://github.com/svend/rust-scripts;
     license = with licenses; [ unlicense ];

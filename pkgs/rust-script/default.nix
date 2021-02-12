@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -17,7 +17,7 @@ buildRustPackage rec {
 
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "Run Rust files and expressions as scripts without any setup or compilation step";
     homepage = https://github.com/fornwall/rust-script;
     # license = with licenses; [ unlicense ];

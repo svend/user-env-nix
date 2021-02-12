@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform }:
 
 with rustPlatform;
 
@@ -15,7 +15,7 @@ buildRustPackage rec {
 
   cargoSha256 = "1fnk33crzwpyj96jpbgspv13vdcwvfv4mjbss0a74p45fm8mskyd";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A language-agnostic shebang interpreter that enables you to write scripts in compiled languages";
     homepage = https://github.com/igor-petruk/scriptisto;
     license = with licenses; [ unlicense ];

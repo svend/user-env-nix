@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, rustPlatform, udev, pkgconfig }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform, udev, pkgconfig }:
 
 rustPlatform.buildRustPackage {
   pname = "display-switch";
@@ -18,7 +18,7 @@ rustPlatform.buildRustPackage {
 
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "";
     homepage = "";
     license = licenses.mit;
