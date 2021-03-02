@@ -60,9 +60,8 @@ self: super:
       haskellPackages.ShellCheck
 
       # Version control
-      github-cli
+      github-cli # gh command
       git-crypt
-      (self.gitAndTools.hub.override { git = gitWithConfig; })
       gitWithConfig
       mercurial
 
