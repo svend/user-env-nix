@@ -7,12 +7,12 @@ self: super: {
     # being overridden
     inherit (super.cue.drvAttrs) pname doCheck subPackages;
     inherit (super.cue) meta;
-    version = "0.3.0-beta.5";
+    version = "0.3.0-beta.6";
 
     src = super.fetchgit {
       url = "https://cue.googlesource.com/cue";
       rev = "v${version}";
-      sha256 = "sha256-H3PCMM7oVsZx6pVveIEeZjv6KcevhSL9NOhh3j3mS0Q=";
+      sha256 = "sha256-2yEpYGqtvJPfZuHvX/4Ld/20IBqfqXIT63PnWah2ygk=";
     };
 
     vendorSha256 = "sha256-9ai1Wbk6ftcXHjVEWaL8drxZnhgAwF8+OXNI95CrNjc=";
