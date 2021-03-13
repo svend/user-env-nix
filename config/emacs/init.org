@@ -400,6 +400,7 @@ Press =C-c C-h= to show all of these.
 (bind-key "C-c b" 'browse-url-at-point)
 (bind-key "C-c d" 'my-insert-date)
 (bind-key "C-c e" 'eww)
+(bind-key "C-c h" 'eldoc)
 (bind-key "C-c j" 'dired-jump)
 (bind-key "C-c r" 'revert-buffer)
 #+end_src
@@ -929,8 +930,6 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 
 #+begin_src emacs-lisp
 (use-package eglot
-  :bind
-  (("C-c h" . eglot-help-at-point))
   :config
   (defun eglot-organize-imports-on-save ()
     (eglot-code-action-organize-imports 0))
