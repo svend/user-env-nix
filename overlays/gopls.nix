@@ -7,12 +7,12 @@ self: super: {
     # being overridden
     inherit (super.gopls.drvAttrs) pname modRoot doCheck subPackages;
     inherit (super.gopls) meta;
-    version = "0.6.6";
+    version = "0.6.7";
     src = super.fetchgit {
       rev = "gopls/v${version}";
       url = "https://go.googlesource.com/tools";
-      sha256 = "sha256-1VdkysXhk/GSbmXAFQNMptOvIECo5NKBgAhBhQEhtfM=";
+      sha256 = "sha256-4tKy+gtLxsF+vTFSBPrQDyYWayChCSJKpO/kpAr79Gs=";
     };
-    vendorSha256 = "sha256-jaHYHYeRaD4uC7H7ufGXefvCHoC+ksY1TRrpfk1nktg=";
+    vendorSha256 = "sha256-pdHvErGHFDXPDF2+kDJCn6NXLgNTpLEaSGtaBe419Yg=";
   };
 }
