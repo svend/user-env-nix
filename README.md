@@ -37,9 +37,9 @@ nix profile install github:svend/user-env-nix
 To update:
 
 ``` shell
-nix flake update github:svend/user-env-nix && nix profile upgrade <n>
+nix profile upgrade <n>
 # or
-nix flake update github:svend/user-env-nix && nix profile upgrade '.*'
+nix profile upgrade '.*'
 ```
 
 On NixOS, refresh user systemd unit files.
