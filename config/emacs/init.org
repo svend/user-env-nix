@@ -1650,7 +1650,8 @@ fn main() {
 (use-package projectile
   :init
   ;; projectile-project-search-path needs to be set before projectile-mode is called
-  (setq projectile-project-search-path '("~/.dotfiles" "~/src"))
+  (setq projectile-project-search-path '("~/.dotfiles" "~/src")
+        projectile-switch-project-action #'projectile-dired)
   (projectile-mode)
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
