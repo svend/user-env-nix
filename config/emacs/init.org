@@ -1306,7 +1306,7 @@ Terraform state files are JSON.
   :mode ("\\.tfstate\\'" "\\.tfstate\\.backup\\'")
   :config
   ;; Two-space indentation for JSON (default is 4)
-  (setq json-reformat:indent-width 2)
+  (setq b 2)
   (add-hook 'json-mode-hook
             (lambda ()
               (setq-local js-indent-level 2))))

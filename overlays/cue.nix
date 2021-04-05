@@ -7,15 +7,15 @@ self: super: {
     # being overridden
     inherit (super.cue.drvAttrs) pname doCheck subPackages;
     inherit (super.cue) meta;
-    version = "0.3.0-beta.6";
+    version = "0.3.0";
 
     src = super.fetchgit {
       url = "https://cue.googlesource.com/cue";
       rev = "v${version}";
-      sha256 = "sha256-2yEpYGqtvJPfZuHvX/4Ld/20IBqfqXIT63PnWah2ygk=";
+      sha256 = "sha256-tafAkQGn2aT6A1u7OeAfsZSST3bRshFPye3Y+noCaMA=";
     };
 
-    vendorSha256 = "sha256-9ai1Wbk6ftcXHjVEWaL8drxZnhgAwF8+OXNI95CrNjc=";
+    vendorSha256 = "sha256-d8p/vsbJ/bQbT2xrqqCoU1sQB8MrwKOMwEYhNYTWe4I=";
 
     buildFlagsArray = [
       "-ldflags=-X cuelang.org/go/cmd/cue/cmd.version=${version}"
