@@ -51,3 +51,7 @@ vterm_prompt_end() {
 }
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+# ZDOTDIR is set to a read-only location, set HISTFILE
+# This doesn't work from .zshenv
+export HISTFILE=$HOME/.zsh_history
