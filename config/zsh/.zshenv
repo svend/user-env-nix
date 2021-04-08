@@ -1,4 +1,5 @@
-path=(~/go/bin ~/.cargo/bin $path)
+# Don't load global startup files (/etc/z*). Note that /etc/zshenv is still
+# loaded.
+setopt NO_GLOBAL_RCS
 
-# Disable shell sessions (see /etc/zshrc_Apple_Terminal)
-SHELL_SESSIONS_DISABLE=1
+path=(~/go/bin ~/.cargo/bin $path)
