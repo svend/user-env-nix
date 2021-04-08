@@ -1,2 +1,1 @@
-path+=~/.cargo/bin
-path+=~/go/bin
+path=(~/go/bin ~/.cargo/bin $path)
