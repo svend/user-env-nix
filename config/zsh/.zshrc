@@ -28,6 +28,7 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 # Show uncommitted changes
 zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' format " %s:%b:%u%c"
 setopt prompt_subst
 
 # Measure command duration (sets _LAST_DURATION)
