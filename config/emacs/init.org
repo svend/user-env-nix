@@ -1836,9 +1836,9 @@ Start Emacs server unless one is already running. =server-running-p= requires
   ;; before short options like "-i"
   (add-to-list 'explicit-bash-args "--login")
 
-  (setq explicit-shell-file-name "bash")
-  ;; (setq shell-file-name "zsh")
-  ;; (setq explicit-shell-file-name "zsh")
+  ;; (setq explicit-shell-file-name "bash")
+  (setq shell-file-name "zsh")
+  (setq explicit-shell-file-name "zsh")
 
   ;; Do not try to colorize comments and strings in shell mode
   (setq shell-font-lock-keywords nil)
