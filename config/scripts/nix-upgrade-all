@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-nix-channel --update
-
-nix-env --query \
-  | grep 'Env' \
-  | sed -e 's/^/nixpkgs./' -e 's/-[^-]*$//' \
-  | xargs nix-env --install --attr
