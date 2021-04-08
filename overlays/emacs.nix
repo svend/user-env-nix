@@ -94,6 +94,7 @@ self: super:
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
+      vterm
 
       # Themes
       modus-themes
