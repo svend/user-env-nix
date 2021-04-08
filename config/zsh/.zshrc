@@ -18,6 +18,10 @@ compinit
 
 source <(kubectl completion zsh 2>/dev/null)
 
+# zsh backwards delete word deletes past slashes. I prefer Bash's behavior of stopping at /.
+autoload -U select-word-style
+select-word-style bash
+
 # Enable Git/VCS prompt
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
