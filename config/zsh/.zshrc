@@ -26,7 +26,8 @@ select-word-style bash
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:*' check-for-changes
+# Show uncommitted changes
+zstyle ':vcs_info:*' check-for-changes true
 setopt prompt_subst
 
 # Measure command duration (sets _LAST_DURATION)
