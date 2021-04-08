@@ -16,6 +16,8 @@ alias tree='tree -I .git'
 autoload -Uz compinit
 compinit
 
+source <(kubectl completion zsh 2>/dev/null)
+
 # Enable Git/VCS prompt
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
