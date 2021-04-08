@@ -97,7 +97,7 @@ self: super:
       vterm
 
       # Themes
-      modus-themes
+      # modus-themes # 2021-04-08 Marked as broken?
       nord-theme
       spacemacs-theme
       tango-plus-theme
