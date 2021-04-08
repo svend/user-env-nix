@@ -613,6 +613,16 @@ horizontally.
 #+end_src
 
 #+begin_src emacs-lisp
+(defun my-vterm-cd ()
+  "Switch to vterm buffer and change directory to `default-directory'."
+  (interactive)
+  (let ((d default-directory))
+    (vterm)
+    (vterm-send-string (format "cd %s\n" d))))
+#+end_src
+
+
+#+begin_src emacs-lisp
 (defun my-insert-date (arg)
   "Insert date string"
   (interactive "p")
