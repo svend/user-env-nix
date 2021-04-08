@@ -22,6 +22,7 @@ source <(kubectl completion zsh 2>/dev/null)
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:*' check-for-changes
 setopt prompt_subst
 
 # Measure command duration (sets _LAST_DURATION)
