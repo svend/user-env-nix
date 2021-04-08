@@ -12,13 +12,6 @@ alias ssh-p='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o Con
 alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
 
-# TODO: Can this work with native-shell-complete?
-# # Disable echo inside EMACS
-# if [[ -v INSIDE_EMACS ]]; then
-#   unsetopt zle
-#   stty -echo
-# fi
-
 # Enable completion system
 autoload -Uz compinit
 compinit
@@ -29,7 +22,13 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
-PROMPT='%F{blue}[%T/%?/Xs'\$vcs_info_msg_0_' %~]%f'$'\n$ '
+# Measure command duration (sets _LAST_DURATION)
+prompt_duration_start() { _LAST_SECONDS=$SECONDS }
+prompt_duration() { _LAST_DURATION=$((SECONDS - _LAST_SECONDS)) }
+preexec_functions+=(prompt_duration_start)
+precmd_functions+=(prompt_duration)
+
+PROMPT='%F{blue}[%T/%?/'\${_LAST_DURATION}'s'\$vcs_info_msg_0_' %~]%f'$'\n$ '
 
 # Emacs vterm
 
