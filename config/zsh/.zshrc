@@ -31,7 +31,7 @@ setopt prompt_subst
 
 # Measure command duration (sets _LAST_DURATION)
 prompt_duration_start() { _LAST_SECONDS=$SECONDS }
-prompt_duration() { _LAST_DURATION=$((SECONDS - _LAST_SECONDS)) }
+prompt_duration() { _LAST_DURATION=$((SECONDS - _LAST_SECONDS)); unset _LAST_SECONDS }
 preexec_functions+=(prompt_duration_start)
 precmd_functions+=(prompt_duration)
 
