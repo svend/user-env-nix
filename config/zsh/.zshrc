@@ -40,7 +40,7 @@ compinit
 # Enable Git/VCS prompt
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
+precmd_functions+=(precmd_vcs_info)
 # Show uncommitted changes
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' formats " %s:%b:%u%c"
