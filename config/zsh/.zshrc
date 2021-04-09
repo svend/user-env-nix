@@ -16,22 +16,26 @@ alias tree='tree -I .git'
 # Options
 setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
 
-# Enable completion system
-
-# Homebrew (https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh)
-if type brew &>/dev/null; then
-  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-fi
-
-# Nix
-fpath=(~/.nix-profile/share/zsh/site-functions $fpath)
-
-autoload -Uz compinit
-compinit
-
 # zsh backwards delete word deletes past slashes. I prefer Bash's behavior of stopping at /.
 autoload -U select-word-style
 select-word-style bash
+
+# History setup
+# ZDOTDIR is set to a read-only location, set HISTFILE
+# This doesn't work from .zshenv
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+
+# Completion setup
+# Homebrew (https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh)
+type brew &>/dev/null && fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+# Nix
+fpath=(~/.nix-profile/share/zsh/site-functions $fpath)
+autoload -Uz compinit
+compinit
+
+# Prompt setup
 
 # Enable Git/VCS prompt
 autoload -Uz vcs_info
@@ -57,7 +61,8 @@ precmd_functions+=(prompt_duration)
 
 PROMPT='%F{blue}[%T/%?/'\${_LAST_DURATION}'s'\$vcs_info_msg_0_' %~]%f'$'\n$ '
 
-# Emacs vterm
+# Emacs vterm setup (must come after prompt setup)
+# https://github.com/akermu/emacs-libvterm#directory-tracking-and-prompt-tracking
 
 vterm_printf() {
   if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
@@ -77,9 +82,3 @@ vterm_prompt_end() {
 if [[ "$INSIDE_EMACS" == "vterm" ]]; then
   PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 fi
-
-# ZDOTDIR is set to a read-only location, set HISTFILE
-# This doesn't work from .zshenv
-HISTSIZE=5000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
