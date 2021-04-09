@@ -17,6 +17,14 @@ alias tree='tree -I .git'
 setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
 
 # Enable completion system
+
+# Homebrew (https://docs.brew.sh/Shell-Completion#configuring-completions-in-zsh)
+if type brew &>/dev/null; then
+  fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+fi
+
+# Nix (TODO)
+
 autoload -Uz compinit
 compinit
 
