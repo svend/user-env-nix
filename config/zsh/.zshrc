@@ -67,8 +67,9 @@ vterm_printf() {
 vterm_prompt_end() {
   vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
 }
-setopt PROMPT_SUBST
-PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+if [[ "$INSIDE_EMACS" == "vterm" ]]; then
+  PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+fi
 
 # ZDOTDIR is set to a read-only location, set HISTFILE
 # This doesn't work from .zshenv
