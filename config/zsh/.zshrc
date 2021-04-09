@@ -1,3 +1,4 @@
+# Aliases
 alias cd-git='cd "$(git rev-parse --show-toplevel)"'
 alias e='emacsclient --no-wait'
 alias git='TERM=eterm-color git'
@@ -11,6 +12,9 @@ alias rg='rg --color always --smart-case'
 alias ssh-p='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o ControlPath=none'
 alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
+
+# Options
+setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
 
 # Enable completion system
 autoload -Uz compinit
@@ -29,7 +33,7 @@ precmd_functions+=( precmd_vcs_info )
 # Show uncommitted changes
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' formats " %s:%b:%u%c"
-setopt prompt_subst
+setopt PROMPT_SUBST
 
 # Measure command duration (sets _LAST_DURATION)
 prompt_duration_start() { _LAST_SECONDS=$SECONDS }
