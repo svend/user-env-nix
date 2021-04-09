@@ -23,12 +23,11 @@ if type brew &>/dev/null; then
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
 
-# Nix (TODO)
+# Nix
+fpath=(/.nix-profile/share/zsh/site-functions/ $fpath)
 
 autoload -Uz compinit
 compinit
-
-source <(kubectl completion zsh 2>/dev/null)
 
 # zsh backwards delete word deletes past slashes. I prefer Bash's behavior of stopping at /.
 autoload -U select-word-style
