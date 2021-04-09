@@ -2110,6 +2110,15 @@ FIXME: Disabled while switching to native-complete
   (setq split-window-preferred-function #'visual-fill-column-split-window-sensibly))
 #+end_src
 
+** vterm
+
+#+begin_src emacs-lisp
+(use-package vterm
+    :config
+    (setq vterm-kill-buffer-on-exit nil
+          vterm-max-scrollback 10000))
+#+end_src
+
 ** winner
 
 The winner-mode package provides a way to restore previous window
