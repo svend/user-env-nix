@@ -24,7 +24,7 @@ if type brew &>/dev/null; then
 fi
 
 # Nix
-fpath=(~/.nix-profile/share/zsh/site-functions/ $fpath)
+fpath=(~/.nix-profile/share/zsh/site-functions $fpath)
 
 autoload -Uz compinit
 compinit
