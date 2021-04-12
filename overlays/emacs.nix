@@ -82,8 +82,8 @@ self: super:
       epresent
       flycheck-rust
       flycheck-golangci-lint
+      git-link
       gnus-alias
-      ivy # https://github.com/abo-abo/swiper/issues/2088
       kubernetes
       native-complete
       nix-mode
@@ -97,7 +97,7 @@ self: super:
       vterm
 
       # Themes
-      # modus-themes # 2021-04-08 Marked as broken?
+      # modus-themes # 2021-04-08: Package ‘emacs-modus-themes-20210412.616’ ... is marked as broken
       nord-theme
       spacemacs-theme
       tango-plus-theme
