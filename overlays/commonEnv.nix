@@ -89,7 +89,7 @@ self: super:
       dejavu_fonts
       fira
       fira-code
-      iosevka
+      # iosevka # slow build
       # input-fonts # non-free
       jetbrains-mono
       go-font
