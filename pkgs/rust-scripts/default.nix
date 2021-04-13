@@ -11,10 +11,10 @@ buildRustPackage rec {
     repo = "rust-scripts";
     # rev = version;
     rev = "761dc59755ee95de59766545cb0eda2b9166aa83";
-    sha256 = "0id75iscyd3cr52jaiq3lx9v115x1ix44y5nwaq382cdchsmzs1i";
+    sha256 = "sha256-MehfNWSNCTSw4rZ4QnoMvYSwU6cDRyVFyWw0z3Qsp0U=";
   };
 
-  cargoSha256 = "1dx3mmzxsbvwpr8wf2g4gglv8cfyv8d4gmx1w52cqpvwqgwdkn2f";
+  cargoSha256 = "sha256-zSdVAUPGKSlD2Xma4piCyHO9eHcIJd+o3xMZCcIGSjk=";
 
   meta = with lib; {
     description = "Various rust scripts";

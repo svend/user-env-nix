@@ -10,10 +10,10 @@ buildRustPackage rec {
     owner = "igor-petruk";
     repo = "scriptisto";
     rev = version;
-    sha256 = "0jm5v1rbcjprbk5c4djbra9w12jx728fr7gl8c2i9s8akfilaas0";
+    sha256 = "sha256-QCtFo5sK6RQFQ/Sd7JA4XYrAk8pLNsLKXPlKtnLYpUo=";
   };
 
-  cargoSha256 = "1fnk33crzwpyj96jpbgspv13vdcwvfv4mjbss0a74p45fm8mskyd";
+  cargoSha256 = "sha256-fNKSkRxk6Qj7qglBSvG0sGYkC7Q1pjulwR8vy2dg3jg=";
 
   meta = with lib; {
     description = "A language-agnostic shebang interpreter that enables you to write scripts in compiled languages";
