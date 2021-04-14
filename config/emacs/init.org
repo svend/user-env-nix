@@ -2116,7 +2116,7 @@ FIXME: Disabled while switching to native-complete
 (use-package vterm
     :config
     (setq vterm-kill-buffer-on-exit nil
-          vterm-max-scrollback 10000))
+          vterm-max-scrollback 100000))
 #+end_src
 
 ** winner
