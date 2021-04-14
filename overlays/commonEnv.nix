@@ -56,7 +56,7 @@ self: super:
       xsv
       xz
       zookeeper
-      # zshWithConfig
+      zshWithConfig
       haskellPackages.ShellCheck
 
       # Version control
