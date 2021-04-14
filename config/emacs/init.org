@@ -602,17 +602,6 @@ horizontally.
 #+end_src
 
 #+begin_src emacs-lisp
-(defun my-shell-cd ()
-  "Switch to shell buffer and change directory to `default-directory'."
-  (interactive)
-  (let ((d default-directory))
-    (shell)
-    (goto-char (point-max))
-    (insert (format "cd %s" d))
-    (comint-send-input)))
-#+end_src
-
-#+begin_src emacs-lisp
 (defun my-vterm-cd ()
   "Switch to vterm buffer and change directory to `default-directory'."
   (interactive)
