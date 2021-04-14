@@ -2,5 +2,6 @@
 # loaded.
 setopt NO_GLOBAL_RCS
 
-path=(~/go/bin ~/.cargo/bin $MY_NIX_PATH ~/.nix-profile/bin $path)
+typeset -T MY_NIX_PATH my_nix_path
+path=(~/go/bin ~/.cargo/bin $my_nix_path ~/.nix-profile/bin $path)
 unset MY_NIX_PATH
