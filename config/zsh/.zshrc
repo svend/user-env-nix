@@ -1,14 +1,12 @@
 # Aliases
 alias cd-git='cd "$(git rev-parse --show-toplevel)"'
 alias e='emacsclient --no-wait'
-alias git='TERM=eterm-color git'
 alias kc='kubectl config current-context'
 alias kn='kubectl get nodes -o jsonpath='\''{range .items[*]}{.metadata.name}{"\n"}{end}'\'''
 alias kg='kubectl get -o jsonpath='\''{range .items[*]}{.metadata.name}{"\n"}{end}'\'''
 alias kcs='kubectl config view -o jsonpath='\''{range .contexts[*]}{.name}{"\n"}{end}'\'''
 alias kuc='kubectl config use-context'
 alias kubectl='TZ=UTC kubectl'
-alias rg='rg --color always --smart-case'
 alias ssh-p='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o ControlPath=none'
 alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
@@ -21,8 +19,14 @@ autoload -U select-word-style
 select-word-style bash
 
 # History setup
+#
 # ZDOTDIR is set to a read-only location, set HISTFILE
 # This doesn't work from .zshenv
+#
+# zshell history is saved with multiple sessions. If I open two terminals, A and
+# B, run commands in each, then quit A then B, the zshell history file contains
+# the previous history, then the new commands from A, then the new commands from
+# B.
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=$HISTSIZE
