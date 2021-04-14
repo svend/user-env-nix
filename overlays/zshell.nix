@@ -10,7 +10,7 @@ self: super:
         mkdir -p "$out/bin"
         for path in "${self.zsh}"/bin/*; do
           bin=$(basename "$path")
-          makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${../config/zsh}"
+          makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${../config/zsh}" --prefix PATH ":" "${self.myPkgs}/bin:$out/bin"
         done
       '';
     };

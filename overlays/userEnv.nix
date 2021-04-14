@@ -22,6 +22,7 @@ self: super:
     paths = [
       myPkgs
       emacsWithConfig
+      zshWithConfig
     ] ++ lib.optionals stdenv.isLinux [
       mailSyncService
     ];
