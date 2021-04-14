@@ -28,8 +28,6 @@ self: super:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
-      self.myPkgs
-      self.zshWithConfig
     ] ++
     (with epkgs.melpaStablePackages;
     [
