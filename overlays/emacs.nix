@@ -97,7 +97,7 @@ self: super:
       vterm
 
       # Themes
-      # modus-themes # 2021-04-08: Package ‘emacs-modus-themes-20210412.616’ ... is marked as broken
+      # modus-themes # TODO: 2021-04-14: Package ‘emacs-modus-themes-20210412.616’ ... is marked as broken
       nord-theme
       spacemacs-theme
       tango-plus-theme
