@@ -101,7 +101,6 @@ self: super:
       vterm
 
       # Themes
-      # modus-themes # TODO: 2021-04-14: Package ‘emacs-modus-themes-20210412.616’ ... is marked as broken
       nord-theme
       spacemacs-theme
       tango-plus-theme
@@ -123,6 +122,7 @@ self: super:
     ]) ++
     (with epkgs.elpaPackages; [
       csv-mode
+      modus-themes
     ])
   );
 }
