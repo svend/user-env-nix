@@ -1053,6 +1053,14 @@ DIRNAME omitted or nil means use `desktop-dirname'."
 (use-package git-commit)
 #+end_src
 
+** git-link
+
+#+begin_src emacs-lisp
+(use-package "git-link"
+  :config
+  (setq git-link-open-in-browser t))
+#+end_src
+
 ** gnuplot-mode
 
 #+begin_src emacs-lisp

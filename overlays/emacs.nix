@@ -1,9 +1,13 @@
 self: super:
 {
+  # Emacs native-comp on master soon:
+  # https://lists.gnu.org/archive/html/emacs-devel/2021-04/msg00484.html
+  # emacs = super.emacs.override { nativeComp = true; };
+
   emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
-      buildInputs = [ super.emacs ];
+      buildInputs = [ self.emacs ];
       src = ../config/emacs;
 
       unpackPhase = ''
