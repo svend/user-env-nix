@@ -49,7 +49,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 * Set executable path
 
 Emacs adds emacs-packages-deps/bin to exec-path; copy this value to PATH.
-https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/pkgs/build-support/emacs/wrapper.nix#L140
+https://github.com/NixOS/nixpkgs/blob/a64b9f2b106607b5d533c8238e577a79b229a679/pkgs/build-support/emacs/wrapper.nix#L160
 
 Add =/usr/local/bin= to exec-path.
 
@@ -64,16 +64,18 @@ NixOS: /run/wrappers/bin:/home/svend/.nix-profile/bin:/etc/profiles/per-user/sve
 (message "initial exec-path: %s" exec-path)
 (message "initial PATH: %s" (getenv "PATH"))
 
-(let ((deps-path (car exec-path))
-      (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
-      (local-path "/usr/local/bin")
-      (path-env (getenv "PATH")))
+(let* ((deps-path (car exec-path))
+       (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
+       (local-path "/usr/local/bin")
+       (path-env (getenv "PATH"))
+       (path-list (list deps-path nix-profile-path local-path)))
 
-  (dolist (p (reverse (list deps-path nix-profile-path local-path)))
-    (setq exec-path (cons p (remove p exec-path))))
+  (dolist (p (reverse path-list))
+    (unless (member p exec-path)
+      (setq exec-path (cons p exec-path))))
 
   (setenv "PATH" (string-join
-                  (list deps-path nix-profile-path local-path path-env)
+                  (append path-list (list path-env))
                   ":")))
 
 (message "updated exec-path: %s" exec-path)
