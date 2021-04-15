@@ -56,7 +56,7 @@ Add =/usr/local/bin= to exec-path.
 Initial PATH:
 
 #+begin_example
-macOS:
+macOS: /usr/bin:/bin:/usr/sbin:/sbin
 NixOS: /run/wrappers/bin:/home/svend/.nix-profile/bin:/etc/profiles/per-user/svend/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
 #+end_example
 
