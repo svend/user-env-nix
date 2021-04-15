@@ -1047,12 +1047,6 @@ DIRNAME omitted or nil means use `desktop-dirname'."
       (git-clone url))))
 #+end_src
 
-** git-commit
-
-#+begin_src emacs-lisp
-(use-package git-commit)
-#+end_src
-
 ** git-link
 
 #+begin_src emacs-lisp
@@ -1146,18 +1140,6 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
         '(("fastmail" nil "Svend Sorensen <svend@svends.net>" nil (("Bcc" . "svend@svends.net")) nil)))
   (setq gnus-alias-default-identity "fastmail")
   (setq gnus-alias-identity-rules '()))
-#+end_src
-
-** gnutls
-
-TODO: Disabled; remove if unnecessary.
-
-#+begin_src emacs-lisp :tangle no
-(use-package gnutls
-  :defer t
-  :config
-  (add-to-list 'gnutls-trustfiles
-               (expand-file-name "~/.certs/ca-bundle.crt")))
 #+end_src
 
 ** go-mode
@@ -1270,31 +1252,6 @@ brew install golangci-lint
 
 #+end_src
 
-** ibuffer-tramp
-
-#+begin_src emacs-lisp
-(use-package ibuffer-tramp
-  :config
-  (add-hook 'ibuffer-hook
-            (lambda ()
-              (ibuffer-tramp-set-filter-groups-by-tramp-connection)
-              (ibuffer-do-sort-by-alphabetic))))
-#+end_src
-
-** inf-ruby
-
-#+begin_src emacs-lisp
-(use-package inf-ruby
-  :defer t
-  :config
-  (defun my-inf-ruby-mode-setup ()
-    (setq comint-input-ring-file-name "~/.pry_history")
-    (when (ring-empty-p comint-input-ring)
-      (comint-read-input-ring t)))
-  (add-hook 'inf-ruby-mode-hook #'my-inf-ruby-mode-setup)
-  (setq inf-ruby-default-implementation "pry"))
-#+end_src
-
 ** ivy
 
 #+begin_src emacs-lisp
@@ -1327,14 +1284,6 @@ Terraform state files are JSON.
               (setq-local js-indent-level 2))))
 #+end_src
 
-** kubernetes
-
-#+begin_src emacs-lisp
-(use-package kubernetes
-  :defer t
-  :commands (kubernetes-use-context))
-#+end_src
-
 ** lisp-mode
 
 #+begin_src emacs-lisp
@@ -1343,29 +1292,6 @@ Terraform state files are JSON.
   (add-hook 'emacs-lisp-mode-hook
             (lambda ()
               (smartparens-strict-mode))))
-#+end_src
-
-** lsp-mode
-
-#+begin_src emacs-lisp
-(use-package lsp-mode
-  ;; :hook
-  ;; (go-mode . lsp-deferred)
-  ;; (rust-mode . lsp-deferred)
-  :config (setq lsp-auto-guess-root t
-                lsp-clients-python-command "pyls-pipenv"
-                lsp-restart 'auto-restart)
-  :commands lsp)
-#+end_src
-
-** lsp-ui-mode
-
-#+begin_src emacs-lisp
-(use-package lsp-ui
-  :config
-  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-  :commands lsp-ui-mode)
 #+end_src
 
 ** magit
@@ -1701,20 +1627,6 @@ fn main() {
     (when (ring-empty-p comint-input-ring)
       (comint-read-input-ring t)))
   (add-hook 'inferior-python-mode-hook #'my-inferior-python-mode-setup))
-#+end_src
-
-** quickrun
-
-Increase timeout to 60 seconds from the default of 10 seconds.
-
-#+begin_src emacs-lisp
-(use-package quickrun
-  :bind (("C-c q a" . quickrun-with-arg)
-         ("C-c q q" . quickrun)
-         ("C-c q r" . quickrun-region)
-         ("C-c q s" . quickrun-shell))
-  :config
-  (setq quickrun-timeout-seconds 60))
 #+end_src
 
 ** recentf
@@ -2102,6 +2014,7 @@ FIXME: Disabled while switching to native-complete
                   gnus-group-mode-hook
                   gnus-summary-mode-hook
                   Info-mode-hook
+                  magit-mode-hook
                   package-menu-mode-hook
                   prog-mode-hook
                   ;; special-mode-hook ;; FIXME: Text is chopped off in pdf-view mode

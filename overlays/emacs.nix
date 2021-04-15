@@ -68,12 +68,10 @@ self: super:
       gitignore-mode
       go-mode
       haskell-mode
-      ibuffer-tramp
       json-mode
       ledger-mode
       lua-mode
       nginx-mode
-      nim-mode
       plantuml-mode
       terraform-mode
       yaml-mode
@@ -83,14 +81,13 @@ self: super:
       blacken
       bpr
       company-go
+      eglot # language server support
       epresent
       flycheck-rust
       flycheck-golangci-lint
       git-link
       gnus-alias
-      kubernetes
       native-complete
-      nix-mode
       ob-go
       ob-rust
       password-store
@@ -106,17 +103,12 @@ self: super:
       tango-plus-theme
       tao-theme
 
-      # Language server support
-      eglot
-      # company-lsp
-      # lsp-mode
-      # lsp-ui
-
       # Modes
       dhall-mode
       groovy-mode
       jsonnet-mode
       markdown-mode # something installs this from melpa non-stable
+      nix-mode
       rust-mode # https://github.com/rust-lang/rust-mode/compare/0.4.0...master
       toml-mode
     ]) ++
