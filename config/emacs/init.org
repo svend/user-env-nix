@@ -53,6 +53,13 @@ https://github.com/NixOS/nixpkgs/blob/377d00d24a35c769baed0a6fdbc6f0189066f706/p
 
 Add =/usr/local/bin= to exec-path.
 
+Initial PATH:
+
+#+begin_example
+macOS:
+NixOS: /run/wrappers/bin:/home/svend/.nix-profile/bin:/etc/profiles/per-user/svend/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin
+#+end_example
+
 #+begin_src emacs-lisp
 (message "initial exec-path: %s" exec-path)
 (message "initial PATH: %s" (getenv "PATH"))
