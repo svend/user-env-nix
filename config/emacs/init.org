@@ -69,7 +69,7 @@ NixOS: /run/wrappers/bin:/home/svend/.nix-profile/bin:/etc/profiles/per-user/sve
        (local-path "/usr/local/bin")
        (path (list deps-path nix-profile-path local-path)))
 
-  ;; Remove deps-path, will get added to beginning of exec-path
+  ;; Remove deps-path, will get added to beginning of path
   (setq exec-path (remove deps-path exec-path))
 
   (dolist (p (reverse path))
