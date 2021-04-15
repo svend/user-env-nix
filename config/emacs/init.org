@@ -67,16 +67,12 @@ NixOS: /run/wrappers/bin:/home/svend/.nix-profile/bin:/etc/profiles/per-user/sve
 (let* ((deps-path (car exec-path))
        (nix-profile-path (expand-file-name "~/.nix-profile/bin"))
        (local-path "/usr/local/bin")
-       (path-env (getenv "PATH"))
-       (path-list (list deps-path nix-profile-path local-path)))
+       (path (list deps-path nix-profile-path local-path)))
 
-  (dolist (p (reverse path-list))
+  (dolist (p (reverse path))
     (unless (member p exec-path)
-      (setq exec-path (cons p exec-path))))
-
-  (setenv "PATH" (string-join
-                  (append path-list (list path-env))
-                  ":")))
+      (setenv "PATH" (format "%s:%s" p (getenv "PATH")))
+      (add-to-list 'exec-path p))))
 
 (message "updated exec-path: %s" exec-path)
 (message "updated PATH: %s" (getenv "PATH"))
