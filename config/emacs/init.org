@@ -1375,6 +1375,7 @@ Terraform state files are JSON.
        :config
        (modus-themes-load-operandi))
 #+end_src
+
 ** native-complete
 
 #+begin_src emacs-lisp
