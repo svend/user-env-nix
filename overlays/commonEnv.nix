@@ -12,7 +12,7 @@ self: super:
       coreutils
       cue
       dhall
-      # dhall-json # TODO: https://github.com/NixOS/nixpkgs/pull/109126
+      dhall-json
       dtach
       etcdctl
       file
@@ -54,7 +54,7 @@ self: super:
       unzip
       watch
       xsv
-      xz
+      xz # file compression
       zookeeper
       zshWithConfig
       haskellPackages.ShellCheck
@@ -92,7 +92,6 @@ self: super:
       # iosevka # slow build
       # input-fonts # non-free
       jetbrains-mono
-      go-font
       oxygenfonts
       source-code-pro
 
