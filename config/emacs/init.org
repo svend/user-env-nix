@@ -1367,6 +1367,7 @@ Terraform state files are JSON.
         modus-themes-org-blocks 'grayscale
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
+        modus-themes-subtle-line-numbers t
         modus-themes-syntax 'faint
         modus-themes-variable-pitch-headings t))
 #+end_src
