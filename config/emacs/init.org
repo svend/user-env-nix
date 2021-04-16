@@ -333,8 +333,7 @@ buffers.
 (defun my-prog-mode-hook()
   (flyspell-prog-mode)
   (goto-address-prog-mode)
-  (setq display-line-numbers t
-        show-trailing-whitespace t
+  (setq show-trailing-whitespace t
         truncate-lines t))
 
 (add-hook 'prog-mode-hook #'my-prog-mode-hook)
