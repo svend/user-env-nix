@@ -1618,7 +1618,8 @@ fn main() {
 (use-package projectile
   :init
   ;; projectile-project-search-path needs to be set before projectile-mode is called
-  (setq projectile-project-search-path '("~/.dotfiles" "~/src")
+  (setq projectile-mode-line-function '(lambda () (format " [%s]" (projectile-project-name)))
+        projectile-project-search-path '("~/.dotfiles" "~/src")
         projectile-switch-project-action #'projectile-dired)
   (projectile-mode)
   :config
@@ -1628,7 +1629,6 @@ fn main() {
                     projectile-project-test-cmd
                     projectile-project-run-cmd))
     (put var 'safe-local-variable #'stringp))
-
   (setq projectile-completion-system 'ivy)
   (setq projectile-use-git-grep t))
 #+end_src
