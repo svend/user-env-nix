@@ -1358,6 +1358,19 @@ Terraform state files are JSON.
   (define-key message-mode-map (kbd "C-c C-p") 'gnus-alias-select-identity))
 #+end_src
 
+** modus-themes
+
+#+begin_src emacs-lisp
+(use-package modus-themes
+  :config
+  (setq modus-themes-modus-themes-variable-pitch-ui t
+        modus-themes-org-blocks 'grayscale
+        modus-themes-region 'bg-only
+        modus-themes-scale-headings t
+        modus-themes-syntax 'faint
+        modus-themes-syntax 'faint
+        modus-themes-variable-pitch-headings t))
+#+end_src
 ** native-complete
 
 #+begin_src emacs-lisp
