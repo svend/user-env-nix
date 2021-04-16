@@ -106,6 +106,9 @@ TODO: setting inhibit-startup-screen does not work in default.el.
 
 #+begin_src emacs-lisp
 (column-number-mode t)
+(setq display-time-default-load-average nil
+      display-time-format "%H:%M  %Y-%m-%d")
+(display-time-mode)
 #+end_src
 
 ** Scrolling
