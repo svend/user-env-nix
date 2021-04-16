@@ -4,7 +4,7 @@
 (custom-theme-set-faces
  'svend
  `(cursor ((t (:background ,(face-foreground 'default)))))
- `(default ((t (:height ,(if (eq window-system 'ns) 150 105)))))
+ `(default ((t (:height ,(if (eq window-system 'ns) 150 110)))))
  '(diff-added ((t (:inherit fixed-pitch))))
  '(diff-context ((t (:inherit (shadow fixed-pitch)))))
  '(diff-hunk-header ((t (:inherit fixed-pitch))))
