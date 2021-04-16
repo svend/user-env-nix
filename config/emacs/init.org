@@ -413,6 +413,15 @@ Press =C-c C-h= to show all of these.
 (bind-key "C-c r" 'revert-buffer)
 #+end_src
 
+Emacs defines some keybindings on macOS that are nice to have on Linux. See [[https://github.com/emacs-mirror/emacs/blob/emacs-27.2/lisp/term/ns-win.el#L103][ns-win.el]].
+
+#+begin_src emacs-lisp
+(define-key global-map [?\s-+] 'text-scale-adjust)
+(define-key global-map [?\s-=] 'text-scale-adjust)
+(define-key global-map [?\s--] 'text-scale-adjust)
+(define-key global-map [?\s-0] 'text-scale-adjust)
+#+end_src
+
 ** Space as control key
 
 Use space as control key using [[https://github.com/alols/xcape][dual-function-keys]] on Linux and [[https://pqrs.org/osx/karabiner/][Karabiner]] on macOS.
