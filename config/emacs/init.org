@@ -220,7 +220,6 @@ Custom exist in the =themes/= directory alongside the Emacs init file.
 Load themes.
 
 #+begin_src emacs-lisp
-(load-theme 'modus-operandi)
 (load-theme 'svend 't)
 (load-theme 'svend-font-dejavu t)
 #+end_src
@@ -1361,14 +1360,20 @@ Terraform state files are JSON.
 
 #+begin_src emacs-lisp
 (use-package modus-themes
-  :config
+  :init
   (setq modus-themes-variable-pitch-ui t
         modus-themes-org-blocks 'grayscale
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
         modus-themes-subtle-line-numbers t
         modus-themes-syntax 'faint
-        modus-themes-variable-pitch-headings t))
+        modus-themes-variable-pitch-headings t)
+
+        ;; Load the theme files before enabling a theme (else you get an error).
+        (modus-themes-load-themes)
+
+       :config
+       (modus-themes-load-operandi))
 #+end_src
 ** native-complete
 
