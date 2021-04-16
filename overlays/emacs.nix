@@ -43,7 +43,6 @@ self: super:
       company
       company-jedi
       counsel
-      diminish
       edit-indirect
       expand-region
       flycheck
@@ -87,6 +86,7 @@ self: super:
       flycheck-golangci-lint
       git-link
       gnus-alias
+      minions
       native-complete
       ob-go
       ob-rust

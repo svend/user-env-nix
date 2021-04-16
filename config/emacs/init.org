@@ -22,7 +22,6 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 #+begin_src emacs-lisp
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
 (require 'bind-key)
 #+end_src
 
@@ -174,10 +173,6 @@ rsync -av \
   (interactive (list (or current-prefix-arg 'toggle)))
   (buffer-face-mode-invoke 'fixed-pitch arg
                            (called-interactively-p 'interactive)))
-
-;; Remove BufFace from mode line
-(eval-after-load "face-remap"
-  '(diminish 'buffer-face-mode))
 #+end_src
 
 * Emacs themes
@@ -822,7 +817,6 @@ Change scrolling behavior for comint modes.
 
 #+begin_src emacs-lisp
 (use-package company
-  :diminish company-mode
   :init
   (global-company-mode)
   :config
@@ -1263,7 +1257,6 @@ brew install golangci-lint
 
 #+begin_src emacs-lisp
 (use-package ivy
-  :diminish ivy-mode
   :bind (("C-c s" . swiper))
   :config
   (setq confirm-nonexistent-file-or-buffer t)
@@ -1618,8 +1611,7 @@ fn main() {
 (use-package projectile
   :init
   ;; projectile-project-search-path needs to be set before projectile-mode is called
-  (setq projectile-mode-line-function '(lambda () (format " [%s]" (projectile-project-name)))
-        projectile-project-search-path '("~/.dotfiles" "~/src")
+  (setq projectile-project-search-path '("~/.dotfiles" "~/src")
         projectile-switch-project-action #'projectile-dired)
   (projectile-mode)
   :config
@@ -1631,6 +1623,16 @@ fn main() {
     (put var 'safe-local-variable #'stringp))
   (setq projectile-completion-system 'ivy)
   (setq projectile-use-git-grep t))
+#+end_src
+
+** minions
+
+Hides all minor-modes in the status bar behind a symbol.
+
+#+begin_src emacs-lisp
+(use-package minions
+  :config (setq minions-mode-line-lighter "…")
+  :init (minions-mode 1))
 #+end_src
 
 ** python
@@ -1837,7 +1839,6 @@ M-r):
 
 #+begin_src emacs-lisp
 (use-package smartparens
-  :diminish smartparens-mode
   :init
   (smartparens-global-mode t)
   (require 'smartparens-config)
@@ -1859,7 +1860,6 @@ https://github.com/bbatsov/super-save#use-package
 #+begin_src emacs-lisp
 (use-package super-save
   :ensure t
-  :diminish super-save-mode
   :config
   (add-to-list 'super-save-triggers #'ace-window)
   (setq super-save-auto-save-when-idle t)
@@ -2107,7 +2107,6 @@ layouts.
 
 #+begin_src emacs-lisp
 (use-package yasnippet
-  :diminish yas-minor-mode
   :init (yas-global-mode))
 #+end_src
 
