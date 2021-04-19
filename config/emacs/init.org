@@ -90,13 +90,13 @@ Make the cursor a bar instead of a filled box.
 
 ** Chrome
 
-TODO: setting inhibit-startup-screen does not work in default.el.
+Note: setting inhibit-startup-screen has no effect when set in =share/emacs/site-lisp/default.el=.
 
 - Disable welcome screen
 - Disable tool bar
 
 #+begin_src emacs-lisp
-(setq inhibit-startup-screen t)
+;; (setq inhibit-startup-screen t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 #+end_src
 
@@ -113,9 +113,11 @@ TODO: setting inhibit-startup-screen does not work in default.el.
 
 ** Scrolling
 
-- Enable smooth scrolling.
+Enable smooth scrolling.
 
-#+begin_src emacs-lisp
+TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scrolling
+
+#+begin_src emacs-lisp :tangle no
 (pixel-scroll-mode)
 #+end_src
 
@@ -538,45 +540,6 @@ Add options to kill or revert buffer when prompting to save modified buffers.
 #+end_src
 
 * User defined functions
-
-Hacked version of balance-windows which only balances windows
-horizontally.
-
-#+begin_src emacs-lisp
-(defun balance-windows-horizontally (&optional window-or-frame)
-  "Horizontally balance the sizes of windows of WINDOW-OR-FRAME.
-  WINDOW-OR-FRAME is optional and defaults to the selected frame.
-  If WINDOW-OR-FRAME denotes a frame, balance the sizes of all
-  windows of that frame.  If WINDOW-OR-FRAME denotes a window,
-  recursively balance the sizes of all child windows of that
-  window."
-  (interactive)
-  (let* ((window
-          (cond
-           ((or (not window-or-frame)
-                (frame-live-p window-or-frame))
-            (frame-root-window window-or-frame))
-           ((or (window-live-p window-or-frame)
-                (window-child window-or-frame))
-            window-or-frame)
-           (t
-            (error "Not a window or frame %s" window-or-frame))))
-         (frame (window-frame window)))
-    ;; ;; Balance vertically.
-    ;; (window--resize-reset (window-frame window))
-    ;; (balance-windows-1 window)
-    ;; (when (window--resize-apply-p frame)
-    ;;   (window-resize-apply frame)
-    ;;   (window--pixel-to-total frame)
-    ;;   (run-window-configuration-change-hook frame))
-    ;; Balance horizontally.
-    (window--resize-reset (window-frame window) t)
-    (balance-windows-1 window t)
-    (when (window--resize-apply-p frame t)
-      (window-resize-apply frame t)
-      (window--pixel-to-total frame t)
-      (run-window-configuration-change-hook frame))))
-#+end_src
 
 #+begin_src emacs-lisp
 (defun my-toggle-auto-hscroll-mode()
@@ -1606,14 +1569,6 @@ Hides all minor-modes in the status bar behind a symbol.
   (add-to-list 'recentf-exclude "^/tmp/notmuch-ical"))
 #+end_src
 
-** robe
-
-#+begin_src emacs-lisp
-(use-package robe
-  :config
-  (add-hook 'ruby-mode-hook #'robe-mode))
-#+end_src
-
 ** ruby-mode
 
 Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e4057a55ac2d17cc0cd073cc93eb7214ce8/modules/prelude-ruby.el#L39][prelude]].
@@ -1894,68 +1849,6 @@ ControlPersist 60m
   (setq tramp-use-ssh-controlmaster-options nil
         ;; Tramp sets HISTFILE so bash history on remote shells does not work.
         tramp-histfile-override nil))
-#+end_src
-
-Default value of explicit-bash-args is =("--noediting" "-i")=. We want
-login shell for remote hosts. This should be harmless for local
-shells, however it does increase the start-up time for local shells.
-
-Attempt to start or reattach to a dtach session and fall back to a
-bash shell.
-
-FIXME: Disabled while switching to native-complete
-
-#+begin_src emacs-lisp :tangle no
-(setq explicit-bash-args
-      '("-c" "dtach -A \"$HOME/.dtach-$(hostname -f 2>/dev/null || hostname)-ssorensen\" -z bash --noediting --login -i 2>/dev/null || bash --noediting --login -i"))
-#+end_src
-
-#+begin_src emacs-lisp
-(require 'tramp)
-
-(defun ssh-host-completing-read ()
-  (completing-read
-   "Open ssh connection to [user@]host: "
-   (completion-table-dynamic
-    (lambda (str)
-      (tramp-completion-handle-file-name-all-completions str "/")))))
-(defun ssh-shell (host)
-  "Open SSH connection to HOST."
-  (interactive (list (ssh-host-completing-read)))
-  (let* ((host (if (string-suffix-p ":" host)
-                   host
-                 (format  "%s:" host)))
-         (default-directory (format  "/ssh:%s" host)))
-    ;; Opening the shell occasionally hangs and locks up Emacs. Opening a remote
-    ;; file first seems to fix this.
-    ;;
-    ;; Cannot read shell history file when using with-current-buffer.
-    (find-file-noselect default-directory)
-    (shell (format "*shell*<%s>" host))))
-
-(defun dtach-shell (socket)
-  "Attach to specified dtach SOCKET or create it if it does not exist"
-  (interactive "F")
-  (let ((explicit-shell-file-name "dtach")
-        (explicit-dtach-args `("-A" ,socket "-z" "bash" "--noediting" "--login" "-i")))
-    (shell (format "*dtach*<%s>" socket))))
-#+end_src
-
-#+begin_src emacs-lisp
-(defun tramp-comint-read-input-ring ()
-  "Read remote bash_history file into comint input ring."
-  (when (tramp-tramp-file-p default-directory)
-    (tramp-set-comint-input-ring-file)
-    (when (ring-empty-p comint-input-ring)
-      (comint-read-input-ring t))))
-
-(defun tramp-set-comint-input-ring-file ()
-  "Set the name of the remote comint-input-ring-file."
-  (when (tramp-tramp-file-p default-directory)
-    (setq comint-input-ring-file-name (format "%s~/.bash_history" default-directory))))
-
-(add-hook 'shell-mode-hook #'tramp-set-comint-input-ring-file)
-(add-hook 'shell-mode-hook #'tramp-comint-read-input-ring)
 #+end_src
 
 ** visual-fill-column

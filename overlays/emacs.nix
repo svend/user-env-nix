@@ -54,7 +54,6 @@ self: super:
       package-lint
       projectile
       py-isort
-      robe
       smartparens
       super-save
       use-package
@@ -86,7 +85,7 @@ self: super:
       flycheck-golangci-lint
       git-link
       gnus-alias
-      minions
+      minions # hide minor modes in mode-line
       native-complete
       ob-go
       ob-rust
@@ -98,10 +97,10 @@ self: super:
       vterm
 
       # Themes
-      nord-theme
+      nord-theme # bluish dark theme
       spacemacs-theme
-      tango-plus-theme
-      tao-theme
+      tango-plus-theme # simple light theme
+      tao-theme # monochrome dark/light theme
 
       # Modes
       dhall-mode
@@ -114,7 +113,7 @@ self: super:
     ]) ++
     (with epkgs.elpaPackages; [
       csv-mode
-      modus-themes
+      modus-themes # well designed dark/light theme
     ])
   );
 }
