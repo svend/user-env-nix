@@ -32,6 +32,11 @@
 	&& git checkout pull/$1 \
 	&& git config --replace-all branch.pull/$1.merge refs/pull/$1/head"
 
+	# Create branch for new PR
+	pr-branch = "! \
+	git fetch upstream \
+	&& git checkout -b $1 upstream/HEAD --no-track"
+
 [core]
 	# Do not print ^M at end of diff lines
 	whitespace = cr-at-eol
