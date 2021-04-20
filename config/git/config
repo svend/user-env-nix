@@ -35,7 +35,7 @@
 	# Create branch for new PR
 	pr-branch = "! \
 	git fetch upstream \
-	&& git checkout -b $1 upstream/HEAD --no-track"
+	&& git checkout -b $1 upstream/HEAD --no-track # ignore arguments"
 
 [core]
 	# Do not print ^M at end of diff lines
