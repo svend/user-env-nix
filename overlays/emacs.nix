@@ -2,12 +2,11 @@ self: super:
 {
   # Emacs native-comp on master soon:
   # https://lists.gnu.org/archive/html/emacs-devel/2021-04/msg00484.html
-  # emacs = super.emacs.override { nativeComp = true; };
 
   emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
-      buildInputs = [ self.emacs ];
+      buildInputs = [ self.emacsGcc ];
       src = ../config/emacs;
 
       unpackPhase = ''
@@ -28,7 +27,7 @@ self: super:
       '';
     };
 
-  emacsWithConfig = super.emacsWithPackages (epkgs:
+  emacsWithConfig = (super.pkgs.emacsPackagesGen self.emacsGcc).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
