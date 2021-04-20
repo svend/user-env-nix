@@ -23,8 +23,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (eval-when-compile
   (require 'use-package)
   ;; Compute statistics (`M-x use-package-report` to see results)
-  ;; (use-package-compute-statistics)
-  )
+  (setq use-package-compute-statistics t))
 (require 'bind-key)
 #+end_src
 
@@ -962,7 +961,7 @@ Add more password prompts.
 ** git-link
 
 #+begin_src emacs-lisp
-(use-package "git-link"
+(use-package git-link
   :defer t
   :config
   (setq git-link-open-in-browser t))
