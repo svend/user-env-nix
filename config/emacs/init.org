@@ -950,6 +950,7 @@ Change scrolling behavior for comint modes.
 
 #+begin_src emacs-lisp
 (use-package "git-link"
+  :defer t
   :config
   (setq git-link-open-in-browser t))
 #+end_src
