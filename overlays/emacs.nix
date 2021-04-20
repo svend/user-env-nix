@@ -51,7 +51,6 @@ self: super:
       notmuch
       nov
       package-lint
-      projectile
       py-isort
       smartparens
       super-save
@@ -90,6 +89,7 @@ self: super:
       ob-rust
       password-store
       pdf-tools
+      projectile # 2.3.0..master fixes error with emacs master: Wrong number of arguments: (3 . 4)
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
