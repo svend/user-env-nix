@@ -1914,7 +1914,8 @@ ControlPersist 60m
 (use-package vterm
   :defer t
   :config
-  (setq vterm-kill-buffer-on-exit nil
+  (setq vterm-shell "zsh"
+        vterm-kill-buffer-on-exit nil
         vterm-max-scrollback 100000))
 #+end_src
 
