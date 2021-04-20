@@ -21,7 +21,10 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 
 #+begin_src emacs-lisp
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  ;; Compute statistics (`M-x use-package-report` to see results)
+  ;; (use-package-compute-statistics)
+  )
 (require 'bind-key)
 #+end_src
 
@@ -715,6 +718,7 @@ If OPEN-BUFFER is set, open the new buffer."
 
 #+begin_src emacs-lisp
 (use-package cider
+  :defer t
   :config
   (setq cider-prompt-for-symbol nil)
   (setq cider-repl-history-file "~/.emacs.d/cider-history")
@@ -727,6 +731,7 @@ If OPEN-BUFFER is set, open the new buffer."
 
 #+begin_src emacs-lisp
 (use-package clojure-mode
+  :defer t
   :config
   (add-hook 'clojure-mode-hook #'smartparens-strict-mode))
 #+end_src
@@ -736,48 +741,51 @@ If OPEN-BUFFER is set, open the new buffer."
 Add more password prompts.
 
 #+begin_src emacs-lisp
-(setq comint-input-ignoredups t
-      comint-input-ring-size 10000
-      comint-password-prompt-regexp
-      (concat comint-password-prompt-regexp
-              "\\|"
-              ;; OpenStack
-              "Please enter your OpenStack Password:"
-              "\\|"
-              ;; curl
-              "Enter host password for user '[^']*':"
-              "\\|"
-              ;; Ansible
-              "SUDO password:"
-              "\\|"
-              "Vault password:"
-              "\\|"
-              ;; openssl pkcs12 -nocerts -nodesopenssl
-              "Enter Import Password:"
-              "\\|"
-              ;; sshuttle
-              "[local sudo] Password:"
-              "\\|"
-              ;; Java keytool
-              "Enter keystore password:"))
+(use-package comint
+  :defer t
+  :config
+  (setq comint-input-ignoredups t
+        comint-input-ring-size 10000
+        comint-password-prompt-regexp
+        (concat comint-password-prompt-regexp
+                "\\|"
+                ;; OpenStack
+                "Please enter your OpenStack Password:"
+                "\\|"
+                ;; curl
+                "Enter host password for user '[^']*':"
+                "\\|"
+                ;; Ansible
+                "SUDO password:"
+                "\\|"
+                "Vault password:"
+                "\\|"
+                ;; openssl pkcs12 -nocerts -nodesopenssl
+                "Enter Import Password:"
+                "\\|"
+                ;; sshuttle
+                "[local sudo] Password:"
+                "\\|"
+                ;; Java keytool
+                "Enter keystore password:"))
+
+  ;; Change scrolling behavior for comint modes.
+
+  (defun comint-mode-config()
+    ;; Do not move prompt to bottom of the screen on output
+    (setq comint-scroll-show-maximum-output nil)
+    ;; Do not center the prompt when scrolling
+    ;;
+    ;; ("If the value is greater than 100, redisplay will never recenter
+    ;; point, but will always scroll just enough text to bring point
+    ;; into view, even if you move far away.")
+    (setq-local scroll-conservatively 101)
+    (setq-local auto-hscroll-mode 'current-line))
+
+  (add-hook 'comint-mode-hook #'comint-mode-config))
 #+end_src
 
-Change scrolling behavior for comint modes.
 
-#+begin_src emacs-lisp
-(defun comint-mode-config()
-  ;; Do not move prompt to bottom of the screen on output
-  (setq comint-scroll-show-maximum-output nil)
-  ;; Do not center the prompt when scrolling
-  ;;
-  ;; ("If the value is greater than 100, redisplay will never recenter
-  ;; point, but will always scroll just enough text to bring point
-  ;; into view, even if you move far away.")
-  (setq-local scroll-conservatively 101)
-  (setq-local auto-hscroll-mode 'current-line))
-
-(add-hook 'comint-mode-hook #'comint-mode-config)
-#+end_src
 
 ** company
 
@@ -795,6 +803,7 @@ Change scrolling behavior for comint modes.
 
 #+begin_src emacs-lisp
 (use-package company-jedi
+  :defer t
   ;; :init (add-hook 'python-mode-hook 'jedi:setup)
   :config
   (setq jedi:use-shortcuts t))
@@ -815,6 +824,7 @@ Change scrolling behavior for comint modes.
 
 #+begin_src emacs-lisp
 (use-package dired
+  :defer t
   :config
   (setq dired-dwim-target t)
   (defun my-dired-mode-hook ()
@@ -916,13 +926,16 @@ Change scrolling behavior for comint modes.
 
 #+begin_src emacs-lisp
 (use-package flycheck
+  :defer t
   :init
   (use-package flycheck-ledger
     :defer t)
   (use-package flycheck-rust
+    :defer t
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
   (use-package flycheck-golangci-lint
+    :defer t
     :config
     (add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
   :config
@@ -996,6 +1009,7 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
 
 #+begin_src emacs-lisp
 (use-package gnus
+  :defer t
   :config
   ;; Use secondary-select-methods
   (setq gnus-select-method '(nnnil ""))
@@ -1248,6 +1262,16 @@ Terraform state files are JSON.
   (define-key message-mode-map (kbd "C-c C-p") 'gnus-alias-select-identity))
 #+end_src
 
+** minions
+
+Hides all minor-modes in the status bar behind a symbol.
+
+#+begin_src emacs-lisp
+(use-package minions
+  :config (setq minions-mode-line-lighter "…")
+  :init (minions-mode 1))
+#+end_src
+
 ** modus-themes
 
 #+begin_src emacs-lisp
@@ -1272,6 +1296,7 @@ Terraform state files are JSON.
 
 #+begin_src emacs-lisp
 (use-package native-complete
+  :defer t
   :config
   ;; Add = to enable completion for --option= flags
   (setq native-complete-exclude-regex "[^$(-/_~=[:alnum:]]")
@@ -1319,6 +1344,7 @@ open -a ~/.nix-profile/Applications/Emacs.app --new --args -q --load ~/src/emacs
 
 #+begin_src emacs-lisp
 (use-package nix-mode
+  :defer t
   :config
   (setq nix-nixfmt-bin "nixpkgs-fmt"))
 #+end_src
@@ -1392,7 +1418,8 @@ func main() {
 : Hello, world
 
 #+begin_src emacs-lisp
-(use-package ob-go)
+(use-package ob-go
+  :defer t)
 #+end_src
 
 ** ob-rust
@@ -1417,13 +1444,15 @@ fn main() {
 : 2. Hello World!
 
 #+begin_src emacs-lisp
-(use-package ob-rust)
+(use-package ob-rust
+  :defer t)
 #+end_src
 
 ** org
 
 #+begin_src emacs-lisp
 (use-package org
+  :defer t
   :bind (("C-c c" . org-capture)
          ("C-c o a" . org-agenda)
          ("C-c o b" . org-iswitchb)
@@ -1472,7 +1501,8 @@ fn main() {
 
 #+begin_src emacs-lisp
 (use-package pdf-tools
-  :init
+  :magic ("%PDF" . pdf-view-mode)
+  :config
   (pdf-tools-install))
 #+end_src
 
@@ -1480,6 +1510,7 @@ fn main() {
 
 #+begin_src emacs-lisp
 (use-package plantuml-mode
+  :defer t
   :config
   (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"))
 #+end_src
@@ -1524,20 +1555,11 @@ fn main() {
   (setq projectile-use-git-grep t))
 #+end_src
 
-** minions
-
-Hides all minor-modes in the status bar behind a symbol.
-
-#+begin_src emacs-lisp
-(use-package minions
-  :config (setq minions-mode-line-lighter "…")
-  :init (minions-mode 1))
-#+end_src
-
 ** python
 
 #+begin_src emacs-lisp
 (use-package python
+  :defer t
   :config
   (setq python-shell-interpreter "pipenv-try"
         python-shell-interpreter-args "python3 -i")
@@ -1676,6 +1698,7 @@ Start Emacs server unless one is already running. =server-running-p= requires
 
 #+begin_src emacs-lisp
 (use-package shell
+  :defer t
   :config
   (add-to-list 'display-buffer-alist
                '("^\\*shell\\*" . ((display-buffer-reuse-window display-buffer-same-window))))
@@ -1798,6 +1821,7 @@ https://github.com/bbatsov/super-save#use-package
   (goto-address-mode))
 
 (use-package term
+  :defer t
   :config
   (setq-default term-buffer-maximum-size 10000)
   (add-hook 'term-mode-hook #'my-setup-term-mode))
@@ -1807,6 +1831,7 @@ https://github.com/bbatsov/super-save#use-package
 
 #+begin_src emacs-lisp
 (use-package terraform-mode
+  :defer t
   :config (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
 #+end_src
 
@@ -1888,9 +1913,10 @@ ControlPersist 60m
 
 #+begin_src emacs-lisp
 (use-package vterm
-    :config
-    (setq vterm-kill-buffer-on-exit nil
-          vterm-max-scrollback 100000))
+  :defer t
+  :config
+  (setq vterm-kill-buffer-on-exit nil
+        vterm-max-scrollback 100000))
 #+end_src
 
 ** winner
