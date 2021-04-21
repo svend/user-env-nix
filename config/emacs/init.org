@@ -517,6 +517,12 @@ Add options to kill or revert buffer when prompting to save modified buffers.
    "revert this buffer"))
 #+end_src
 
+Scrolling (e.g. C-l) doesn't exit isearch.
+
+#+begin_src emacs-lisp
+(setq isearch-allow-scroll t)
+#+end_src
+
 ** Compile
 
 #+begin_src emacs-lisp
@@ -1284,7 +1290,8 @@ TODO: Setting variables in =:config= section does not apply them.
         modus-themes-scale-headings t
         modus-themes-subtle-line-numbers t
         modus-themes-syntax 'faint
-        modus-themes-variable-pitch-headings t)
+        modus-themes-variable-pitch-headings t
+        modus-themes-operandi-color-overrides '((bg-main . "#fefdfd")))
   ;; Load the theme files before enabling a theme (else you get an error).
   (modus-themes-load-themes)
   (modus-themes-load-operandi))
