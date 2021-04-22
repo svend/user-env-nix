@@ -56,6 +56,12 @@ Update lock file:
 nix flake update
 ```
 
+Update a single input:
+
+``` shell
+nix flake lock --update-input nixpkgs-unstable
+```
+
 ## Development
 
 Running `nix build` will create `result/` which is a link to the build.
