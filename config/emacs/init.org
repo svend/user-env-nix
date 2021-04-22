@@ -99,7 +99,7 @@ Note: setting inhibit-startup-screen has no effect when set in =share/emacs/site
 
 #+begin_src emacs-lisp
 ;; (setq inhibit-startup-screen t)
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 #+end_src
 
 ** Mode line
@@ -707,7 +707,7 @@ Scrolling (e.g. C-l) doesn't exit isearch.
 If OPEN-BUFFER is set, open the new buffer."
   (interactive "P")
   (call-interactively #'bpr-spawn)
-  (if open-buffer
+  (when open-buffer
       (my-bpr-switch-to-last-buffer)))
 
 (use-package bpr
