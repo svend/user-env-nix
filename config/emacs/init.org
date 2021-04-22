@@ -1901,6 +1901,7 @@ ControlPersist 60m
                   gnus-article-mode-hook
                   gnus-group-mode-hook
                   gnus-summary-mode-hook
+                  hexl-mode-hook
                   Info-mode-hook
                   magit-mode-hook
                   package-menu-mode-hook
