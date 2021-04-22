@@ -1782,7 +1782,9 @@ https://github.com/bbatsov/super-save#use-package
   :config
   (add-to-list 'super-save-triggers #'ace-window)
   (setq super-save-auto-save-when-idle t)
-  (super-save-mode +1))
+  (super-save-mode +1)
+  ;; Disable super-save for haxl-mode, which asks for confirmation when saving
+  (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
 #+end_src
 
 ** swiper
