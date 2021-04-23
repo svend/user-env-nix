@@ -86,3 +86,11 @@ vterm_prompt_end() {
 if [[ "$INSIDE_EMACS" == "vterm" ]]; then
   PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 fi
+
+# Emacs shell setup
+if [[ "$INSIDE_EMACS" == *",comint" ]]; then
+  # Unsetting ZLE is required to disable terminal echo, which results in the
+  # command being printed twice
+  unsetopt ZLE
+  stty -echo
+fi
