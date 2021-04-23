@@ -550,6 +550,13 @@ Scrolling (e.g. C-l) doesn't exit isearch.
 * User defined functions
 
 #+begin_src emacs-lisp
+(defun collapse-blank-lines (start end)
+  "Collapse multiple blank lines into one."
+  (interactive "r")
+  (replace-regexp "^\n\\{2,\\}" "\n" nil start end))
+#+end_src
+
+#+begin_src emacs-lisp
 (defun my-toggle-auto-hscroll-mode()
   "Toggle `auto-hscroll-mode` between t and current-line."
   (interactive)
