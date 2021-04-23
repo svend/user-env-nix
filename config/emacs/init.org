@@ -1313,7 +1313,8 @@ TODO: Setting variables in =:config= section does not apply them.
   (defun my-shell-hook ()
     (setq completion-at-point-functions '(native-complete-at-point)))
 
-  (add-hook 'shell-mode-hook #'my-shell-hook))
+  ;; (add-hook 'shell-mode-hook #'my-shell-hook)
+  )
 #+end_src
 
 Notes for testing native-complete.
