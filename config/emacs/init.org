@@ -1419,7 +1419,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello, world")
+        fmt.Println("Hello, world")
 }
 #+end_src
 
@@ -1993,8 +1993,8 @@ Load external configuration.
   (unless (get-buffer "*Calculator*")
     (save-window-excursion (calc) (calc-quit)))
   (let* ((vars (org-babel--get-vars params))
-	 (org--var-syms (mapcar #'car vars))
-	 (var-names (mapcar #'symbol-name org--var-syms)))
+         (org--var-syms (mapcar #'car vars))
+         (var-names (mapcar #'symbol-name org--var-syms)))
     (mapc
      (lambda (pair)
        (calc-push-list (list (cdr pair)))
@@ -2003,16 +2003,16 @@ Load external configuration.
     (mapc
      (lambda (line)
        (when (> (length line) 0)
-	 (cond
-	  ;; simple variable name
-	  ((member line var-names) (calc-recall (intern line)))
-	  ;; stack operation
-	  ((string= "'" (substring line 0 1))
-	   (funcall (lookup-key calc-mode-map (substring line 1)) nil))
-	  ;; complex expression
-	  (t
-	   (calc-push-list
-	    (list (let ((res (calc-eval line)))
+         (cond
+          ;; simple variable name
+          ((member line var-names) (calc-recall (intern line)))
+          ;; stack operation
+          ((string= "'" (substring line 0 1))
+           (funcall (lookup-key calc-mode-map (substring line 1)) nil))
+          ;; complex expression
+          (t
+           (calc-push-list
+            (list (let ((res (calc-eval line)))
                     (cond
                      ((numberp res) res)
                      ;; TODO
@@ -2031,7 +2031,7 @@ Load external configuration.
                                    (car (math-read-exprs line)))))))))
                   ))))))
      (mapcar #'org-trim
-	     (split-string (org-babel-expand-body:calc body params) "[\n\r]"))))
+             (split-string (org-babel-expand-body:calc body params) "[\n\r]"))))
   (save-excursion
     (with-current-buffer (get-buffer "*Calculator*")
       (prog1
