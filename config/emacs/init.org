@@ -594,7 +594,6 @@ Scrolling (e.g. C-l) doesn't exit isearch.
     (vterm-send-string (format "cd %s\n" d))))
 #+end_src
 
-
 #+begin_src emacs-lisp
 (defun my-insert-date (arg)
   "Insert date string"
@@ -789,8 +788,6 @@ Add more password prompts.
 
   (add-hook 'comint-mode-hook #'comint-mode-config))
 #+end_src
-
-
 
 ** company
 
