@@ -23,7 +23,7 @@ in
         Channel fastmail
         Far :fastmail-remote:
         Near :fastmail-local:
-        Patterns *
+        Patterns * !Spam
         # Sync Both
         Create Near
         Expunge Near
