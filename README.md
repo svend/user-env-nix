@@ -45,7 +45,7 @@ nix profile upgrade '.*'
 On NixOS, refresh user systemd unit files.
 
 ``` shell
-systemd --user daemon-reload
+systemctl --user daemon-reload
 ```
 
 ## Updating
