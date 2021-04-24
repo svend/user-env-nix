@@ -42,11 +42,23 @@ nix profile upgrade <n>
 nix profile upgrade '.*'
 ```
 
+### Systemd
+
 On NixOS, refresh user systemd unit files.
 
 ``` shell
 systemctl --user daemon-reload
 ```
+
+NixOS adds `~/.nix-profile/etc/xdg/systemd/user` to the user unit search path.
+
+``` shell
+systemd-path | grep systemd-user-unit
+```
+
+(`systemd-path` prints two values for `systemd-user-unit`, and `systemd-path
+systemd-user-unit` prints the one with only a single directory. I'm not sure
+why.)
 
 ## Updating
 
