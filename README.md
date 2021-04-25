@@ -60,6 +60,17 @@ systemd-path | grep systemd-user-unit
 systemd-user-unit` prints the one with only a single directory. I'm not sure
 why.)
 
+To start from scratch:
+
+``` shell
+rm -rf ~/.config/systemd/user
+systemctl --user enable mbsync.timer
+systemctl --user add-wants mbsync.service commit-mail@fastmail.service
+systemctl --user add-wants mbsync.service commit-mail@gmail.service
+systemctl --user daemon-reload
+systemctl --user --failed
+```
+
 ## Updating
 
 Update lock file:
