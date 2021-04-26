@@ -40,9 +40,8 @@ self: super:
       aggressive-indent
       cider
       company
-      company-jedi
       counsel
-      edit-indirect
+      edit-indirect # required by markdown-mode to edit blocks
       expand-region
       flycheck
       gnuplot
@@ -73,7 +72,7 @@ self: super:
     ]) ++
     (with epkgs.melpaPackages; [
       amx
-      blacken
+      blacken # support for python "black" code-formatter
       bpr
       company-go
       eglot # language server support

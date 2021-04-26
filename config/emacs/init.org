@@ -427,6 +427,7 @@ Press =C-c C-h= to show all of these.
 (bind-key "C-c t v" 'visual-fill-column-mode)
 (bind-key "C-c t w" 'whitespace-mode)
 #+end_src
+
 Emacs defines some keybindings on macOS that are nice to have on Linux. See [[https://github.com/emacs-mirror/emacs/blob/emacs-27.2/lisp/term/ns-win.el#L103][ns-win.el]].
 
 #+begin_src emacs-lisp
@@ -1922,8 +1923,9 @@ layouts.
 (use-package winner
   :bind (("C-c w" . winner-undo)
          ("C-c W" . winner-redo))
-  :config (setq winner-dont-bind-my-keys t) ; don't bind C-<left|right>
-  :init (winner-mode))
+  :init
+  (setq winner-dont-bind-my-keys t) ; don't bind C-<left|right>
+  (winner-mode))
 #+end_src
 
 ** yaml-mode
