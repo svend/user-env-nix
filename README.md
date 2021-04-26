@@ -37,9 +37,12 @@ nix profile install github:svend/user-env-nix
 To update:
 
 ``` shell
-nix profile upgrade --verbose <n>
+# Update flake
+nix flake update github:svend/user-env-nix
+
+nix profile upgrade --verbose '.*\.userEnv'
 # or
-nix profile upgrade --verbose '.*'
+nix profile upgrade --verbose <n>
 ```
 
 ### Systemd
