@@ -32,6 +32,7 @@ self: super:
       # })
 
       pipenv
+      python-language-server
     ];
   };
 }
