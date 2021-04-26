@@ -1420,17 +1420,14 @@ func main() {
 Requires [[https://github.com/fornwall/rust-script][rust-script]].
 
 #+begin_src rust
-fn main() {
-    for count in 0..3 {
-        println!("{}. Hello World!", count);
-    }
+for count in 0..2 {
+    println!("{}. Hello World!", count);
 }
 #+end_src
 
 #+RESULTS:
 : 0. Hello World!
 : 1. Hello World!
-: 2. Hello World!
 
 #+begin_src emacs-lisp
 (use-package ob-rust)
