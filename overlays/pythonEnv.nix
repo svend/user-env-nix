@@ -10,7 +10,6 @@ self: super:
           black
           flake8
           isort
-          pipenv
           pylint
           python-language-server
           pyyaml
