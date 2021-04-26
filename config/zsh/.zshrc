@@ -11,7 +11,7 @@ alias ssh-p='ssh -o PasswordAuthentication=yes -o PubkeyAuthentication=no -o Con
 alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
 
-# Options
+# Options (man zshoptions)
 setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
 setopt RMSTARSILENT # do not prompt for confirmation for 'rm path/*'
 

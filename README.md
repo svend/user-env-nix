@@ -37,9 +37,9 @@ nix profile install github:svend/user-env-nix
 To update:
 
 ``` shell
-nix profile upgrade <n>
+nix profile upgrade --verbose <n>
 # or
-nix profile upgrade '.*'
+nix profile upgrade --verbose '.*'
 ```
 
 ### Systemd
