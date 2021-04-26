@@ -34,6 +34,8 @@ self: super:
       #     virtualenv
       #   ];
       # })
+
+      pipenv # pipenv needs to be outside python.buildEnv
     ];
   };
 }
