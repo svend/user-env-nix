@@ -37,7 +37,7 @@ nix profile install github:svend/user-env-nix#userEnv
 To update:
 
 ``` shell
-nix flake update github:svend/user-env-nix; nix bprofile upgrade --verbose '.*\.userEnv'
+nix flake update github:svend/user-env-nix; nix profile upgrade --verbose '.*\.userEnv'
 ```
 
 (Ignore `error: cannot write modified lock file of flake` error.)
