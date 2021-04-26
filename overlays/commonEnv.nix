@@ -45,7 +45,6 @@ self: super:
       restic
       ripgrep
       rust-scripts
-      scriptisto
       sops
       stow
       time
