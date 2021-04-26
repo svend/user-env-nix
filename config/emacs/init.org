@@ -411,8 +411,22 @@ Press =C-c C-h= to show all of these.
 (bind-key "C-c h" 'eldoc)
 (bind-key "C-c j" 'dired-jump)
 (bind-key "C-c r" 'revert-buffer)
-#+end_src
 
+;; Toggles
+(bind-key "C-c t a" 'my-toggle-auto-hscroll-mode)
+(bind-key "C-c t b" 'scroll-bar-mode)
+(bind-key "C-c t c" 'flycheck-mode)
+(bind-key "C-c t f" 'variable-pitch-mode)
+(bind-key "C-c t h" 'global-hl-line-mode)
+(bind-key "C-c t l" 'visual-line-mode)
+(bind-key "C-c t m" 'menu-bar-mode)
+(bind-key "C-c t n" 'my-toggle-line-numbers)
+(bind-key "C-c t o" 'overwrite-mode)
+(bind-key "C-c t s" 'flyspell-mode)
+(bind-key "C-c t t" 'toggle-truncate-lines)
+(bind-key "C-c t v" 'visual-fill-column-mode)
+(bind-key "C-c t w" 'whitespace-mode)
+#+end_src
 Emacs defines some keybindings on macOS that are nice to have on Linux. See [[https://github.com/emacs-mirror/emacs/blob/emacs-27.2/lisp/term/ns-win.el#L103][ns-win.el]].
 
 #+begin_src emacs-lisp
@@ -1135,37 +1149,6 @@ brew install golangci-lint
 #+begin_src emacs-lisp
 (use-package hippie-exp
   :bind (("M-/" . hippie-expand)))
-#+end_src
-
-** hydra
-
-#+begin_src emacs-lisp
-(use-package hydra
-  :defer t
-  :config
-  (global-set-key
-   (kbd "C-c t")
-   (defhydra hydra-toggle (:timout 10)
-     "Toggle"
-     ("a" my-toggle-auto-hscroll-mode "hscroll-mode")
-     ("b" scroll-bar-mode "scroll-bar")
-     ("c" flycheck-mode "flycheck")
-     ("f" variable-pitch-mode "fixed-pitch")
-     ("h" global-hl-line-mode "hl-line")
-     ("l" visual-line-mode "visual-line")
-     ("m" menu-bar-mode "menu-bar")
-     ("n" my-toggle-line-numbers "line-numbers")
-     ("o" overwrite-mode "overwrite")
-     ("s" flyspell-mode "flyspell")
-     ("t" toggle-truncate-lines "trucate")
-     ("v" visual-fill-column-mode "visual-fill-column")
-     ("w" whitespace-mode "whitespace")))
-
-  (defhydra hydra-winner ()
-    "Winner"
-    ("w" winner-undo "back")
-    ("r" winner-redo "forward" :exit t))
-  (global-set-key (kbd "C-c w") 'hydra-winner/winner-undo))
 #+end_src
 
 ** ibuffer
@@ -1937,6 +1920,9 @@ layouts.
 
 #+begin_src emacs-lisp
 (use-package winner
+  :bind (("C-c w" . winner-undo)
+         ("C-c W" . winner-redo))
+  :config (setq winner-dont-bind-my-keys t) ; don't bind C-<left|right>
   :init (winner-mode))
 #+end_src
 

@@ -46,7 +46,6 @@ self: super:
       expand-region
       flycheck
       gnuplot
-      hydra
       magit
       notmuch
       nov
