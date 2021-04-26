@@ -90,6 +90,9 @@ nix flake lock --update-input nixpkgs-unstable
 
 Running `nix build` will create `result/` which is a link to the build.
 
+To print build logs, run `nix build --print-build-logs` or `nix build -L`.
+(These flags do not show up in `--help`.)
+
 To run Emacs from the build, run:
 
 ``` shell
@@ -111,11 +114,4 @@ Install the latest version of nix 2.4pre into user profile:
 
 ``` shell
 nix profile install nixpkgs/nixpkgs-unstable#nixUnstable
-```
-
-To show build logs, use the `--print-build-logs|-L` flag. This flag does not
-show up in `--help`.
-
-``` shell
-nix build --print-build-logs
 ```
