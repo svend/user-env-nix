@@ -1412,17 +1412,12 @@ func main() {
 : Hello, world
 
 #+begin_src emacs-lisp
-(use-package ob-go
-  :defer t)
+(use-package ob-go)
 #+end_src
 
 ** ob-rust
 
-Requires cargo-script.
-
-#+begin_src sh
-cargo install cargo-script
-#+end_src
+Requires [[https://github.com/fornwall/rust-script][rust-script]].
 
 #+begin_src rust
 fn main() {
@@ -1438,8 +1433,7 @@ fn main() {
 : 2. Hello World!
 
 #+begin_src emacs-lisp
-(use-package ob-rust
-  :defer t)
+(use-package ob-rust)
 #+end_src
 
 ** org
@@ -1624,7 +1618,7 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
   :config
   ;; Use eglot-format-buffer hook
   ;; (setq rust-format-on-save t)
-  (add-to-list 'interpreter-mode-alist '("run-cargo-script" . rust-mode)))
+  )
 #+end_src
 
 ** savehist
