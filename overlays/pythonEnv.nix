@@ -5,7 +5,7 @@ self: super:
     name = "pythonEnv";
     ignoreCollisions = true;
     paths = [
-      (with python37Packages; python.buildEnv.override {
+      (with python39Packages; python.buildEnv.override {
         extraLibs = [
           black
           flake8
@@ -16,6 +16,8 @@ self: super:
         ];
       })
 
+      python38
+      python37
       python36
 
       # 2021-04-26: python 2.7 FTB
