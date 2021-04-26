@@ -13,6 +13,7 @@ alias tree='tree -I .git'
 
 # Options
 setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
+setopt RMSTARSILENT # do not prompt for confirmation for 'rm path/*'
 
 # zsh backwards delete word deletes past slashes. I prefer Bash's behavior of stopping at /.
 autoload -U select-word-style
