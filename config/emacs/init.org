@@ -872,6 +872,7 @@ Add more password prompts.
   :hook
   (go-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
   (terraform-mode . eglot-ensure))
 #+end_src
 
