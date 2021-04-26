@@ -31,19 +31,17 @@ echo 'experimental-features = nix-command flakes ca-references' > ~/.config/nix/
 Install flake into profile:
 
 ``` shell
-nix profile install github:svend/user-env-nix
+nix profile install github:svend/user-env-nix#userEnv
 ```
 
 To update:
 
 ``` shell
-# Update flake
-nix flake update github:svend/user-env-nix
-
-nix profile upgrade --verbose '.*\.userEnv'
-# or
-nix profile upgrade --verbose <n>
+nix flake update github:svend/user-env-nix; nix bprofile upgrade --verbose '.*\.userEnv'
 ```
+
+(Ignore `error: cannot write modified lock file of flake` error.)
+
 
 ### Systemd
 
