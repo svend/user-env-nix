@@ -705,41 +705,6 @@ Scrolling (e.g. C-l) doesn't exit isearch.
          ("M-g M-g" . avy-goto-line)))
 #+end_src
 
-** bpr
-
-#+begin_src emacs-lisp
-(define-derived-mode bpr-shell-mode
-            shell-mode "BPR"
-            "Major mode for BPR process buffers.")
-
-(defun my-bpr-on-start (process)
-  (set-process-filter process 'comint-output-filter))
-
-;;;###autoload
-(defun my-bpr-switch-to-last-buffer ()
-  "Opens the buffer of the last spawned process."
-  (interactive)
-  (if (buffer-live-p bpr-last-buffer)
-      (switch-to-buffer bpr-last-buffer)
-    (message "Can't find last used buffer")))
-
-(defun my-bpr-spawn (open-buffer)
-  "Run 'bpr-spawn'.
-If OPEN-BUFFER is set, open the new buffer."
-  (interactive "P")
-  (call-interactively #'bpr-spawn)
-  (when open-buffer
-      (my-bpr-switch-to-last-buffer)))
-
-(use-package bpr
-  :bind (("M-&" . my-bpr-spawn))
-  :config
-  (setq bpr-show-progress nil
-        bpr-on-start #'my-bpr-on-start
-        bpr-process-mode #'bpr-shell-mode
-        bpr-use-projectile nil))
-#+end_src
-
 ** cider
 
 #+begin_src emacs-lisp

@@ -73,7 +73,6 @@ self: super:
     (with epkgs.melpaPackages; [
       amx
       blacken # support for python "black" code-formatter
-      bpr
       company-go
       eglot # language server support
       epresent
