@@ -9,7 +9,7 @@ self: super:
       # binutils-unwrapped
 
       # From rust-overlay
-      rust-bin.stable.latest.default
+      (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
 
       cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
       rust-analyzer
