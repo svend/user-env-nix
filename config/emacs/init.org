@@ -1645,6 +1645,7 @@ Start Emacs server unless one is already running. =server-running-p= requires
 
   (add-to-list 'display-buffer-alist
                '("^\\*shell\\*" . ((display-buffer-reuse-window display-buffer-same-window))))
+
   ;; bash-completion only loaded for login shells; note that "--login" must come
   ;; before short options like "-i"
   (add-to-list 'explicit-bash-args "--login")
