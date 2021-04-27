@@ -1009,8 +1009,8 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
                '(nntp "news.gmane.io"))
 
   ;; Fastmail
-  (add-to-list 'gnus-secondary-select-methods
-               '(nnimap "imap.fastmail.com"))
+  ;; (add-to-list 'gnus-secondary-select-methods
+  ;;              '(nnimap "imap.fastmail.com"))
 
   ;; Uncomment to record all IMAP commands in the ‘"*imap log*"’
   ;; (setq nnimap-record-commands t)
@@ -1019,9 +1019,7 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
   (setq gnus-always-read-dribble-file t
         ;; Mark sent messages as read
         gnus-gcc-mark-as-read t
-        gnus-inhibit-startup-message t
-        ;; Do not take over the entire frame
-        gnus-use-full-window nil))
+        gnus-inhibit-startup-message t))
 #+end_src
 
 ** gnus-alias
