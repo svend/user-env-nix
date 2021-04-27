@@ -1640,6 +1640,9 @@ Start Emacs server unless one is already running. =server-running-p= requires
 (use-package shell
   :defer t
   :config
+  ;; Bind Alt-. to insert previous argument
+  (define-key shell-mode-map "\M-." 'comint-insert-previous-argument)
+
   (add-to-list 'display-buffer-alist
                '("^\\*shell\\*" . ((display-buffer-reuse-window display-buffer-same-window))))
   ;; bash-completion only loaded for login shells; note that "--login" must come
