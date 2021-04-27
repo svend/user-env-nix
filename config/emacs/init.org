@@ -473,6 +473,7 @@ Misc settings.
 #+begin_src emacs-lisp
 (setq confirm-kill-processes nil)
 (setq enable-local-variables :safe)
+(setq ffap-machine-p-known 'reject) ;; Do not ping hosts https://lists.gnu.org/archive/html/emacs-devel/2007-03/msg00466.html
 (setq history-length 10000)
 (setq require-final-newline t) ;; Add final newline when saving
 (setq save-interprogram-paste-before-kill t) ;; Do not clobber text copied from the clipboard
@@ -486,7 +487,7 @@ Pulled these from emacs-custom.el.
 #+begin_src emacs-lisp
 (setq ediff-split-window-function (quote split-window-horizontally))
 (setq ediff-window-setup-function (quote ediff-setup-windows-plain))
-;; (setq ffap-machine-p-known 'reject)
+(setq ffap-machine-p-known 'reject)
 ;; (setq ns-pop-up-frames nil)
 (setq reb-re-syntax 'string)
 #+end_src
