@@ -27,7 +27,9 @@ self: super:
       '';
     };
 
-  emacsWithConfig = (super.pkgs.emacsPackagesGen self.emacsGcc).emacsWithPackages (epkgs:
+  # Native compilation requires emacs master branch
+  # https://github.com/nix-community/emacs-overlay/issues/141#issuecomment-827103990
+  emacsWithConfig = (super.pkgs.emacsPackagesGen (self.emacsGit.override { nativeComp = true; })).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
