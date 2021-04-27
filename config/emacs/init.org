@@ -1016,11 +1016,14 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
   ;; (setq nnimap-record-commands t)
 
   ;; Skip prompt: "Gnus auto-save file exists. Do you want to read it?"
-  (setq gnus-home-directory (concat user-emacs-directory "gnus/")
-        gnus-always-read-dribble-file t
+  (setq gnus-always-read-dribble-file t
         ;; Mark sent messages as read
         gnus-gcc-mark-as-read t
-        gnus-inhibit-startup-message t))
+        gnus-inhibit-startup-message t)
+  :init
+  ;; gnus-home-directory must be set before gnus loads
+  (setq gnus-home-directory (concat user-emacs-directory "gnus/")))
+
 #+end_src
 
 ** gnus-alias
