@@ -8,17 +8,12 @@ self: super:
       # gnumake
       # binutils-unwrapped
 
-      # rustup
-
-      # latest.rustChannels.stable.rust
-
-      cargo
-      rustc
+      # From rust-overlay
+      rust-bin.stable.latest.default
 
       cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
-      rust-analyzer # collision with rust from nixpkgs-mozilla
+      rust-analyzer
       rust-script
-      rustfmt
     ];
   };
 }

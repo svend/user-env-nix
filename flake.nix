@@ -5,9 +5,10 @@
     nixos.url = "nixpkgs/release-20.09";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixos, nixpkgs-unstable, emacs-overlay }:
+  outputs = { self, nixos, nixpkgs-unstable, emacs-overlay, rust-overlay }:
     let
       inherit (nixos) lib;
 
@@ -33,7 +34,7 @@
     in
     {
       overlays =
-        [ emacs-overlay.overlay ] ++
+        [ emacs-overlay.overlay rust-overlay.overlay ] ++
         # All overlays in the overlays directory
         map
           (name: import (./overlays + "/${name}"))
