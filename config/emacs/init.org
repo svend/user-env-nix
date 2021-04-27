@@ -1006,23 +1006,13 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
 
   ;; ;; Gmane
   (add-to-list 'gnus-secondary-select-methods
-               '(nntp "news.gmane.org"))
+               '(nntp "news.gmane.io"))
 
   ;; Fastmail
   (add-to-list 'gnus-secondary-select-methods
                '(nnimap "imap.fastmail.com"))
-  ;; Gmail
-  (add-to-list 'gnus-secondary-select-methods
-               '(nnimap "imap.gmail.com"))
 
-  ;; (add-to-list 'gnus-secondary-select-methods
-  ;;              '(nnimap "imap.gmail.com"
-  ;;                       (nnimap-address "imap.gmail.com")
-  ;;                       ;; (nnimap-server-port 993)
-  ;;                       ;; (nnimap-stream ssl)
-  ;;                       ))
-
-  ;; ;; Record all IMAP commands in the ‘"*imap log*"’
+  ;; Uncomment to record all IMAP commands in the ‘"*imap log*"’
   ;; (setq nnimap-record-commands t)
 
   ;; Skip prompt: "Gnus auto-save file exists. Do you want to read it?"
