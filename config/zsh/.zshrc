@@ -12,8 +12,9 @@ alias ssh-m='ssh -o ControlPath=none'
 alias tree='tree -I .git'
 
 # Options (man zshoptions)
-setopt NOFLOWCONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
-setopt RMSTARSILENT # do not prompt for confirmation for 'rm path/*'
+setopt NO_FLOW_CONTROL # disable flow control (ctrl-s stop, ctrl-q continue)
+setopt RM_STAR_SILENT # do not prompt for confirmation for 'rm path/*'
+setopt INTERACTIVE_COMMENTS # allow comment (#) in terminal
 
 # zsh backwards delete word deletes past slashes. I prefer Bash's behavior of stopping at /.
 autoload -U select-word-style
