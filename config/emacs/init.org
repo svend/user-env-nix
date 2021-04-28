@@ -1025,6 +1025,7 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
   ;; gnus-home-directory must be set before gnus loads
   (setq gnus-home-directory (concat user-emacs-directory "gnus/"))
   (setq message-directory (concat user-emacs-directory "Mail/"))
+  ;; TODO: nnfolder-directory is still set to ~/Mail/archive
   (setq nnfolder-directory (concat message-directory "archive")))
 #+end_src
 
