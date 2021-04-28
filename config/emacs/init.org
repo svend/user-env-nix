@@ -1023,8 +1023,8 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
         gnus-inhibit-startup-message t)
   :init
   ;; gnus-home-directory must be set before gnus loads
-  (setq gnus-home-directory (concat user-emacs-directory "gnus/")))
-
+  (setq gnus-home-directory (concat user-emacs-directory "gnus/"))
+  (setq message-directory (concat user-emacs-directory "Mail/")))
 #+end_src
 
 ** gnus-alias
