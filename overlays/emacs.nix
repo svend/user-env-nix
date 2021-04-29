@@ -48,7 +48,7 @@ self: super:
       flycheck
       gnuplot
       magit
-      notmuch
+      # notmuch # 2021-04-28: FTB: current tag is not usable (0.32.-1.2)
       nov
       package-lint
       py-isort
@@ -84,6 +84,7 @@ self: super:
       gnus-alias
       minions # hide minor modes in mode-line
       native-complete
+      notmuch
       ob-go
       ob-rust
       password-store
