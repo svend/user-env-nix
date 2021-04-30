@@ -2,6 +2,20 @@
 
 * User information
 
+WIP: Replacing ivy:
+
+#+begin_src emacs-lisp
+(setq confirm-nonexistent-file-or-buffer t)
+(icomplete-mode)
+(icomplete-vertical-mode)
+(setq icomplete-show-matches-on-no-input t)
+(setq icomplete-compute-delay 0)
+(require 'orderless)
+(setq completion-styles '(orderless))
+;; Make Enter select first completion (same as C-j)
+(define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
+#+end_src
+
 #+begin_src emacs-lisp
 (setq user-full-name "Svend Sorensen")
 (setq user-mail-address "svend@svends.net")
@@ -810,17 +824,6 @@ Add more password prompts.
   (setq jedi:use-shortcuts t))
 #+end_src
 
-** counsel
-
-#+begin_src emacs-lisp
-(use-package counsel
-  :bind (("C-c y" . counsel-yank-pop)
-         ("C-x C-f" . counsel-find-file))
-  :config
-  (setq counsel-find-file-at-point t
-        counsel-rg-base-command "rg --smart-case --no-heading --line-number --max-columns 150 --color never %s ."))
-#+end_src
-
 ** dired
 
 #+begin_src emacs-lisp
@@ -1128,22 +1131,13 @@ brew install golangci-lint
 #+begin_src emacs-lisp
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)))
-
 #+end_src
 
-** ivy
+** swiper
 
 #+begin_src emacs-lisp
-(use-package ivy
-  :bind (("C-c s" . swiper))
-  :config
-  (setq confirm-nonexistent-file-or-buffer t)
-  (setq ivy-re-builders-alist '((amx-completing-read-ivy . ivy--regex-fuzzy)
-                                (t . ivy--regex-plus))
-        ivy-magic-tilde nil
-        ivy-use-virtual-buffers t)
-  :init
-  (ivy-mode 1))
+(use-package swiper
+  :bind (("C-c s" . swiper)))
 #+end_src
 
 ** json-mode
@@ -1181,8 +1175,7 @@ Terraform state files are JSON.
   ;; We have global-auto-revert mode enabled
   (setq magit-auto-revert-mode nil)
   :config
-  (setq magit-completing-read-function 'ivy-completing-read
-        magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
+  (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1
         magit-repository-directories '("~/src")
         magit-save-repository-buffers 'dontask)
 
@@ -1497,8 +1490,7 @@ for count in 0..2 {
 (use-package projectile
   :init
   ;; projectile-project-search-path needs to be set before projectile-mode is called
-  (setq projectile-project-search-path '("~/.dotfiles" "~/src")
-        projectile-switch-project-action #'projectile-dired)
+  (setq projectile-project-search-path '("~/.dotfiles" "~/src"))
   (projectile-mode)
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
@@ -1507,7 +1499,6 @@ for count in 0..2 {
                     projectile-project-test-cmd
                     projectile-project-run-cmd))
     (put var 'safe-local-variable #'stringp))
-  (setq projectile-completion-system 'ivy)
   (setq projectile-use-git-grep t))
 #+end_src
 

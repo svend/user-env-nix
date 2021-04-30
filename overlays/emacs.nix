@@ -40,16 +40,15 @@ self: super:
       ace-link
       ace-window
       aggressive-indent
-      cider
+      cider # clojure development environment
       company
-      counsel
       edit-indirect # required by markdown-mode to edit blocks
       expand-region
       flycheck
       gnuplot
       magit
       # notmuch # 2021-04-28: FTB: current tag is not usable (0.32.-1.2)
-      nov
+      nov # epub reader
       package-lint
       py-isort
       smartparens
@@ -73,7 +72,6 @@ self: super:
       yaml-mode
     ]) ++
     (with epkgs.melpaPackages; [
-      amx
       blacken # support for python "black" code-formatter
       company-go
       eglot # language server support
@@ -83,15 +81,17 @@ self: super:
       git-link
       gnus-alias
       minions # hide minor modes in mode-line
-      native-complete
+      native-complete # shell (bash/zsh) completion
       notmuch
       ob-go
       ob-rust
+      orderless # completion style for regex in any order
       password-store
       pdf-tools
       projectile # 2.3.0..master fixes error with emacs master: Wrong number of arguments: (3 . 4)
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
+      swiper # isearch with an overview
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
       vterm
 
