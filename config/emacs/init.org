@@ -708,14 +708,6 @@ Scrolling (e.g. C-l) doesn't exit isearch.
           'notifications)))
 #+end_src
 
-** amx
-
-#+begin_src emacs-lisp
-(use-package amx
-  :bind (("M-X" . amx-major-mode-commands))
-  :init (amx-mode))
-#+end_src
-
 ** auth-source-pass
 
 #+begin_src emacs-lisp
