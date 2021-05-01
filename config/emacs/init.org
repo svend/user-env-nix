@@ -1011,9 +1011,12 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
   ;; Use secondary-select-methods
   (setq gnus-select-method '(nnnil ""))
 
-  ;; ;; Gmane
+  ;; Gmane (mailing lists)
   (add-to-list 'gnus-secondary-select-methods
                '(nntp "news.gmane.io"))
+  ;; Gwene (RSS feeds)
+  (add-to-list 'gnus-secondary-select-methods
+               '(nntp "news.gwene.org"))
 
   ;; Fastmail
   ;; (add-to-list 'gnus-secondary-select-methods
