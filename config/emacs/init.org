@@ -1313,7 +1313,7 @@ open -a ~/.nix-profile/Applications/Emacs.app --new --args -q --load ~/src/emacs
   (setq notmuch-fcc-dirs nil)
 
   ;; Show newest mail first
-  (setq notmuch-search-oldest-first nil)
+  (setq-default notmuch-search-oldest-first nil)
 
   ;; ;; Notmuch remote setup (on all hosts except garnet)
   ;; (when (not (string= system-name "garnet.ciffer.net"))
