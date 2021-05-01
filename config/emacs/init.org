@@ -1305,10 +1305,6 @@ open -a ~/.nix-profile/Applications/Emacs.app --new --args -q --load ~/src/emacs
 (use-package notmuch
   :defer t
   :config
-  ;; notmuch-always-prompt-for-sender requires ido-mode
-  ;; Add (ido-mode t) to emacs configuration
-  (setq notmuch-always-prompt-for-sender t)
-
   ;; Use Bcc instead of Fcc
   (setq notmuch-fcc-dirs nil)
 
