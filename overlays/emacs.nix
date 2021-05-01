@@ -47,6 +47,7 @@ self: super:
       expand-region
       flycheck
       gnuplot
+      keycast # display key presses
       magit
       # notmuch # 2021-04-28: FTB: current tag is not usable (0.32.-1.2)
       nov # epub reader
