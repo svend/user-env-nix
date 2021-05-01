@@ -43,6 +43,7 @@ self: super:
       cider # clojure development environment
       company
       edit-indirect # required by markdown-mode to edit blocks
+      elfeed # RSS feed reader
       expand-region
       flycheck
       gnuplot
