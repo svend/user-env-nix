@@ -500,6 +500,8 @@ Misc settings.
 (setq enable-local-variables :safe)
 (setq ffap-machine-p-known 'reject) ;; Do not ping hosts https://lists.gnu.org/archive/html/emacs-devel/2007-03/msg00466.html
 (setq history-length 10000)
+(setq kill-do-not-save-duplicates t)
+(setq kill-readonly-ok t)
 (setq require-final-newline t) ;; Add final newline when saving
 (setq save-interprogram-paste-before-kill t) ;; Do not clobber text copied from the clipboard
 (setq sentence-end-double-space nil)
