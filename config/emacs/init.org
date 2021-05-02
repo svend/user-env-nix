@@ -2,20 +2,6 @@
 
 * User information
 
-WIP: Replacing ivy:
-
-#+begin_src emacs-lisp
-(setq confirm-nonexistent-file-or-buffer t)
-(icomplete-mode)
-(icomplete-vertical-mode)
-(setq icomplete-show-matches-on-no-input t)
-(setq icomplete-compute-delay 0)
-(require 'orderless)
-(setq completion-styles '(orderless))
-;; Make Enter select first completion (same as C-j)
-(define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
-#+end_src
-
 #+begin_src emacs-lisp
 (setq user-full-name "Svend Sorensen")
 (setq user-mail-address "svend@svends.net")
@@ -39,6 +25,27 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
   ;; Compute statistics (`M-x use-package-report` to see results)
   (setq use-package-compute-statistics t))
 (require 'bind-key)
+#+end_src
+
+* WIP: Replacing ivy
+
+#+begin_src emacs-lisp
+;; Always prompt before creating new file or buffer
+(setq confirm-nonexistent-file-or-buffer t)
+
+(icomplete-mode)
+(icomplete-vertical-mode)
+(setq icomplete-hide-common-prefix nil) ; show full completion canditate
+(setq icomplete-show-matches-on-no-input t)
+(setq icomplete-compute-delay 0) ; show completions immediately
+;; Make Enter select first completion (same as C-j)
+(define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
+(define-key icomplete-minibuffer-map (kbd "C-n") 'icomplete-forward-completions)
+(define-key icomplete-minibuffer-map (kbd "C-p") 'icomplete-backward-completions)
+
+(use-package orderless
+  :demand t
+  :config (setq completion-styles '(orderless)))
 #+end_src
 
 * Environment variables
@@ -427,19 +434,23 @@ Press =C-c C-h= to show all of these.
 (bind-key "C-c r" 'revert-buffer)
 
 ;; Toggles
-(bind-key "C-c t a" 'my-toggle-auto-hscroll-mode)
-(bind-key "C-c t b" 'scroll-bar-mode)
-(bind-key "C-c t c" 'flycheck-mode)
-(bind-key "C-c t f" 'variable-pitch-mode)
-(bind-key "C-c t h" 'global-hl-line-mode)
-(bind-key "C-c t l" 'visual-line-mode)
-(bind-key "C-c t m" 'menu-bar-mode)
-(bind-key "C-c t n" 'my-toggle-line-numbers)
-(bind-key "C-c t o" 'overwrite-mode)
-(bind-key "C-c t s" 'flyspell-mode)
-(bind-key "C-c t t" 'toggle-truncate-lines)
-(bind-key "C-c t v" 'visual-fill-column-mode)
-(bind-key "C-c t w" 'whitespace-mode)
+(bind-keys
+ :prefix "C-c t"
+ :prefix-map toggle-map
+ :prefix-docstring "Keymap for commands that toggle various settings."
+ ("a" . my-toggle-auto-hscroll-mode)
+ ("b" . scroll-bar-mode)
+ ("c" . flycheck-mode)
+ ("f" . variable-pitch-mode)
+ ("h" . global-hl-line-mode)
+ ("l" . visual-line-mode)
+ ("m" . menu-bar-mode)
+ ("n" . my-toggle-line-numbers)
+ ("o" . overwrite-mode)
+ ("s" . flyspell-mode)
+ ("t" . toggle-truncate-lines)
+ ("v" . visual-fill-column-mode)
+ ("w" . whitespace-mode))
 #+end_src
 
 Emacs defines some keybindings on macOS that are nice to have on Linux. See [[https://github.com/emacs-mirror/emacs/blob/emacs-27.2/lisp/term/ns-win.el#L103][ns-win.el]].
@@ -1232,12 +1243,14 @@ TODO: Setting variables in =:config= section does not apply them.
 #+begin_src emacs-lisp
 (use-package modus-themes
   :init
-  (setq modus-themes-variable-pitch-ui t
+  (setq modus-themes-bold-constructs t
+        modus-themes-slanted-constructs t
         modus-themes-org-blocks 'grayscale
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
         modus-themes-subtle-line-numbers t
         modus-themes-syntax 'faint
+        modus-themes-variable-pitch-ui t
         modus-themes-variable-pitch-headings t
         modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
   ;; Load the theme files before enabling a theme (else you get an error).
