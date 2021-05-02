@@ -1244,6 +1244,32 @@ TODO: Setting variables in =:config= section does not apply them.
 
 #+begin_src emacs-lisp
 (use-package modus-themes
+  :config
+  (require 'color)
+  (defun my-modus-themes-saturate (percent)
+    "Saturate current Modus theme palette overrides by PERCENT."
+    (interactive
+     (list (read-number "Saturation by percent: ")))
+    (let* ((theme (modus-themes--current-theme))
+           (palette (pcase theme
+                      ('modus-operandi modus-themes-operandi-colors)
+                      ('modus-vivendi modus-themes-vivendi-colors)
+                      (_ (error "No Modus theme is active"))))
+           (overrides (pcase theme
+                        ('modus-operandi 'modus-themes-operandi-color-overrides)
+                        ('modus-vivendi 'modus-themes-vivendi-color-overrides)
+                        (_ (error "No Modus theme is active")))))
+      (let (name cons colors)
+        (dolist (cons palette)
+          (setq name (color-saturate-name (cdr cons) percent))
+          (setq name (format "%s" name))
+          (setq cons `(,(car cons) . ,name))
+          (push cons colors))
+        (set overrides colors))
+      (pcase theme
+        ('modus-operandi (modus-themes-load-operandi))
+        ('modus-vivendi (modus-themes-load-vivendi)))))
+  (my-modus-themes-saturate -100)
   :init
   (setq modus-themes-bold-constructs t
         modus-themes-slanted-constructs t
