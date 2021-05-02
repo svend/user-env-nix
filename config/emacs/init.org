@@ -1277,7 +1277,6 @@ TODO: Setting variables in =:config= section does not apply them.
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
         modus-themes-subtle-line-numbers t
-        modus-themes-syntax 'faint
         modus-themes-variable-pitch-ui t
         modus-themes-variable-pitch-headings t
         modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
