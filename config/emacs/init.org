@@ -27,7 +27,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (require 'bind-key)
 #+end_src
 
-* WIP: Replacing ivy
+* WIP: icomplete, replacing ivy
 
 #+begin_src emacs-lisp
 ;; Always prompt before creating new file or buffer
