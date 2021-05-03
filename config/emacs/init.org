@@ -33,6 +33,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 ;; Always prompt before creating new file or buffer
 (setq confirm-nonexistent-file-or-buffer t)
 
+;; Icomplete setup
 (icomplete-mode)
 (icomplete-vertical-mode)
 (setq icomplete-hide-common-prefix nil) ; show full completion canditate
@@ -42,10 +43,6 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (define-key icomplete-minibuffer-map (kbd "RET") 'icomplete-force-complete-and-exit)
 (define-key icomplete-minibuffer-map (kbd "C-n") 'icomplete-forward-completions)
 (define-key icomplete-minibuffer-map (kbd "C-p") 'icomplete-backward-completions)
-
-(use-package orderless
-  :demand t
-  :config (setq completion-styles '(orderless)))
 #+end_src
 
 * Environment variables
@@ -1141,13 +1138,6 @@ brew install golangci-lint
   :bind (("C-x C-b" . ibuffer)))
 #+end_src
 
-** swiper
-
-#+begin_src emacs-lisp
-(use-package swiper
-  :bind (("C-c s" . swiper)))
-#+end_src
-
 ** json-mode
 
 Terraform state files are JSON.
@@ -1425,6 +1415,14 @@ for count in 0..2 {
 
 #+begin_src emacs-lisp
 (use-package ob-rust)
+#+end_src
+
+** orderless
+
+#+begin_src emacs-lisp
+(use-package orderless
+  :demand t
+  :config (setq completion-styles '(orderless)))
 #+end_src
 
 ** org
@@ -1758,6 +1756,13 @@ https://github.com/bbatsov/super-save#use-package
   (super-save-mode +1)
   ;; Disable super-save for haxl-mode, which asks for confirmation when saving
   (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
+#+end_src
+
+** swiper
+
+#+begin_src emacs-lisp
+(use-package swiper
+  :bind (("C-c s" . swiper)))
 #+end_src
 
 ** swiper
