@@ -1269,14 +1269,13 @@ TODO: Setting variables in =:config= section does not apply them.
       (pcase theme
         ('modus-operandi (modus-themes-load-operandi))
         ('modus-vivendi (modus-themes-load-vivendi)))))
-  (my-modus-themes-saturate -100)
   :init
   (setq modus-themes-bold-constructs t
         modus-themes-slanted-constructs t
-        modus-themes-org-blocks 'grayscale
+        modus-themes-org-blocks 'grayscale ; gray background for org code blocks
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
-        modus-themes-subtle-line-numbers t
+        modus-themes-subtle-line-numbers t ; no dark background for current line number
         modus-themes-variable-pitch-ui t
         modus-themes-variable-pitch-headings t
         modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
