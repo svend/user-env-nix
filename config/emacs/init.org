@@ -125,9 +125,10 @@ Note: setting inhibit-startup-screen has no effect when set in =share/emacs/site
 - Display column number in mode-line (line number is displayed by default)
 
 #+begin_src emacs-lisp
+(setq column-number-indicator-zero-based nil)
 (column-number-mode t)
 (setq display-time-default-load-average nil
-      display-time-format "%H:%M  %Y-%m-%d")
+      display-time-format "%Y-%m-%d %H:%M")
 (display-time-mode)
 #+end_src
 
