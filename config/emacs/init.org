@@ -1757,7 +1757,7 @@ https://github.com/bbatsov/super-save#use-package
   ;; Disable super-save for haxl-mode, which asks for confirmation when saving
   (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
   :init
-  (super-save-mode)
+  (super-save-mode +1)
 #+end_src
 
 ** swiper
@@ -1967,7 +1967,13 @@ Load external configuration.
   (load-file "~/.emacs.d/local.el"))
 #+end_src
 
-#+begin_src  emacs-lisp
+* TODO: org-babel calc fix
+
+I was getting an error for org-babel calc blocks, and I patched
+=org-babel-execute:calc= to fix it. Unfortunately, I didn't document what the
+error was :/.
+
+#+begin_src emacs-lisp :tangle no
 (defun org-babel-execute:calc (body params)
   "Execute a block of calc code with Babel."
   (unless (get-buffer "*Calculator*")
