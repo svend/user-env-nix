@@ -34,8 +34,8 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 (setq confirm-nonexistent-file-or-buffer t)
 
 ;; Icomplete setup
-(icomplete-mode)
-(icomplete-vertical-mode)
+(icomplete-mode 1)
+(icomplete-vertical-mode 1)
 (setq icomplete-hide-common-prefix nil) ; show full completion canditate
 (setq icomplete-show-matches-on-no-input t)
 (setq icomplete-compute-delay 0) ; show completions immediately
@@ -126,10 +126,10 @@ Note: setting inhibit-startup-screen has no effect when set in =share/emacs/site
 
 #+begin_src emacs-lisp
 (setq column-number-indicator-zero-based nil)
-(column-number-mode t)
+(column-number-mode 1)
 (setq display-time-default-load-average nil
       display-time-format "%Y-%m-%d %H:%M")
-(display-time-mode)
+(display-time-mode 1)
 #+end_src
 
 ** Scrolling
@@ -139,7 +139,7 @@ Enable smooth scrolling.
 TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scrolling
 
 #+begin_src emacs-lisp :tangle no
-(pixel-scroll-mode)
+(pixel-scroll-mode 1)
 #+end_src
 
 ** Fonts
@@ -285,7 +285,7 @@ Highlight the current line, including in inactive windows.
 
 #+begin_src emacs-lisp
 (setq global-hl-line-sticky-flag t)
-(global-hl-line-mode t)
+(global-hl-line-mode 1)
 #+end_src
 
 To disable for a mode, add this to the mode hook:
@@ -325,7 +325,7 @@ Disable keyboard shortcut to print buffer.
 This replaces the selection.
 
 #+begin_src emacs-lisp
-(delete-selection-mode)
+(delete-selection-mode 1)
 #+end_src
 
 ** macOS specific configuration
@@ -362,7 +362,7 @@ buffers.
 #+end_src
 
 #+begin_src emacs-lisp
-(global-eldoc-mode)
+(global-eldoc-mode 1)
 #+end_src
 
 ** Auto modes
@@ -504,7 +504,7 @@ Misc settings.
 (setq save-interprogram-paste-before-kill t) ;; Do not clobber text copied from the clipboard
 (setq sentence-end-double-space nil)
 (setq-default indent-tabs-mode nil)
-(show-paren-mode)
+(show-paren-mode 1)
 #+end_src
 
 Pulled these from emacs-custom.el.
@@ -810,7 +810,7 @@ Add more password prompts.
 #+begin_src emacs-lisp
 (use-package company
   :init
-  (global-company-mode)
+  (global-company-mode 1)
   :config
   (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-show-numbers t
@@ -1090,7 +1090,7 @@ brew install golangci-lint
     ;; Use eglot-format-buffer hook
     ;; (add-hook 'before-save-hook #'gofmt-before-save)
     ;; CamelCase aware editing operations
-    (subword-mode +1)
+    (subword-mode 1)
     (add-hook 'before-save-hook #'gofmt-before-save))
   (add-hook 'go-mode-hook #'my-go-mode-defaults))
 #+end_src
@@ -1115,10 +1115,10 @@ brew install golangci-lint
   :defer t
   :config
   (defun my-haskell-mode-defaults ()
-    (subword-mode +1)
+    (subword-mode 1)
     (turn-on-haskell-doc-mode)
     (turn-on-haskell-indentation)
-    (interactive-haskell-mode +1))
+    (interactive-haskell-mode 1))
   (add-hook 'haskell-mode-hook #'my-haskell-mode-defaults))
 #+end_src
 
@@ -1597,7 +1597,7 @@ The following patched =org-babel-execute:calc= fixes the error:
   :init
   ;; projectile-project-search-path needs to be set before projectile-mode is called
   (setq projectile-project-search-path '("~/.dotfiles" "~/src"))
-  (projectile-mode)
+  (projectile-mode 1)
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   ;; Mark projectile variables as safe
@@ -1636,7 +1636,7 @@ The following patched =org-babel-execute:calc= fixes the error:
 
 #+begin_src emacs-lisp
 (use-package recentf
-  :init (recentf-mode)
+  :init (recentf-mode 1)
   :config
   ;; Increase size of recent file list from 20
   (setq recentf-max-saved-items 1000))
@@ -1668,10 +1668,10 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
    ("Appraisals\\'" . ruby-mode))
   :config
   (defun my-ruby-mode-defaults ()
-    (inf-ruby-minor-mode +1)
-    (ruby-tools-mode +1)
+    (inf-ruby-minor-mode 1)
+    (ruby-tools-mode 1)
     ;; CamelCase aware editing operations
-    (subword-mode +1))
+    (subword-mode 1))
   (add-hook 'ruby-mode-hook #'my-ruby-mode-defaults))
 #+end_src
 
@@ -1690,7 +1690,7 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
 
 #+begin_src emacs-lisp
 (use-package savehist
-  :init (savehist-mode))
+  :init (savehist-mode 1))
 #+end_src
 
 ** saveplace
@@ -1699,7 +1699,7 @@ Remember where cursor was in files, even if Emacs is restarted.
 
 #+begin_src emacs-lisp
 (use-package saveplace
-  :init (save-place-mode))
+  :init (save-place-mode 1))
 #+end_src
 
 ** server
@@ -1808,7 +1808,7 @@ M-r):
 #+begin_src emacs-lisp
 (use-package smartparens
   :init
-  (smartparens-global-mode t)
+  (smartparens-global-mode 1)
   (require 'smartparens-config)
   (sp-use-paredit-bindings)
   ;; sp-paredit-bindings: ("M-r" . sp-splice-sexp-killing-around)
@@ -1834,7 +1834,7 @@ https://github.com/bbatsov/super-save#use-package
   ;; Disable super-save for haxl-mode, which asks for confirmation when saving
   (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
   :init
-  (super-save-mode +1)
+  (super-save-mode 1)
 #+end_src
 
 ** swiper
@@ -1882,7 +1882,7 @@ https://github.com/bbatsov/super-save#use-package
   (define-key term-raw-map (kbd "s-v") 'term-paste)
 
   ;; Enable address links in term mode
-  (goto-address-mode))
+  (goto-address-mode 1))
 
 (use-package term
   :defer t
@@ -1996,7 +1996,7 @@ layouts.
          ("C-c W" . winner-redo))
   :init
   (setq winner-dont-bind-my-keys t) ; don't bind C-<left|right>
-  (winner-mode))
+  (winner-mode 1))
 #+end_src
 
 ** yaml-mode
@@ -2020,7 +2020,7 @@ layouts.
     (- (match-end 1) (match-beginning 1)))
 
   (defun my-yaml-mode-hook()
-    (outline-minor-mode)
+    (outline-minor-mode 1)
     (define-key yaml-mode-map (kbd "<backtab>") 'outline-toggle-children)
     (setq-local outline-regexp yaml-outline-regex)
     (setq-local outline-level #'yaml-outline-level))
@@ -2032,7 +2032,7 @@ layouts.
 
 #+begin_src emacs-lisp
 (use-package yasnippet
-  :init (yas-global-mode))
+  :init (yas-global-mode 1))
 #+end_src
 
 * External config
