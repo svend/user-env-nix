@@ -53,7 +53,6 @@ self: super:
       nov # epub reader
       package-lint
       py-isort
-      smartparens
       super-save
       use-package
       yasnippet
@@ -93,6 +92,7 @@ self: super:
       projectile # 2.3.0..master fixes error with emacs master: Wrong number of arguments: (3 . 4)
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
+      smartparens # https://github.com/Fuco1/smartparens/compare/1.11.0...master
       swiper # isearch with an overview
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
       vterm
