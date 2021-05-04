@@ -1471,7 +1471,7 @@ Evaluating org-babel calc blocks can produce an error. Here's a reproduce case:
 Works:
 
 #+begin_src calc :exports both
-10^2 (sample) * 0.002 (dollar/sample)
+1 (sample) * 0.2 (dollar/sample)
 #+end_src
 
 #+RESULTS:
@@ -1480,7 +1480,7 @@ Works:
 Fails:
 
 #+begin_src calc :exports both
-10^3 (sample) * 0.002 (dollar/sample)
+10 (sample) * 0.2 (dollar/sample)
 #+end_src
 
 #+begin_example
@@ -1489,7 +1489,7 @@ math-normalize-fancy: Wrong type argument: number-or-marker-p, (float 2 0)
 
 The following patched =org-babel-execute:calc= fixes the error:
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (defun org-babel-execute:calc (body params)
   "Execute a block of calc code with Babel."
   (unless (get-buffer "*Calculator*")
