@@ -1750,14 +1750,14 @@ https://github.com/bbatsov/super-save#use-package
 
 #+begin_src emacs-lisp
 (use-package super-save
-  :ensure t
   :config
   (add-to-list 'super-save-triggers #'ace-window)
   (setq super-save-auto-save-when-idle t)
   (setq super-save-idle-duration 1) ; default is 5
-  (super-save-mode +1)
   ;; Disable super-save for haxl-mode, which asks for confirmation when saving
   (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
+  :init
+  (super-save-mode)
 #+end_src
 
 ** swiper
