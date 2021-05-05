@@ -7,7 +7,7 @@
 	# Print branches, sorted by date
 	branches-by-date = branch --format='%(creatordate:short) %(refname:short) %(contents:subject)' --sort=creatordate
 
-	# Delete local branches that have been merged to master
+	# Delete local branches that have been merged
 	branch-cleanup = ! git branch --merged master | grep -v master | xargs git branch -d
 
 	# Print tags, sorted by date
