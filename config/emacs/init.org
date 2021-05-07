@@ -860,7 +860,8 @@ Add more password prompts.
 
   (defun eglot-organize-imports-on-save ()
     ;; https://github.com/joaotavora/eglot/issues/574#issuecomment-769645691
-    (call-interactively #'eglot-code-action-organize-imports))
+    ;; Ignore (error "[eglot] No \"source.organizeImports\" code actions here")
+    (ignore-errors (call-interactively #'eglot-code-action-organize-imports)))
 
   (defun my-eglot-hook()
     (when (eglot-managed-p)
