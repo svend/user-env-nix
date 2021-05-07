@@ -479,6 +479,12 @@ Karabiner:
 
 ** Other settings
 
+Enable repeat-mode.
+
+#+begin_src emacs-lisp
+(repeat-mode 1)
+#+end_src
+
 Rapid mark-pop (=C-u C-SPC C-SPC...=).
 
 #+begin_src emacs-lisp
@@ -670,13 +676,6 @@ Scrolling (e.g. C-l) doesn't exit isearch.
 #+begin_src emacs-lisp
 (use-package ace-link
   :init (ace-link-setup-default))
-#+end_src
-
-** ace-window
-
-#+begin_src emacs-lisp
-(use-package ace-window
-  :bind (("C-x o" . ace-window)))
 #+end_src
 
 ** aggressive-indent
@@ -1064,19 +1063,6 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
 #+end_src
 
 ** go-mode
-
-- godef (for go-mode's =godef-*= commands)
-- goimports (for =gofmt-command=)
-- golint (used by flycheck)
-- golangci-lint (used by flycheck-golangci-lint)
-
-#+begin_src sh
-go get -u golang.org/x/tools/cmd/goimports
-go get -u github.com/rogpeppe/godef
-go get -u github.com/golang/lint/golint
-go get -u github.com/stamblerre/gocode
-brew install golangci-lint
-#+end_src
 
 #+begin_src emacs-lisp
 (use-package go-mode
