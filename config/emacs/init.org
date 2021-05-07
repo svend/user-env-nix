@@ -859,7 +859,7 @@ Add more password prompts.
   (add-to-list 'eglot-server-programs '(terraform-mode "terraform-lsp"))
 
   (defun eglot-organize-imports-on-save ()
-    ;; TODO: (eglot-code-action-organize-imports 0) gives error
+    ;; https://github.com/joaotavora/eglot/issues/574#issuecomment-769645691
     (call-interactively #'eglot-code-action-organize-imports))
 
   (defun my-eglot-hook()
