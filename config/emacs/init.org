@@ -1263,8 +1263,7 @@ TODO: Setting variables in =:config= section does not apply them.
         ('modus-operandi (modus-themes-load-operandi))
         ('modus-vivendi (modus-themes-load-vivendi)))))
   :init
-  (setq modus-themes-bold-constructs t
-        modus-themes-slanted-constructs t
+  (setq modus-themes-slanted-constructs t
         modus-themes-org-blocks 'grayscale ; gray background for org code blocks
         modus-themes-region 'bg-only
         modus-themes-scale-headings t
