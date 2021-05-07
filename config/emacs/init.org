@@ -1979,8 +1979,17 @@ layouts.
 
 #+begin_src emacs-lisp
 (use-package winner
-  :bind (("C-c w" . winner-undo)
-         ("C-c W" . winner-redo))
+  :config
+  (define-key winner-mode-map (kbd "C-c w") 'winner-undo)
+  (define-key winner-mode-map (kbd "C-c W") 'winner-redo) 
+  ;; Set up repeat for C-w w w...
+  (defvar winner-repeat-map
+     (let ((map (make-sparse-keymap)))
+       (define-key map "w" 'winner-undo)
+       (define-key map "W" 'winner-redo)
+       map)
+     "Keymap to repeat winner key sequences. Used in `repeat-mode'.")
+   (put 'winner-undo 'repeat-map 'winner-repeat-map)
   :init
   (setq winner-dont-bind-my-keys t) ; don't bind C-<left|right>
   (winner-mode 1))
