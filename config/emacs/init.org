@@ -863,9 +863,10 @@ Add more password prompts.
 
   (defun my-eglot-hook()
     (when (eglot-managed-p)
-      ;; TODO: order causing "requires version X, you have version Y"
-      (add-hook 'before-save-hook #'eglot-format-buffer)
-      (add-hook 'before-save-hook #'eglot-organize-imports-on-save)))
+      (add-hook 'before-save-hook #'eglot-format-buffer nil t)
+      ;; TODO: adding this causes the format-buffer to not run, maybe erroring?
+      ;; (add-hook 'before-save-hook #'eglot-organize-imports-on-save nil t)
+      ))
   (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
   :hook
   (go-mode . eglot-ensure)
@@ -1087,11 +1088,11 @@ brew install golangci-lint
   (setq gofmt-command "gofumports")
 
   (defun my-go-mode-defaults ()
-    ;; Use eglot-format-buffer hook
-    ;; (add-hook 'before-save-hook #'gofmt-before-save)
     ;; CamelCase aware editing operations
     (subword-mode 1)
-    (add-hook 'before-save-hook #'gofmt-before-save))
+    ;; Use eglot-format-buffer hook
+    ;; (add-hook 'before-save-hook #'gofmt-before-save nil t)
+    )
   (add-hook 'go-mode-hook #'my-go-mode-defaults))
 #+end_src
 
