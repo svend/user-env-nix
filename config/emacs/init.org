@@ -144,6 +144,18 @@ TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scr
 
 ** Fonts
 
+Use DejaVu fonts. Larger font on macOS vs Linux.
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil
+                    :family "DejaVu Sans Mono"
+                    :height (if (eq window-system 'ns) 150 110))
+(set-face-attribute 'fixed-pitch nil
+                    :family "DejaVu Sans Mono")
+(set-face-attribute 'variable-pitch nil
+                    :family "DejaVu Sans")
+#+end_src
+
 *** Line spacing
 
 Add additional spacing between lines.
@@ -219,9 +231,7 @@ old theme.
   "Load a single theme then load override theme."
   (interactive)
   (disable-all-themes)
-  (call-interactively 'load-theme)
-  (load-theme 'svend t)
-  (load-theme 'svend-font-dejavu t))
+  (call-interactively 'load-theme))
 #+end_src
 
 Treat all themes as safe.
@@ -242,7 +252,6 @@ Load themes.
 
 #+begin_src emacs-lisp
 (load-theme 'svend 't)
-(load-theme 'svend-font-dejavu t)
 #+end_src
 
 * Emacs settings
