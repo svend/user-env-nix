@@ -847,7 +847,8 @@ Add more password prompts.
   '("int" "float" "string" "bool" "bytes"))
 
 (defvar cue--font-lock-keywords
-  `((,(regexp-opt cue-constants 'symbols) . font-lock-constant-face)
+  `(("//.*" . font-lock-comment-face)
+    (,(regexp-opt cue-constants 'symbols) . font-lock-constant-face)
     (,(regexp-opt cue-keywords 'symbols) . font-lock-keyword-face)
     (,(regexp-opt cue-types 'symbols) . font-lock-type-face)))
 
@@ -858,6 +859,8 @@ Add more password prompts.
   ;; Comments
   (setq-local comment-start "// ")
   (setq-local comment-end "")
+  (setq-local comment-start-skip "//[[:space:]]*")
+
   (setq indent-tabs-mode t)
 
   (setq-local font-lock-defaults '(cue--font-lock-keywords)))
