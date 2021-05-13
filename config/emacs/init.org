@@ -1727,22 +1727,6 @@ Start Emacs server unless one is already running. =server-running-p= requires
     (server-start)))
 #+end_src
 
-** sh-script
-
-#+begin_src emacs-lisp
-(use-package sh-script
-  :defer t
-  :config
-  (defun my-setup-sh-mode ()
-    "My preferences for sh-mode"
-    (setq sh-basic-offset 2)
-    (setq sh-indent-after-continuation 'always)
-    (setq sh-indent-for-case-alt '+)
-    (setq sh-indent-for-case-label 0))
-
-  (add-hook 'sh-mode-hook #'my-setup-sh-mode))
-#+end_src
-
 ** shell
 
 #+begin_src emacs-lisp
@@ -1803,6 +1787,22 @@ M-r):
 
 #+begin_src emacs-lisp :tangle no
 (setq comint-history-isearch dwim)
+#+end_src
+
+** sh-script
+
+#+begin_src emacs-lisp
+(use-package sh-script
+  :defer t
+  :config
+  (defun my-setup-sh-mode ()
+    "My preferences for sh-mode"
+    (setq sh-basic-offset 2)
+    (setq sh-indent-after-continuation 'always)
+    (setq sh-indent-for-case-alt '+)
+    (setq sh-indent-for-case-label 0))
+
+  (add-hook 'sh-mode-hook #'my-setup-sh-mode))
 #+end_src
 
 ** slime
