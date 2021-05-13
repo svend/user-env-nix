@@ -835,6 +835,23 @@ Add more password prompts.
   (setq jedi:use-shortcuts t))
 #+end_src
 
+** cue-mode
+
+#+begin_src emacs-lisp
+;;;###autoload
+(define-derived-mode cue-mode prog-mode "CUE"
+  "Major mode for the CUE language."
+
+  ;; Comments
+  (setq-local comment-start "// ")
+  (setq-local comment-end "")
+
+  (setq indent-tabs-mode t))
+
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.cue\\'" . cue-mode))
+#+end_src
+
 ** dired
 
 #+begin_src emacs-lisp
