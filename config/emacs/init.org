@@ -1606,18 +1606,20 @@ The following patched =org-babel-execute:calc= fixes the error:
 (use-package project
   :config
   ;; Support go projects that are in a subdirectory of a git repository
-  (add-to-list 'project-find-functions #'project-try-go)
+  (add-to-list 'project-find-functions #'my-project-try-go)
+  (add-to-list 'project-find-functions #'my-project-try-projectile)
 
-  (defun project-try-go (dir)
-    (let ((path (locate-deepest-file dir "go.mod")))
-      (when path
-        (cons 'transient dir))))
+  (defun my-project-try-projectile (dir)
+    (let ((override (locate-dominating-file dir ".projectile")))
+      (if override
+          (cons 'vc override)
+        nil)))
 
-  (defun locate-deepest-file (file name)
-    (let ((path (locate-dominating-file file name)))
-      (when path
-        (let ((parent (file-name-directory (directory-file-name path))))
-          (or (locate-deepest-file parent name) path))))))
+  (defun my-project-try-go (dir)
+    (let ((override (locate-dominating-file dir "go.mod")))
+      (if override
+          (cons 'vc override)
+        nil))))
 #+end_src
 
 ** projectile
