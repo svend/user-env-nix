@@ -88,7 +88,6 @@ self: super:
       orderless # completion style for regex in any order
       password-store
       pdf-tools
-      projectile # 2.3.0..master fixes error with emacs master: Wrong number of arguments: (3 . 4)
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
       ruby-tools
       smartparens # https://github.com/Fuco1/smartparens/compare/1.11.0...master
