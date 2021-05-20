@@ -1605,9 +1605,8 @@ The following patched =org-babel-execute:calc= fixes the error:
 #+begin_src emacs-lisp
 (use-package project
   :config
-  ;; Support go projects that are in a subdirectory of a git repository
-  (add-to-list 'project-find-functions #'my-project-try-go)
-  (add-to-list 'project-find-functions #'my-project-try-projectile)
+  (add-hook 'project-find-functions #'my-project-try-go)
+  (add-hook 'project-find-functions #'my-project-try-projectile)
 
   (defun my-project-try-projectile (dir)
     (let ((override (locate-dominating-file dir ".projectile")))
