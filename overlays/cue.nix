@@ -4,23 +4,23 @@
 self: super: {
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/cue/default.nix
 
-  # cue = super.buildGoModule rec {
-  #   # These are the attributes in cue/default.nix, except the ones that are
-  #   # being overridden
-  #   inherit (super.cue.drvAttrs) pname doCheck subPackages;
-  #   inherit (super.cue) meta;
-  #   version = "0.3.0";
+  cue = super.buildGoModule rec {
+    # These are the attributes in cue/default.nix, except the ones that are
+    # being overridden
+    inherit (super.cue.drvAttrs) pname doCheck subPackages;
+    inherit (super.cue) meta;
+    version = "0.4.0";
 
-  #   src = super.fetchgit {
-  #     url = "https://cue.googlesource.com/cue";
-  #     rev = "v${version}";
-  #     sha256 = "sha256-tafAkQGn2aT6A1u7OeAfsZSST3bRshFPye3Y+noCaMA=";
-  #   };
+    src = super.fetchgit {
+      url = "https://cue.googlesource.com/cue";
+      rev = "v${version}";
+      sha256 = "sha256-rcGEl+CMFyxZKsOKhVimhv5/ONo3xS6FjgKModZGR2o=";
+    };
 
-  #   vendorSha256 = "sha256-d8p/vsbJ/bQbT2xrqqCoU1sQB8MrwKOMwEYhNYTWe4I=";
+    vendorSha256 = "sha256-eSKVlBgnHR1R0j1lNwtFoIgRuj8GqoMbvuBl/N1SanY=";
 
-  #   buildFlagsArray = [
-  #     "-ldflags=-X cuelang.org/go/cmd/cue/cmd.version=${version}"
-  #   ];
-  # };
+    buildFlagsArray = [
+      "-ldflags=-X cuelang.org/go/cmd/cue/cmd.version=${version}"
+    ];
+  };
 }
