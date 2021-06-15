@@ -2,7 +2,7 @@
   description = "User environment";
 
   inputs = {
-    nixos.url = "nixpkgs/release-20.09";
+    nixos.url = "nixpkgs/release-21.05";
     nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     rust-overlay.url = "github:oxalica/rust-overlay";
