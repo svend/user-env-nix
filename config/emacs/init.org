@@ -603,6 +603,14 @@ Scrolling (e.g. C-l) doesn't exit isearch.
 (setq initial-scratch-message "Scratch Buffer\n\n")
 #+end_src
 
+** Show region
+
+Continue to show region in inactive windows.
+
+#+begin_src emacs-lisp
+(setq highlight-nonselected-windows t)
+#+end_src
+
 * User defined functions
 
 #+begin_src emacs-lisp
