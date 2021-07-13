@@ -4,14 +4,15 @@ rustPlatform.buildRustPackage {
   pname = "display-switch";
   version = "dev";
 
+  # TODO: https://github.com/haimgel/display-switch/pull/66
   src = fetchFromGitHub {
-    owner = "haimgel";
+    owner = "svend";
     repo = "display-switch";
-    rev = "1c9ba1990e9c288ca39c216d9f860804da9adc32";
-    sha256 = "sha256-/9nj7DxC1HN5eI2r2BUbqH7CiG1+EinDC4xbxhqYl3Q=";
+    rev = "83d5e9bdc25f24ae214e755f7412f2aa54454d7b";
+    sha256 = "sha256-v5MQiFobCdi+6pkmAXiAvN5ZJNNR5wMx/uMHAacxDJQ=";
   };
 
-  cargoSha256 = "sha256-PyJSx8CY4qkIf6BDgxigaN9nBKzrCq1oy5qLul1eVTs=";
+  cargoSha256 = "sha256-KAwtEh/qkd6FoT1shQdHdbsLJsvnguZUBdU9rx3m8D8=";
 
   nativeBuildInputs = [ pkgconfig ];
   buildInputs = [ udev ];
