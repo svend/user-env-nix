@@ -11,14 +11,20 @@ self: super:
           flake8
           isort
           pylint
-          python-language-server
           pyyaml
           requests
         ];
       })
 
-      python39
-      # python38 is the default
+      # https://github.com/NixOS/nixpkgs/pull/121382
+      (with python38Packages; python.buildEnv.override {
+        extraLibs = [
+          python-language-server
+        ];
+      })
+
+      # python39 # is the default
+      python38
       python37
       python36
 
