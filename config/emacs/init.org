@@ -1300,13 +1300,14 @@ TODO: Setting variables in =:config= section does not apply them.
         ('modus-operandi (modus-themes-load-operandi))
         ('modus-vivendi (modus-themes-load-vivendi)))))
   :init
-  (setq modus-themes-slanted-constructs t
-        modus-themes-org-blocks 'grayscale ; gray background for org code blocks
-        modus-themes-region 'bg-only
+  (setq modus-themes-italic-constructs t
+        modus-themes-org-blocks 'gray-background; gray background for org code blocks
+        modus-themes-region '(bg-only)
         modus-themes-scale-headings t
         modus-themes-subtle-line-numbers t ; no dark background for current line number
         modus-themes-variable-pitch-ui t
         modus-themes-variable-pitch-headings t
+        ;; Off-white background
         modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
   ;; Load the theme files before enabling a theme (else you get an error).
   (modus-themes-load-themes)
