@@ -10,16 +10,10 @@ self: super:
           black
           flake8
           isort
+          python-lsp-server
           pylint
           pyyaml
           requests
-        ];
-      })
-
-      # https://github.com/NixOS/nixpkgs/pull/121382
-      (with python38Packages; python.buildEnv.override {
-        extraLibs = [
-          python-language-server
         ];
       })
 
