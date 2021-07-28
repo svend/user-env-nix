@@ -4,11 +4,10 @@ rustPlatform.buildRustPackage {
   pname = "display-switch";
   version = "dev";
 
-  # TODO: https://github.com/haimgel/display-switch/pull/66
   src = fetchFromGitHub {
-    owner = "svend";
+    owner = "haimgel";
     repo = "display-switch";
-    rev = "83d5e9bdc25f24ae214e755f7412f2aa54454d7b";
+    rev = "7ce57aff36603ad081c8a5674f988291b9507fb9";
     sha256 = "sha256-v5MQiFobCdi+6pkmAXiAvN5ZJNNR5wMx/uMHAacxDJQ=";
   };
 
