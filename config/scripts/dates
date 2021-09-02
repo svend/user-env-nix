@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TZS=(America/Los_Angeles EST Europe/Budapest UTC)
+TZS=(America/Los_Angeles America/New_York Europe/Budapest UTC)
 
 DATE="${1:-now}"
 shift
