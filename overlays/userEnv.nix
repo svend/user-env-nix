@@ -8,6 +8,7 @@ self: super:
       commonEnv
       goEnv
       javaEnv
+      kubernetesEnv
       nodeEnv
       pythonEnv
       rubyEnv
