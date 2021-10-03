@@ -72,6 +72,7 @@ self: super:
       fping
       grpcurl
       ipcalc
+      iperf
       nmap
       openssh
       openssl
