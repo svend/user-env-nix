@@ -71,6 +71,7 @@ self: super:
       bind
       fping
       grpcurl
+      hurl # HTTP request testing tool
       ipcalc
       iperf
       nmap
