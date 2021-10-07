@@ -40,9 +40,6 @@ To update:
 nix flake update github:svend/user-env-nix; nix profile upgrade --verbose '.*\.userEnv'
 ```
 
-(Ignore `error: cannot write modified lock file of flake` error.)
-
-
 ### Systemd
 
 On NixOS, refresh user systemd unit files.
