@@ -59,7 +59,7 @@ self: super:
       # Modes
       clojure-mode
       dockerfile-mode
-      gitconfig-mode
+      # gitconfig-mode
       gitignore-mode
       go-mode
       haskell-mode
