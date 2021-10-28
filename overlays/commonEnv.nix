@@ -34,7 +34,7 @@ self: super:
       ledger
       less
       mr
-      multi-x509
+      # multi-x509
       pandoc
       parallel
       (self.pass.override { git = gitWithConfig; })
@@ -44,7 +44,7 @@ self: super:
       redis
       restic
       ripgrep
-      rust-scripts
+      # rust-scripts
       sops
       stow
       time
@@ -107,6 +107,7 @@ self: super:
       terminal-notifier
 
       # On macOS, link passff.json:
+      # mkdir -p ~/'Library/Application Support/Mozilla/NativeMessagingHosts'
       # ln -s ../../../../.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ~/'Library/Application Support/Mozilla/NativeMessagingHosts/passff.json'
       passff-host # included with Firefox config on NixOS
     ];
