@@ -71,7 +71,7 @@ self: super:
       bind
       fping
       grpcurl
-      # hurl # HTTP request testing tool # TODO: FTB on darwin, create issue
+      hurl # HTTP request testing tool
       ipcalc
       iperf
       nmap
