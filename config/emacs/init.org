@@ -54,6 +54,7 @@ This is [[https://github.com/jwiegley/use-package/blob/d2640fec376a8458a669e7526
 #+begin_src emacs-lisp
 (setenv "EDITOR" "emacsclient")
 (setenv "PAGER" "cat")
+(setenv "BUILDKIT_PROGRESS" "plain") ; Plain docker build output
 (setenv "PYTHONSTARTUP" (expand-file-name "~/.config/python-startup.py"))
 (when (eq window-system 'ns)
   (setenv "SSH_AUTH_SOCK" (expand-file-name "~/.gnupg/S.gpg-agent.ssh")))
