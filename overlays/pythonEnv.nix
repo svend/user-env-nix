@@ -20,7 +20,6 @@ self: super:
       # python39 # is the default
       python38
       python37
-      python36
 
       pipenv # pipenv needs to be outside python.buildEnv
     ];
