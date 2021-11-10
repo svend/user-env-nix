@@ -8,7 +8,7 @@ self: super:
 
       cargo-edit # cargo add/rm/upgrade (https://github.com/killercup/cargo-edit)
       rust-analyzer
-      rust-script
+      # rust-script
     ] ++ lib.optionals stdenv.isLinux [
       # Tools required by rust-overlay on Linux
       gcc # for `cc`
