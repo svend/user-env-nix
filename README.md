@@ -4,6 +4,8 @@
 
 ## Initial Setup
 
+Use nix version 2.4 or newer.
+
 See  https://nixos.wiki/wiki/Flakes
 
 For NixOS, add the following to `/etc/nixos/configuration.nix`:
@@ -103,12 +105,4 @@ $ nix repl repl.nix
 nix-repl> :b outputs.packages.x86_64-linux.gitWithConfig
 this derivation produced the following outputs:
   out -> /nix/store/1s5d89anqhq1f6a1bgyagvri4q82918j-gitWithConfig
-```
-
-## Flake Notes
-
-Install the latest version of nix 2.4pre into user profile:
-
-``` shell
-nix profile install nixpkgs/nixpkgs-unstable#nixUnstable
 ```
