@@ -15,7 +15,7 @@ For NixOS, add the following to `/etc/nixos/configuration.nix`:
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
-      experimental-features = nix-command flakes ca-references
+      experimental-features = nix-command flakes
     '';
   };
 }
@@ -25,7 +25,7 @@ For non-NixOS systems:
 
 ``` shell
 mkdir -p ~/.config/nix
-echo 'experimental-features = nix-command flakes ca-references' > ~/.config/nix/nix.conf
+echo 'experimental-features = nix-command flakes' > ~/.config/nix/nix.conf
 ```
 
 ## Installation
