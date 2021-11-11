@@ -36,7 +36,7 @@ Install flake into profile:
 nix profile install github:svend/user-env-nix#userEnv
 ```
 
-To update:
+Update to the latest version of the flake.
 
 ``` shell
 nix flake lock github:svend/user-env-nix
