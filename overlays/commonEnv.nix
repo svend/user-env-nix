@@ -44,7 +44,7 @@ self: super:
       redis
       restic
       ripgrep
-      # rust-scripts
+      rust-scripts
       sops
       stow
       time
