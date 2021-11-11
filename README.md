@@ -73,7 +73,7 @@ systemctl --user --failed
 
 ## Updating
 
-Update lock file:
+Update lock file.
 
 ``` shell
 nix flake update
