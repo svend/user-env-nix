@@ -34,7 +34,7 @@ self: super:
       ledger
       less
       mr
-      # multi-x509
+      multi-x509
       pandoc
       parallel
       (self.pass.override { git = gitWithConfig; })
@@ -57,7 +57,6 @@ self: super:
       zookeeper
       zshWithConfig
       haskellPackages.ShellCheck
-
       # Version control
       github-cli # gh command
       git-crypt
