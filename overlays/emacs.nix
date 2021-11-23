@@ -85,6 +85,7 @@ self: super:
       ob-go
       ob-rust
       orderless # completion style for regex in any order
+      pass
       password-store
       pdf-tools
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
