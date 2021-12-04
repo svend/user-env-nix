@@ -1,5 +1,7 @@
 self: super:
 {
+  iosevka-aile-bin = (self.iosevka-bin.override { variant = "aile"; });
+
   commonEnv = with self; super.buildEnv {
     name = "commonEnv";
     paths = [
@@ -89,7 +91,8 @@ self: super:
       dejavu_fonts
       fira
       fira-code
-      # iosevka # slow build
+      iosevka-bin
+      iosevka-aile-bin
       # input-fonts # non-free
       jetbrains-mono
       oxygenfonts
