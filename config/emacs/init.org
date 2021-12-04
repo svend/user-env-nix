@@ -145,16 +145,16 @@ TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scr
 
 ** Fonts
 
-Use DejaVu fonts. Larger font on macOS vs Linux.
+Larger font on macOS vs Linux.
 
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil
-                    :family "DejaVu Sans Mono"
+                    :family "Iosevka"
                     :height (if (eq window-system 'ns) 150 110))
 (set-face-attribute 'fixed-pitch nil
-                    :family "DejaVu Sans Mono")
+                    :family "Iosevka")
 (set-face-attribute 'variable-pitch nil
-                    :family "DejaVu Sans")
+                    :family "Iosevka Aile")
 #+end_src
 
 *** Line spacing
