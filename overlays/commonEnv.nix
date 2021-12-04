@@ -1,6 +1,7 @@
 self: super:
 {
-  iosevka-aile-bin = self.iosevka-bin.override { variant = "aile"; };
+  iosevka-bin = super.iosevka-bin.override { variant = "sgr-iosevka"; };
+  iosevka-aile-bin = super.iosevka-bin.override { variant = "sgr-iosevka-aile"; };
 
   commonEnv = with self; super.buildEnv {
     name = "commonEnv";
