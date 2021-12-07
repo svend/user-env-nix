@@ -80,6 +80,7 @@ self: super:
       openssh
       openssl
       rsync
+      step-cli
       wrk2 # HTTP benchmarking tool
       wget
 
