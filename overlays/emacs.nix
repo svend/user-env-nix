@@ -1,8 +1,5 @@
 self: super:
 {
-  # Emacs native-comp on master soon:
-  # https://lists.gnu.org/archive/html/emacs-devel/2021-04/msg00484.html
-
   emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
@@ -27,9 +24,8 @@ self: super:
       '';
     };
 
-  # Native compilation requires emacs master branch
-  # https://github.com/nix-community/emacs-overlay/issues/141#issuecomment-827103990
-  emacsWithConfig = (super.pkgs.emacsPackagesGen self.emacsGcc).emacsWithPackages (epkgs:
+  # Native compilation coming in Emacs 28
+  emacsWithConfig = (super.pkgs.emacsPackagesGen self.emacsUnstable).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
