@@ -160,10 +160,25 @@ Font to use.
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
+#+begin_src emacs-lisp
+(progn
+  (set-face-attribute 'default nil :family "Iosevka Aile")
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'expanded)
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
+#+end_src
+
 #+begin_src emacs-lisp :tangle no
 (progn
-  (set-face-attribute 'default nil :family "DejaVu Sans Mono")
-  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono")
+  (set-face-attribute 'default nil :family "Iosevka" :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'normal)
+  (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
+#+end_src
+
+
+#+begin_src emacs-lisp :tangle no
+(progn
+  (set-face-attribute 'default nil :family "DejaVu Sans Mono" :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :width 'normal)
   (set-face-attribute 'variable-pitch nil :family "DejaVu Sans"))
 #+end_src
 
