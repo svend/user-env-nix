@@ -97,7 +97,7 @@ self: super:
 
       # Themes
       nord-theme # bluish dark theme
-      spacemacs-theme
+      spacemacs-theme # purplish light/dark theme
       tango-plus-theme # simple light theme
       tao-theme # monochrome dark/light theme
 

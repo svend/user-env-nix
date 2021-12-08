@@ -148,15 +148,15 @@ TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scr
 Larger font on macOS vs Linux.
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :height (if (eq window-system 'ns) 150 110))
+(set-face-attribute 'default nil :height (if (eq window-system 'ns) 160 110))
 #+end_src
 
 Font to use.
 
 #+begin_src emacs-lisp
 (progn
-  (set-face-attribute 'default nil :family "Iosevka")
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-face-attribute 'default nil :family "Iosevka Extended")
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Extended")
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
@@ -530,6 +530,7 @@ Misc settings.
 (setq save-interprogram-paste-before-kill t) ;; Do not clobber text copied from the clipboard
 (setq sentence-end-double-space nil)
 (setq-default indent-tabs-mode nil)
+(context-menu-mode 1) ;; Right-click context menus
 (show-paren-mode 1)
 #+end_src
 
