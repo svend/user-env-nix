@@ -526,22 +526,12 @@ Misc settings.
 (setq history-length 10000)
 (setq kill-do-not-save-duplicates t)
 (setq kill-readonly-ok t)
+(setq reb-re-syntax 'string) ;; Use standard regex syntax for builder
 (setq require-final-newline t) ;; Add final newline when saving
 (setq save-interprogram-paste-before-kill t) ;; Do not clobber text copied from the clipboard
 (setq sentence-end-double-space nil)
 (setq-default indent-tabs-mode nil)
 (context-menu-mode 1) ;; Right-click context menus
-(show-paren-mode 1)
-#+end_src
-
-Pulled these from emacs-custom.el.
-
-#+begin_src emacs-lisp
-(setq ediff-split-window-function (quote split-window-horizontally))
-(setq ediff-window-setup-function (quote ediff-setup-windows-plain))
-(setq ffap-machine-p-known 'reject)
-;; (setq ns-pop-up-frames nil)
-(setq reb-re-syntax 'string)
 #+end_src
 
 Wrap lines at N columns instead of 70.
