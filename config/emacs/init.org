@@ -160,7 +160,7 @@ Font to use.
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (progn
   (set-face-attribute 'default nil :family "Iosevka Aile")
   (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'expanded)
