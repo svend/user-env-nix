@@ -174,7 +174,6 @@ Font to use.
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
-
 #+begin_src emacs-lisp :tangle no
 (progn
   (set-face-attribute 'default nil :family "DejaVu Sans Mono" :width 'normal)
