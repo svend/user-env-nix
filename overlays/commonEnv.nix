@@ -49,7 +49,7 @@ self: super:
       ripgrep
       rust-scripts
       sops
-      steampipe # SQL interface for the cloud
+      # steampipe # SQL interface for the cloud # FIXME: FTB
       stow
       time
       tokei # count lines of code

@@ -4,6 +4,7 @@ self: super:
     name = "kubernetesEnv";
     paths = [
       kind
+      krew # kubectl plugin manager
       kubectl
       kubernetes-helm
       kustomize
