@@ -75,6 +75,7 @@ self: super:
       fping
       grpcurl
       hurl # HTTP request testing tool
+      k6 # load testing tool
       ipcalc
       iperf
       nmap
