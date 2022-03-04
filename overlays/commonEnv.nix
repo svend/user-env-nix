@@ -17,7 +17,7 @@ self: super:
       dhall
       dhall-json
       dtach
-      etcdctl
+      etcd
       file
       findutils
       gawk
@@ -104,7 +104,7 @@ self: super:
 
       # Nix
       nix-info # https://github.com/NixOS/nix/issues/3085
-      nix-prefetch-scripts
+      # nix-prefetch-scripts # 2022-03-04 FTB: python3.9-httplib2> FAILED tests/test_other.py::test_connection_close - ConnectionResetError: [Er...
       nixfmt
       nixpkgs-fmt
     ] ++ lib.optionals stdenv.isDarwin [
