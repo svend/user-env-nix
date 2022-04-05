@@ -3,7 +3,7 @@ self: super:
   emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
-      buildInputs = [ self.emacsGcc ];
+      buildInputs = [ self.emacsNativeComp ];
       src = ../config/emacs;
 
       unpackPhase = ''
@@ -25,7 +25,7 @@ self: super:
     };
 
   # Native compilation coming in Emacs 28
-  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacsUnstable).emacsWithPackages (epkgs:
+  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacsNativeComp).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
