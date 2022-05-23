@@ -16,6 +16,7 @@ self: super:
       cue
       dhall
       dhall-json
+      diffutils
       dtach
       etcd
       file
