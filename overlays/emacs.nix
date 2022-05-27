@@ -69,7 +69,7 @@ self: super:
     (with epkgs.melpaPackages; [
       blacken # support for python "black" code-formatter
       company-go
-      dtache
+      # dtached # TODO: was renamed from dtache, no longer in melpa
       eglot # language server support
       epresent
       flycheck-rust

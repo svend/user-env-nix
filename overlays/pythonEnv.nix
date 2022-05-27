@@ -17,6 +17,7 @@ self: super:
         ];
       })
 
+      python310
       # python39 # is the default
       python38
       python37
