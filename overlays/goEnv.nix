@@ -13,7 +13,7 @@ self: super:
 
       # Development tools
       gofumpt # stricter gofmt/goimports
-      golangci-lint # includes golint, errcheck, govet (https://golangci-lint.run/usage/linters)
+      # golangci-lint # includes golint, errcheck, govet (https://golangci-lint.run/usage/linters) # TODO: 2022-06-07 marked as broken
       gopls # replaces gocode and godef
       gotools # godoc (doc web server), goimports
 

@@ -44,13 +44,14 @@ self: super:
       (self.pass.override { git = gitWithConfig; })
       plantuml
       postgresql
+      pstree
       pwgen
       redis
       restic
       ripgrep
       rust-scripts
       sops
-      steampipe # SQL interface for the cloud
+      # steampipe # SQL interface for the cloud # TODO: 2022-06-07 marked as broken
       stow
       time
       tokei # count lines of code
