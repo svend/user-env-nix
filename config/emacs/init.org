@@ -513,6 +513,12 @@ Karabiner:
 
 ** Other settings
 
+Do not display non-breaking spaces ( ) as underlines.
+
+#+begin_src emacs-lisp
+(setq nobreak-char-display nil)
+#+end_src
+
 Enable repeat-mode.
 
 #+begin_src emacs-lisp
