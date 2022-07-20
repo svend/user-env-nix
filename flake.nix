@@ -20,7 +20,7 @@
       forAllSystems = f: lib.genAttrs systems (system: f system);
 
       overlays =
-        [ emacs-overlay.overlay rust-overlay.overlay ] ++
+        [ emacs-overlay.overlay rust-overlay.overlays.default ] ++
         # All overlays in the overlays directory
         map
           (name: import (./overlays + "/${name}"))
