@@ -18,7 +18,7 @@ self: super:
       dhall-json
       diffutils
       dtach
-      etcd
+      # etcd # 2022-08-02 FTB: //go:linkname must refer to declared function or variable
       file
       findutils
       gawk
@@ -51,7 +51,7 @@ self: super:
       ripgrep
       rust-scripts
       sops
-      # steampipe # SQL interface for the cloud # TODO: 2022-06-07 marked as broken
+      steampipe # SQL interface for the cloud # TODO: 2022-06-07 marked as broken
       stow
       time
       tokei # count lines of code
@@ -90,7 +90,7 @@ self: super:
 
       # Terraform
       # terraform # Work version pinned
-      terraform-lsp
+      # terraform-lsp # 2022-08-02 FTB
       tflint
 
       # Fonts
