@@ -73,7 +73,7 @@ self: super:
       # netcat # use nmap/ncat
       # netcat-gnu # use nmap/ncat
       curl
-      bind
+      # bind # 2022-08-04 FTB on darwin aarch64
       fping
       grpcurl
       hurl # HTTP request testing tool
@@ -85,7 +85,7 @@ self: super:
       openssl
       rsync
       step-cli
-      wrk2 # HTTP benchmarking tool
+      # wrk2 # HTTP benchmarking tool # 2022-08-04  FTB on darwin aarch64
       wget
 
       # Terraform
