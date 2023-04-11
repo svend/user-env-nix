@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "d2";
-  version = "0.1.2";
+  version = "0.1.4";
 
   src = fetchFromGitHub {
     owner = "terrastruct";
     repo = "d2";
     rev = "v${version}";
-    sha256 = "sha256-O3T26Stau168hP7Hhv2bayamXQvaFD6feyW5AYoHf0U=";
+    sha256 = "sha256-whxXMU9jQ/ixXUx6vqs1CdLWZGHTBFJcA6v1Z4aAV4s=";
   };
 
-  vendorSha256 = "sha256-k9zaZ28vs3R5usWUW5N78zz0PuP5UrYEhgXxpQ+v5sE=";
+  vendorSha256 = "sha256-t94xCNteYRpbV2GzrD4ppD8xfUV1HTJPkipEzr36CaM=";
   doCheck = false;
 
   meta = with lib; {
