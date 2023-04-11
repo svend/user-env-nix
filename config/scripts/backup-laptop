@@ -66,7 +66,7 @@ def targets():
 
 def backup(repo, dry_run):
     os.environ["RESTIC_REPOSITORY"] = repo
-    os.environ["KEYFILE_SUFFIX"] = repo + KEYFILE_SUFFIX
+    os.environ["RESTIC_PASSWORD_FILE"] = repo + KEYFILE_SUFFIX
 
     excludes = [["--exclude", os.path.expanduser(e)] for e in EXCLUDES]
     excludes = list(itertools.chain.from_iterable(excludes))
@@ -86,7 +86,7 @@ def backup(repo, dry_run):
 
 def forget(repo, dry_run):
     os.environ["RESTIC_REPOSITORY"] = repo
-    os.environ["KEYFILE_SUFFIX"] = repo + KEYFILE_SUFFIX
+    os.environ["RESTIC_PASSWORD_FILE"] = repo + KEYFILE_SUFFIX
     start_time = time.time()
     run_command(
         [
