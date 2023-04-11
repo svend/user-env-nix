@@ -810,6 +810,9 @@ Add more password prompts.
         comint-password-prompt-regexp
         (concat comint-password-prompt-regexp
                 "\\|"
+                ;; age with age-plugin-yubikey
+                "Enter PIN for YubiKey with serial [0-9]*" 
+                "\\|"
                 ;; OpenStack
                 "Please enter your OpenStack Password:"
                 "\\|"

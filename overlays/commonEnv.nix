@@ -72,7 +72,7 @@ self: super:
       age
       rage
       age-plugin-yubikey
-      (self.passage.override { git = gitWithConfig; }) # requires homebrew gnu-getopt
+      (self.passage.override { age = age; git = gitWithConfig; }) # requires homebrew gnu-getopt
       (self.pass.override { git = gitWithConfig; })
       pwgen
       yubikey-manager
