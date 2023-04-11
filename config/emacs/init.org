@@ -923,6 +923,21 @@ Add more password prompts.
       (add-hook 'before-save-hook #'eglot-format-buffer nil t)
       (add-hook 'before-save-hook #'eglot-organize-imports-on-save nil t)))
 
+  (setq-default eglot-workspace-configuration
+                ;; Use flake8
+                '(:pylsp
+                  (:configurationSources
+                   ["flake8"]
+                   :plugins
+                   (:flake8
+                    (:enabled t)
+                    :pycodestyle
+                    (:enabled nil)
+                    :mccabe
+                    (:enabled nil)
+                    :pyflakes
+                    (:enabled nil)))))
+
   (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
   :hook
   (go-mode . eglot-ensure)
