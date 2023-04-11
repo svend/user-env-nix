@@ -926,8 +926,6 @@ Add more password prompts.
 #+begin_src emacs-lisp
 (use-package eglot
   :config
-  ;; Use rust-analyzer instead of rls
-  (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
   (add-to-list 'eglot-server-programs '(terraform-mode "terraform-lsp"))
 
   (defun eglot-organize-imports-on-save ()
