@@ -23,6 +23,7 @@ EXCLUDES = [
     "~/tmp",
     "~/Library",
 ]
+KEYFILE_SUFFIX = ".key"
 
 
 def run_command(command, dry_run=False):
@@ -65,13 +66,14 @@ def targets():
 
 def backup(repo, dry_run):
     os.environ["RESTIC_REPOSITORY"] = repo
+    os.environ["KEYFILE_SUFFIX"] = repo + KEYFILE_SUFFIX
 
     excludes = [["--exclude", os.path.expanduser(e)] for e in EXCLUDES]
     excludes = list(itertools.chain.from_iterable(excludes))
 
     start_time = time.time()
     run_command(
-        ["restic-gpg", "backup", "--one-file-system"] + excludes + targets(),
+        ["restic", "backup", "--one-file-system"] + excludes + targets(),
         dry_run=dry_run,
     )
     end_time = time.time()
@@ -84,10 +86,11 @@ def backup(repo, dry_run):
 
 def forget(repo, dry_run):
     os.environ["RESTIC_REPOSITORY"] = repo
+    os.environ["KEYFILE_SUFFIX"] = repo + KEYFILE_SUFFIX
     start_time = time.time()
     run_command(
         [
-            "restic-gpg",
+            "restic",
             "forget",
             "--prune",
             "--keep-daily=7",
