@@ -552,6 +552,9 @@ Misc settings.
 (setq sentence-end-double-space nil)
 (setq-default indent-tabs-mode nil)
 (context-menu-mode 1) ;; Right-click context menus
+;; ediff options
+(setq ediff-split-window-function (quote split-window-horizontally))
+(setq ediff-window-setup-function (quote ediff-setup-windows-plain))
 #+end_src
 
 Wrap lines at N columns instead of 70.
