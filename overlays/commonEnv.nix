@@ -86,6 +86,7 @@ self: super:
       openssl
       rsync
       step-cli
+      vault
       # wrk2 # HTTP benchmarking tool # 2022-08-04  FTB on darwin aarch64
       wget
 
