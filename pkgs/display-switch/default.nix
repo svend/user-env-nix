@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, rustPlatform, udev, pkgconfig }:
+{ lib, stdenv, fetchFromGitHub, rustPlatform, udev, pkg-config }:
 
 rustPlatform.buildRustPackage {
   pname = "display-switch";
@@ -13,7 +13,7 @@ rustPlatform.buildRustPackage {
 
   cargoSha256 = "sha256-KAwtEh/qkd6FoT1shQdHdbsLJsvnguZUBdU9rx3m8D8=";
 
-  nativeBuildInputs = [ pkgconfig ];
+  nativeBuildInputs = [ pkg-config ];
   buildInputs = [ udev ];
 
   doCheck = false;

@@ -4,7 +4,7 @@ self: super:
     name = "linuxEnv";
     paths = [
       display-switch # FTB darwin: libaio-0.3.111
-      gitAndTools.gitAnnex # slow to build, linux has pre-built binaries
+      gitAndTools.git-annex # slow to build, linux has pre-built binaries
       # TODO: installing inetutils results in ping without root permissions
       # inetutils # (dnsdomainname ftp hostname ifconfig logger ping ping6 rcp rexec rlogin rsh talk telnet tftp traceroute whois)
       isync
