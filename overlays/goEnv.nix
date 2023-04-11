@@ -3,9 +3,9 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      # TODO: Switch back to "go" when 1.18 becomes the default
+      # TODO: Switch back to "go" when 1.19 becomes the default
       # go
-      go_1_18
+      go_1_19
 
       # # Legacy dependency management tools
       # dep
