@@ -1280,21 +1280,22 @@ Hides all minor-modes in the status bar behind a symbol.
 
 ** modus-themes
 
-TODO: Setting variables in =:config= section does not apply them.
-
 #+begin_src emacs-lisp
 (use-package modus-themes
   :ensure t
   :config
-  (setq modus-themes-mixed-fonts t ; esure things like org tables are fixed-pitch
-        modus-themes-fringes nil ; disable grey vertical fringes
+  (setq modus-themes-common-palette-overrides
+        '((bg-main "#fcfbfb") ; off-white background
+          (fg-line-number-inactive "gray50")
+          (fg-line-number-active fg-main)
+          (bg-line-number-inactive unspecified)
+          (bg-line-number-active unspecified)
+          (fringe unspecified) ; make the fringe invisible
+          )
         modus-themes-italic-constructs t
         modus-themes-org-blocks 'gray-background; gray background for org code blocks
-        modus-themes-region '(bg-only)
-        modus-themes-subtle-line-numbers t ; no dark background for current line number
-        modus-themes-variable-pitch-ui t
-        ;; Off-white background
-        modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
+        modus-themes-mixed-fonts t ; esure things like org tables are fixed-pitch
+        modus-themes-variable-pitch-ui t)
   (load-theme 'modus-operandi))
 #+end_src
 
