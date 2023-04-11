@@ -9,7 +9,7 @@ self: super:
       aspellWithDicts
       bashInteractive
       bash-completion
-      # bats # bash shell testing framework TODO: 2022-12-21 FTB 
+      # bats # bash shell testing framework TODO: 2022-12-21 FTB
       # binutils # conflicts with rustEnv
       # cacert # nix default install includes nss-cacert-3.40.1
       coreutils
@@ -19,6 +19,7 @@ self: super:
       dhall
       dhall-json
       diffutils
+      dig
       dtach
       # etcd # 2022-08-02 FTB: //go:linkname must refer to declared function or variable
       file
