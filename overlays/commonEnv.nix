@@ -27,6 +27,7 @@ self: super:
       gawk
       gettext # for envsubst
       gnugrep
+      gnumake
       gnuplot
       gnused
       gnutar
