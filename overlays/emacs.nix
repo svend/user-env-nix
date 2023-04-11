@@ -24,8 +24,7 @@ self: super:
       '';
     };
 
-  # Native compilation coming in Emacs 28
-  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacsUnstable).emacsWithPackages (epkgs:
+  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
