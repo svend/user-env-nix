@@ -54,6 +54,7 @@ self: super:
 
       # Modes
       clojure-mode
+      cue-mode
       dockerfile-mode
       git-modes
       go-mode

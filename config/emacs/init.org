@@ -865,38 +865,14 @@ Add more password prompts.
   (setq jedi:use-shortcuts t))
 #+end_src
 
+
 ** cue-mode
 
+TODO: Add format on save
+
 #+begin_src emacs-lisp
-(defconst cue-keywords
-  '("package" "import" "for" "in" "if" "let"))
-
-(defconst cue-constants '("null" "true" "false"))
-
-(defconst cue-types
-  '("int" "float" "string" "bool" "bytes"))
-
-(defvar cue--font-lock-keywords
-  `(("//.*" . font-lock-comment-face)
-    (,(regexp-opt cue-constants 'symbols) . font-lock-constant-face)
-    (,(regexp-opt cue-keywords 'symbols) . font-lock-keyword-face)
-    (,(regexp-opt cue-types 'symbols) . font-lock-type-face)))
-
-;;;###autoload
-(define-derived-mode cue-mode prog-mode "CUE"
-  "Major mode for the CUE language."
-
-  ;; Comments
-  (setq-local comment-start "// ")
-  (setq-local comment-end "")
-  (setq-local comment-start-skip "//[[:space:]]*")
-
-  (setq indent-tabs-mode t)
-
-  (setq-local font-lock-defaults '(cue--font-lock-keywords)))
-
-;;;###autoload
-(add-to-list 'auto-mode-alist '("\\.cue\\'" . cue-mode))
+;; (use-package cue-mode
+;;   :defer t)
 #+end_src
 
 ** dired
