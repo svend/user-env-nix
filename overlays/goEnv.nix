@@ -3,9 +3,7 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      # TODO: Switch back to "go" when 1.19 becomes the default (https://github.com/NixOS/nixpkgs/issues/192333)
-      # go
-      go_1_19
+      go
 
       # # Legacy dependency management tools
       # dep
