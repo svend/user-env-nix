@@ -14,6 +14,7 @@ self: super:
       golangci-lint # includes golint, errcheck, govet (https://golangci-lint.run/usage/linters)
       gopls # replaces gocode and godef
       gotools # godoc (doc web server), goimports
+      govulncheck
 
       go2nix
       pprof
