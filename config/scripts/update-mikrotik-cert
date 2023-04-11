@@ -9,12 +9,12 @@ KEY=$3
 TIMESTAMP=$(step certificate inspect "$CERT" --format=json | jq -c .validity.start | tr -cd '[:digit:]')
 CERT_NAME=server-$TIMESTAMP
 
-scp "$CERT" "$TARGET":server.crt
-scp "$KEY" "$TARGET":server.key
+scp "$CERT" "$TARGET":
+scp "$KEY" "$TARGET":
 
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$CERT passphrase=\"\""
-ssh "$TARGET" '/file/remove $CERT'
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$KEY passphrase=\"\""
-ssh "$TARGET" '/file/remove $KEY'
+ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $KEY) passphrase=\"\""
+ssh "$TARGET" "/file/remove $(basename $CERT)"
+ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $KEY) passphrase=\"\""
+ssh "$TARGET" "/file/remove $(basename $KEY)"
 ssh "$TARGET" "/ip/service/set www-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
 ssh "$TARGET" "/ip/service/set api-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
