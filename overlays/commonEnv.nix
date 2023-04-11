@@ -98,7 +98,7 @@ self: super:
       vault
       wget
       whois
-      # wrk2 # HTTP benchmarking tool # 2022-08-04  FTB on darwin aarch64
+      # wrk2 # HTTP benchmarking tool # 2023-02-07 FTB on darwin aarch64
 
       # Terraform
       # terraform # Work version pinned
