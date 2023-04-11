@@ -73,6 +73,7 @@ self: super:
       detached
       eglot # language server support
       epresent
+      flymake-shellcheck # included with Emacs 29
       flycheck-rust
       flycheck-golangci-lint
       git-link
