@@ -90,14 +90,10 @@ def forget(repo, dry_run):
             "restic-gpg",
             "forget",
             "--prune",
-            "--keep-daily",
-            "7",
-            "--keep-weekly",
-            "5",
-            "--keep-monthly",
-            "12",
-            "--keep-yearly",
-            "75",
+            "--keep-daily=7",
+            "--keep-weekly=5",
+            "--keep-monthly=12",
+            "--keep-yearly=75",
         ],
         dry_run=dry_run,
     )
@@ -109,7 +105,7 @@ def forget(repo, dry_run):
             f.write(f"{timestamp} forget: {repo} (duration: {duration})\n")
 
 
-def run(*, repo, do_eject=True, do_backup=True, do_prune=True, dry_run=False):
+def run(*, repo, do_eject=False, do_backup=True, do_prune=True, dry_run=False):
     repo = os.path.normpath(repo)
     start_time = time.time()
     if do_backup:
@@ -129,9 +125,9 @@ def parse_args():
     )
     parser.add_argument("repo", help="path to restic repository")
     parser.add_argument(
-        "--no-eject",
-        help="do not eject the drive",
-        action="store_false",
+        "--eject",
+        help="eject the drive",
+        action="store_true",
         dest="do_eject",
     )
     parser.add_argument(
@@ -142,7 +138,7 @@ def parse_args():
     )
     parser.add_argument(
         "--no-prune",
-        help="do not run restic prune/foget",
+        help="do not run restic prune/forget",
         action="store_false",
         dest="do_prune",
     )
