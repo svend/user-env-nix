@@ -52,7 +52,7 @@ self: super:
       ripgrep
       rust-scripts
       sops
-      steampipe # SQL interface for the cloud # TODO: 2022-06-07 marked as broken
+      steampipe
       stow
       time
       tokei # count lines of code
