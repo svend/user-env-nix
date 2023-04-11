@@ -868,11 +868,13 @@ Add more password prompts.
 
 ** cue-mode
 
-TODO: Add format on save
-
 #+begin_src emacs-lisp
-;; (use-package cue-mode
-;;   :defer t)
+(use-package cue-mode
+  :defer t
+  :config
+  (defun my-cue-mode-hook ()
+    (add-hook 'before-save-hook #'cue-reformat-buffer))
+  (add-hook 'cue-mode-hook #'my-cue-mode-hook))
 #+end_src
 
 ** dired
