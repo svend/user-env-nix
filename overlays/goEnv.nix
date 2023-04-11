@@ -3,7 +3,7 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      go_1_20 # TODO set to go after 1.20 becomes the default
+      go
 
       # # Legacy dependency management tools
       # dep
