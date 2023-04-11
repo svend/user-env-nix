@@ -12,9 +12,9 @@ CERT_NAME=server-$TIMESTAMP
 scp "$CERT" "$TARGET":server.crt
 scp "$KEY" "$TARGET":server.key
 
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=server.crt passphrase=\"\""
-ssh "$TARGET" '/file/remove server.crt'
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=server.key passphrase=\"\""
-ssh "$TARGET" '/file/remove server.key'
+ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$CERT passphrase=\"\""
+ssh "$TARGET" '/file/remove $CERT'
+ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$KEY passphrase=\"\""
+ssh "$TARGET" '/file/remove $KEY'
 ssh "$TARGET" "/ip/service/set www-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
 ssh "$TARGET" "/ip/service/set api-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
