@@ -1,3 +1,6 @@
+build:
+	nix build --print-build-logs
+
 install:
 	nix profile install github:svend/user-env-nix#userEnv
 
@@ -6,6 +9,3 @@ upgrade:
 
 update-lockfile:
 	nix flake update
-
-build:
-	nix build --print-build-logs
