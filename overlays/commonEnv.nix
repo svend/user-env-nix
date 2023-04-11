@@ -35,7 +35,6 @@ self: super:
       imagemagick
       jsonnet
       jq
-      keychain
       gnuplot
       ledger
       less
@@ -43,11 +42,8 @@ self: super:
       multi-x509
       pandoc
       parallel
-      (self.pass.override { git = gitWithConfig; })
-      plantuml
       postgresql
       pstree
-      pwgen
       redis
       restic
       ripgrep
@@ -60,16 +56,25 @@ self: super:
       tree
       unzip
       watch
-      xsv
+      xsv # csv utility
       xz # file compression
       zookeeper
       zshWithConfig
       haskellPackages.ShellCheck
+
       # Version control
       github-cli # gh command
       git-crypt
       gitWithConfig
       mercurial
+
+      # Password management
+      age
+      age-plugin-yubikey
+      passage
+      (self.pass.override { git = gitWithConfig; })
+      pwgen
+      yubikey-manager
 
       # Network tools
       # netcat # use nmap/ncat
@@ -88,8 +93,9 @@ self: super:
       rsync
       step-cli
       vault
-      # wrk2 # HTTP benchmarking tool # 2022-08-04  FTB on darwin aarch64
       wget
+      whois
+      # wrk2 # HTTP benchmarking tool # 2022-08-04  FTB on darwin aarch64
 
       # Terraform
       # terraform # Work version pinned
