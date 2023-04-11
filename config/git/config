@@ -1,5 +1,8 @@
 # Git config file
 
+[advice]
+	detachedHead = false
+
 [alias]
 	# Print the upstream remote. Default is `origin`, `gh` tool uses
 	# `upstream`.
