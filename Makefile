@@ -9,3 +9,6 @@ upgrade:
 
 update-lockfile:
 	nix flake update
+
+emacs:
+	EMACSLOADPATH= result/bin/emacs &

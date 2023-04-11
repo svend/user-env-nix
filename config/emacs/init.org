@@ -1599,20 +1599,7 @@ The following patched =org-babel-execute:calc= fixes the error:
 #+begin_src emacs-lisp
 (use-package project
   :config
-  (add-hook 'project-find-functions #'my-project-try-go)
-  (add-hook 'project-find-functions #'my-project-try-projectile)
-
-  (defun my-project-try-projectile (dir)
-    (let ((override (locate-dominating-file dir ".projectile")))
-      (if override
-          (cons 'vc override)
-        nil)))
-
-  (defun my-project-try-go (dir)
-    (let ((override (locate-dominating-file dir "go.mod")))
-      (if override
-          (cons 'vc override)
-        nil))))
+  (setq project-vc-extra-root-markers '("go.mod" ".projectile")))
 #+end_src
 
 ** python
