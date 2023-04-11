@@ -10,7 +10,7 @@ self: super:
           black
           flake8
           isort
-          # python-lsp-server # 2022-08-02 FTB
+          python-lsp-server
           pylint
           pyyaml
           requests
