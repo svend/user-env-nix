@@ -14,6 +14,7 @@ self: super:
       # cacert # nix default install includes nss-cacert-3.40.1
       coreutils
       cue
+      cuelsp
       dhall
       dhall-json
       diffutils
@@ -90,7 +91,7 @@ self: super:
 
       # Terraform
       # terraform # Work version pinned
-      # terraform-lsp # 2022-08-02 FTB
+      # terraform-lsp # 2022-08-11 FTB
       tflint
 
       # Fonts

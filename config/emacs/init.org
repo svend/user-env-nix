@@ -926,6 +926,7 @@ Add more password prompts.
 #+begin_src emacs-lisp
 (use-package eglot
   :config
+  (add-to-list 'eglot-server-programs '(cue-mode "cuelsp"))
   (add-to-list 'eglot-server-programs '(terraform-mode "terraform-lsp"))
 
   (defun eglot-organize-imports-on-save ()
