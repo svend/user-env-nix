@@ -1305,7 +1305,8 @@ TODO: Setting variables in =:config= section does not apply them.
         ('modus-operandi (modus-themes-load-operandi))
         ('modus-vivendi (modus-themes-load-vivendi)))))
   :init
-  (setq modus-themes-fringes nil ; disable grey vertical fringes
+  (setq modus-themes-mixed-fonts t ; esure things like org tables are fixed-pitch
+        modus-themes-fringes nil ; disable grey vertical fringes
         modus-themes-italic-constructs t
         modus-themes-org-blocks 'gray-background; gray background for org code blocks
         modus-themes-region '(bg-only)
