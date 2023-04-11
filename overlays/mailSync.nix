@@ -9,7 +9,7 @@ in
         IMAPAccount fastmail
         Host imap.fastmail.com
         User svend@svends.net
-        PassCmd "${self.pass}/bin/pass show general/imap.fastmail.com"
+        PassCmd "${self.pass}/bin/pass show imap.fastmail.com"
         SSLType IMAPS
 
         IMAPStore fastmail-remote
