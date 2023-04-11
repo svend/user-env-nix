@@ -49,6 +49,7 @@ self: super:
       ripgrep
       rust-scripts
       sops
+      sqlfluff # format SQL
       steampipe
       stow
       time
