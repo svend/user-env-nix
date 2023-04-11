@@ -13,8 +13,6 @@ self: super:
       pythonEnv
       rubyEnv
       rustEnv
-    ] ++ lib.optionals stdenv.isLinux [
-      linuxEnv
     ];
   };
 
