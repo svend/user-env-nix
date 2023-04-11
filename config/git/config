@@ -1,14 +1,24 @@
 # Git config file
 
 [alias]
-	# Print current branch name
+	# Print the upstream remote. Default is `origin`, `gh` tool uses
+	# `upstream`.
+	upstream = "! git remote | grep -E 'upstream|origin' | sort -r | uniq | head -1"
+
+	# Print the main branch (usually `main` or `master`).
+	mainbranch = "! git remote show $(git upstream) | sed -n '/HEAD branch/s/.*: *//p' | head -1"
+
+	# Print the current branch name
 	br = rev-parse --abbrev-ref HEAD
 
 	# Print branches, sorted by date
 	branches-by-date = branch --format='%(creatordate:short) %(refname:short) %(contents:subject)' --sort=creatordate
 
 	# Delete local branches that have been merged
-	branch-cleanup = ! git branch --merged master | grep -v master | xargs git branch -d
+	branch-cleanup = "! \
+	git for-each-ref --merged=$(git mainbranch) --format '%(refname:short)' refs/heads/ \
+	| grep -v $(git mainbranch) \
+	| xargs --no-run-if-empty git branch --delete"
 
 	# Print tags, sorted by date
 	tags-by-date = tag --format='%(creatordate:short) %(refname:short)' --sort=creatordate
