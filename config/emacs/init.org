@@ -873,7 +873,7 @@ Add more password prompts.
   :defer t
   :config
   (defun my-cue-mode-hook ()
-    (add-hook 'before-save-hook #'cue-reformat-buffer))
+    (add-hook 'before-save-hook #'cue-reformat-buffer nil t))
   (add-hook 'cue-mode-hook #'my-cue-mode-hook))
 #+end_src
 
