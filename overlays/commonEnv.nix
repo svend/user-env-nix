@@ -69,10 +69,10 @@ self: super:
       mercurial
 
       # Password management
-      # age # age v1.0.0 doesn't support yubikey
+      age
       rage
       age-plugin-yubikey
-      passage
+      (self.passage.override { git = gitWithConfig; }) # requires homebrew gnu-getopt
       (self.pass.override { git = gitWithConfig; })
       pwgen
       yubikey-manager
