@@ -75,6 +75,7 @@ self: super:
       (self.passage.override { age = age; git = gitWithConfig; }) # requires homebrew gnu-getopt
       (self.pass.override { git = gitWithConfig; })
       pwgen
+      qrencode
       yubikey-manager
 
       # Network tools
