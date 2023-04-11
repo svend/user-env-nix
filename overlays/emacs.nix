@@ -111,7 +111,8 @@ self: super:
     (with epkgs.elpaPackages; [
       csv-mode
       eglot # language server support
-      modus-themes # well designed dark/light theme
+      modus-themes # well-designed dark/light theme
+      project # required by eglot
     ])
   );
 }
