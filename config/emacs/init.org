@@ -1132,12 +1132,8 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
 #+begin_src emacs-lisp
 (use-package go-mode
   :defer t
-  :mode
-  ;; modes do not exist for go module files
-  (("go.mod\\'" . fundamental-mode)
-   ("go.sum\\'" . fundamental-mode))
   :config
-  (setq gofmt-command "gofumports")
+  (setq gofmt-command "gofumpt")
 
   (defun my-go-mode-defaults ()
     ;; CamelCase aware editing operations
