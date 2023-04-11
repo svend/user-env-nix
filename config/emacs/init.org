@@ -1319,7 +1319,7 @@ TODO: Setting variables in =:config= section does not apply them.
         modus-themes-variable-pitch-ui t
         ;; Off-white background
         modus-themes-operandi-color-overrides '((bg-main . "#fcfbfb")))
-  (modus-themes-load-operandi))
+  (modus-themes-load-theme 'operandi))
 #+end_src
 
 ** native-complete
