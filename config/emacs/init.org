@@ -923,7 +923,9 @@ Add more password prompts.
       (add-hook 'before-save-hook #'eglot-format-buffer nil t)
       (add-hook 'before-save-hook #'eglot-organize-imports-on-save nil t)))
 
+  ;; https://joaotavora.github.io/eglot/#JSONRPC-objects-in-Elisp
   (setq-default eglot-workspace-configuration
+                ;; https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
                 ;; Use flake8
                 '(:pylsp
                   (:configurationSources
@@ -932,11 +934,14 @@ Add more password prompts.
                    (:flake8
                     (:enabled t)
                     :pycodestyle
-                    (:enabled nil)
+                    (:enabled :json-false)
                     :mccabe
-                    (:enabled nil)
+                    (:enabled :json-false)
                     :pyflakes
-                    (:enabled nil)))))
+                    (:enabled :json-false)))
+                  ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+                  :gopls
+                  (:usePlaceholders t)))
 
   (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
   :hook
