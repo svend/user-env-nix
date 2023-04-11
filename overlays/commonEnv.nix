@@ -15,6 +15,7 @@ self: super:
       coreutils
       cue
       cuelsp
+      d2
       dhall
       dhall-json
       diffutils
