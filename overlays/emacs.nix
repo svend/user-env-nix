@@ -71,7 +71,6 @@ self: super:
       blacken # support for python "black" code-formatter
       company-go
       detached
-      eglot # language server support
       epresent
       flymake-shellcheck # included with Emacs 29
       flycheck-rust
@@ -111,6 +110,7 @@ self: super:
     ]) ++
     (with epkgs.elpaPackages; [
       csv-mode
+      eglot # language server support
       modus-themes # well designed dark/light theme
     ])
   );
