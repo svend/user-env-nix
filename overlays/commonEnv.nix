@@ -69,7 +69,8 @@ self: super:
       mercurial
 
       # Password management
-      age
+      # age # age v1.0.0 doesn't support yubikey
+      rage
       age-plugin-yubikey
       passage
       (self.pass.override { git = gitWithConfig; })
