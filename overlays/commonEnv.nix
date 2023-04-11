@@ -100,11 +100,11 @@ self: super:
       vault
       wget
       whois
-      # wrk2 # HTTP benchmarking tool # 2023-02-07 FTB on darwin aarch64
+      # wrk2 # HTTP benchmarking tool # 2023-03-30 FTB on darwin aarch64
 
       # Terraform
-      # terraform # Work version pinned
-      # terraform-lsp # 2022-08-11 FTB
+      # terraform # Using tfenv from homebrew
+      terraform-lsp
       tflint
 
       # Fonts
