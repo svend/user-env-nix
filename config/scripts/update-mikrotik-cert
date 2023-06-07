@@ -12,7 +12,7 @@ CERT_NAME=server-$TIMESTAMP
 scp "$CERT" "$TARGET":
 scp "$KEY" "$TARGET":
 
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $KEY) passphrase=\"\""
+ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $CERT) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $CERT)"
 ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $KEY) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $KEY)"
