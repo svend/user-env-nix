@@ -4,6 +4,7 @@ with rustPlatform;
 
 buildRustPackage rec {
   pname = "rust-script";
+
   version = "v0.7.0";
 
   src = fetchFromGitHub {
