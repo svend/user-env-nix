@@ -43,7 +43,7 @@ self: super:
       gnuplot
       keycast # display key presses
       magit
-      # notmuch # 2021-04-28: FTB: current tag is not usable (0.32.-1.2)
+      notmuch
       nov # epub reader
       package-lint
       py-isort
@@ -78,7 +78,6 @@ self: super:
       gnus-alias
       minions # hide minor modes in mode-line
       native-complete # shell (bash/zsh) completion
-      notmuch
       ob-go
       ob-rust
       orderless # completion style for regex in any order

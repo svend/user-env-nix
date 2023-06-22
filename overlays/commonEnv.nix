@@ -9,7 +9,7 @@ self: super:
       aspellWithDicts
       bashInteractive
       bash-completion
-      # bats # bash shell testing framework TODO: 2022-12-21 FTB
+      bats # bash shell testing framework
       # binutils # conflicts with rustEnv
       # cacert # nix default install includes nss-cacert-3.40.1
       coreutils
@@ -21,7 +21,7 @@ self: super:
       diffutils
       dig
       dtach
-      # etcd # 2022-08-02 FTB: //go:linkname must refer to declared function or variable
+      etcd
       file
       findutils
       gawk
@@ -35,7 +35,7 @@ self: super:
       gzip
       htop
       imagemagick
-      jsonnet
+      # jsonnet # 2023-06-22 TODO: FTB on Darwin
       jq
       gnuplot
       ledger
@@ -85,7 +85,7 @@ self: super:
       # netcat # use nmap/ncat
       # netcat-gnu # use nmap/ncat
       curl
-      # bind # 2022-08-04 FTB on darwin aarch64
+      bind # 2022-08-04 FTB on darwin aarch64
       fping
       grpcurl
       hurl # HTTP request testing tool
@@ -100,7 +100,7 @@ self: super:
       vault
       wget
       whois
-      # wrk2 # HTTP benchmarking tool # 2023-03-30 FTB on darwin aarch64
+      # wrk2 # HTTP benchmarking tool # 2023-06-22 FTB on darwin aarch64
 
       # Terraform
       # terraform # Using tfenv from homebrew
