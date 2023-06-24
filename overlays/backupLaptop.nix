@@ -10,7 +10,7 @@ in
 
       [Service]
       Type=oneshot
-      ExecStart=${self.myScripts}/backup-laptop /run/media/svend/usb-samsung-1tb/restic-repo
+      ExecStart=${self.myScripts}/bin/backup-laptop /run/media/svend/usb-samsung-1tb/restic-repo
     '';
 
   backupLaptopTimer = super.writeTextDir "${systemdDir}/backup-laptop.timer" ''
