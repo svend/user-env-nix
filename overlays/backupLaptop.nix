@@ -18,6 +18,7 @@ in
     Description=Start laptop backup
 
     [Timer]
+    OnBootSec=30min
     OnUnitActiveSec=30min
     Unit=backup-laptop.service
 
