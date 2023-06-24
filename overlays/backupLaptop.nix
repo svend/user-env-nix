@@ -24,4 +24,12 @@ in
     [Install]
     WantedBy=timers.target
   '';
+
+  backupLaptopUnits = with self; super.buildEnv {
+    name = "systemdServices";
+    paths = [
+      backupLaptopTimer
+      backupLaptopService
+    ];
+  };
 }

@@ -15,3 +15,6 @@ update-lockfile:
 
 emacs:
 	EMACSLOADPATH= result/bin/emacs &
+
+format:
+	nixpkgs-fmt .

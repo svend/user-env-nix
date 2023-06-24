@@ -22,8 +22,8 @@ self: super:
       myPkgs
       emacsWithConfig
     ] ++ lib.optionals stdenv.isLinux [
-      backupLaptopService
-      mailSyncService
+      backupLaptopUnits
+      mailSyncUnits
     ];
   };
 }
