@@ -85,7 +85,7 @@ self: super:
       # netcat # use nmap/ncat
       # netcat-gnu # use nmap/ncat
       curl
-      bind # 2022-08-04 FTB on darwin aarch64
+      bind
       fping
       grpcurl
       hurl # HTTP request testing tool
