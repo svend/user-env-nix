@@ -33,6 +33,7 @@ self: super:
     (with epkgs.melpaStablePackages;
     [
       ace-link
+      ace-window
       aggressive-indent
       cider # clojure development environment
       company

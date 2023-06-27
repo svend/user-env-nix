@@ -720,6 +720,13 @@ Continue to show region in inactive windows.
   :init (ace-link-setup-default))
 #+end_src
 
+** ace-window
+
+#+begin_src emacs-lisp
+(use-package ace-window
+  :bind (("C-x o" . ace-window)))
+#+end_src
+
 ** aggressive-indent
 
 #+begin_src emacs-lisp
