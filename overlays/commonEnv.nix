@@ -47,7 +47,7 @@ self: super:
       postgresql
       pstree
       redis
-      restic
+      # restic # 2023-07-06 TODO: FTB (rclone) https://github.com/NixOS/nixpkgs/issues/241706
       ripgrep
       rust-scripts
       sops
@@ -130,6 +130,7 @@ self: super:
       gthumb
       librecad
       notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
+      rclone
     ] ++ lib.optionals stdenv.isDarwin [
       gnupg # NixOS configuration includes gnupg
       pinentry_mac
