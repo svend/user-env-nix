@@ -131,6 +131,7 @@ self: super:
       librecad
       notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
       rclone
+      restic
     ] ++ lib.optionals stdenv.isDarwin [
       gnupg # NixOS configuration includes gnupg
       pinentry_mac
