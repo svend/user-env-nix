@@ -35,7 +35,7 @@ self: super:
       gzip
       htop
       imagemagick
-      # jsonnet # 2023-06-22 TODO: FTB on Darwin
+      jsonnet
       jq
       gnuplot
       ledger
@@ -47,7 +47,7 @@ self: super:
       postgresql
       pstree
       redis
-      # restic # 2023-07-06 TODO: FTB (rclone) https://github.com/NixOS/nixpkgs/issues/241706
+      restic
       ripgrep
       rust-scripts
       sops
@@ -100,7 +100,7 @@ self: super:
       vault
       wget
       whois
-      # wrk2 # HTTP benchmarking tool # 2023-06-22 FTB on darwin aarch64
+      # wrk2 # HTTP benchmarking tool # 2023-07-24 FTB on darwin aarch64
 
       # Terraform
       # terraform # Using tfenv from homebrew
@@ -131,7 +131,6 @@ self: super:
       librecad
       notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
       rclone
-      restic
     ] ++ lib.optionals stdenv.isDarwin [
       gnupg # NixOS configuration includes gnupg
       pinentry_mac
