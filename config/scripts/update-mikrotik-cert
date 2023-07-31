@@ -6,15 +6,25 @@ TARGET=$1
 CERT=$2
 KEY=$3
 
-TIMESTAMP=$(step certificate inspect "$CERT" --format=json | jq -c .validity.start | tr -cd '[:digit:]')
-CERT_NAME=server-$TIMESTAMP
-
 scp "$CERT" "$TARGET":
 scp "$KEY" "$TARGET":
 
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $CERT) passphrase=\"\""
+# Import new certificate
+ssh "$TARGET" "/certificate/remove server-new" || true
+ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $CERT)"
-ssh "$TARGET" "/certificate/import name=$CERT_NAME file-name=$(basename $KEY) passphrase=\"\""
+ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $KEY) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $KEY)"
-ssh "$TARGET" "/ip/service/set www-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
-ssh "$TARGET" "/ip/service/set api-ssl certificate=$CERT_NAME disabled=no tls-version=only-1.2"
+
+# Point to new certificate
+ssh "$TARGET" "/ip/service/set www-ssl certificate=server-new disabled=no tls-version=only-1.2"
+ssh "$TARGET" "/ip/service/set api-ssl certificate=server-new disabled=no tls-version=only-1.2"
+
+# Move old certificate
+ssh "$TARGET" "/certificate/remove server-old" || true
+ssh "$TARGET" "/certificate/set server name=server-old"
+
+# Rename new certificate
+ssh "$TARGET" "/certificate/set server-new name=server"
+
+ssh "$TARGET" "/certificate/print detail"
