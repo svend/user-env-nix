@@ -735,9 +735,11 @@ Continue to show region in inactive windows.
   (global-aggressive-indent-mode 1)
   :config
   (add-to-list 'aggressive-indent-excluded-modes 'cider-repl-mode)
-  (add-to-list 'aggressive-indent-excluded-modes 'nix-mode)
   ;; jsonnet-mode's formatting differs from jsonnetfmt command
-  (add-to-list 'aggressive-indent-excluded-modes 'jsonnet-mode))
+  (add-to-list 'aggressive-indent-excluded-modes 'jsonnet-mode)
+  (add-to-list 'aggressive-indent-excluded-modes 'nix-mode)
+  ;; TODO: mode active for shell-mode with emacs 29.1, not 28.2
+  (add-to-list 'aggressive-indent-excluded-modes 'shell-mode))
 #+end_src
 
 ** alert

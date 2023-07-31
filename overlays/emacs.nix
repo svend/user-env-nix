@@ -3,7 +3,7 @@ self: super:
   emacsConfig = super.stdenv.mkDerivation
     {
       name = "emacs-config";
-      buildInputs = [ self.emacs ];
+      buildInputs = [ self.emacs29 ];
       src = ../config/emacs;
 
       unpackPhase = ''
@@ -24,7 +24,7 @@ self: super:
       '';
     };
 
-  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs).emacsWithPackages (epkgs:
+  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs29).emacsWithPackages (epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
