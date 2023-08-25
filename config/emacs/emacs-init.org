@@ -155,22 +155,22 @@ Font to use.
 
 #+begin_src emacs-lisp
 (progn
-  (set-face-attribute 'default nil :family "Iosevka" :width 'expanded)
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'expanded)
+  (set-face-attribute 'default nil :family "Iosevka Term" :width 'expanded)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Term" :width 'expanded)
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
 (progn
   (set-face-attribute 'default nil :family "Iosevka Aile")
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'expanded)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Term" :width 'expanded)
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
 #+begin_src emacs-lisp :tangle no
 (progn
-  (set-face-attribute 'default nil :family "Iosevka" :width 'normal)
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka" :width 'normal)
+  (set-face-attribute 'default nil :family "Iosevka Term" :width 'normal)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Term" :width 'normal)
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 

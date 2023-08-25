@@ -14,7 +14,7 @@ self: super:
         emacs \
           --batch \
           --load ob-tangle \
-          --eval "(org-babel-tangle-file \"init.org\" \"init.el\" \"emacs-lisp\")"
+          --eval "(org-babel-tangle-file \"emacs-init.org\" \"init.el\" \"emacs-lisp\")"
       '';
 
       installPhase = ''
