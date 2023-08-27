@@ -21,6 +21,7 @@ self: super:
       diffutils
       dig
       dtach
+      duckdb # query CSV files with SQL
       etcd
       file
       findutils
