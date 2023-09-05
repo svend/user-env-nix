@@ -3,7 +3,7 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      go
+      go_1_21 # TODO: switch to `go` when 1.21 becomes the default version
 
       # # Legacy dependency management tools
       # dep
