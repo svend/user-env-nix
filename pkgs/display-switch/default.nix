@@ -7,11 +7,11 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "haimgel";
     repo = "display-switch";
-    rev = "7ce57aff36603ad081c8a5674f988291b9507fb9";
-    sha256 = "sha256-v5MQiFobCdi+6pkmAXiAvN5ZJNNR5wMx/uMHAacxDJQ=";
+    rev = "1.2.0";
+    sha256 = "sha256-irNX2z3lc6HgdpRz1B+jCmMn5i5MTYRQAOUbZG7BGq8=";
   };
 
-  cargoSha256 = "sha256-KAwtEh/qkd6FoT1shQdHdbsLJsvnguZUBdU9rx3m8D8=";
+  cargoSha256 = "sha256-JIdJuYkvI0eCCSZJWJQVDGZNc9FivprxFK/qq+/Zla4=";
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ udev ];
