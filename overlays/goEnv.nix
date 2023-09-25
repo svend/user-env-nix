@@ -3,7 +3,11 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      go_1_21 # TODO: switch to `go` when 1.21 becomes the default version (https://github.com/NixOS/nixpkgs/blob/97927dfad9abf6f2d1b3144d069024911a7ecf1f/pkgs/top-level/all-packages.nix#L25999)
+      # TODO: switch to `go` when 1.21 becomes the default version
+      # https://github.com/NixOS/nixpkgs/blob/97927dfad9abf6f2d1b3144d069024911a7ecf1f/pkgs/top-level/all-packages.nix#L25999
+      # https://github.com/NixOS/nixpkgs/issues/255907
+      go_1_21
+
 
       # # Legacy dependency management tools
       # dep
