@@ -14,6 +14,8 @@
 	# Print the current branch name
 	br = rev-parse --abbrev-ref HEAD
 
+	rebase-upstream = "git fetch $(git upstream) && echo git rebase $(git upstream)/$(git mainbranch)"
+	merge-upstream = "git fetch $(git upstream) && echo git merge $(git upstream)/$(git mainbranch)"	
 	# Print branches, sorted by date
 	branches-by-date = branch --format='%(creatordate:short) %(refname:short) %(contents:subject)' --sort=creatordate
 
