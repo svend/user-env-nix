@@ -1497,7 +1497,6 @@ for count in 0..2 {
         org-default-notes-file "~/doc/org/notes.org"
         org-directory "~/doc/org"
         org-ellipsis "…"
-        org-plantuml-jar-path (expand-file-name "~/.nix-profile/lib/plantuml.jar")
         org-refile-targets '((nil :maxlevel . 9))
         org-reverse-note-order t
         org-src-ask-before-returning-to-edit-buffer nil
@@ -1511,7 +1510,6 @@ for count in 0..2 {
    '((calc . t)
      (emacs-lisp . t)
      (perl . t)
-     (plantuml . t)
      (python . t)
      (ruby . t)
      (shell . t))))
@@ -1614,21 +1612,12 @@ The following patched =org-babel-execute:calc= fixes the error:
   (pdf-tools-install))
 #+end_src
 
-** plantuml-mode
-
-#+begin_src emacs-lisp
-(use-package plantuml-mode
-  :defer t
-  :config
-  (setq plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"))
-#+end_src
-
 ** project
 
 #+begin_src emacs-lisp
 (use-package project
   :config
-  (setq project-vc-extra-root-markers '("go.mod" ".projectile")))
+  (setq project-vc-extra-root-markers '("go.mod" ".project")))
 #+end_src
 
 ** python

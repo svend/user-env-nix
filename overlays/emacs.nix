@@ -63,7 +63,6 @@ self: super:
       ledger-mode
       lua-mode
       nginx-mode
-      plantuml-mode
       terraform-mode
       yaml-mode
     ]) ++
