@@ -100,7 +100,7 @@ self: super:
       step-cli
       vault
       wget
-      # whois # FTB https://github.com/NixOS/nixpkgs/issues/260552
+      whois
       # wrk2 # HTTP benchmarking tool # 2023-07-24 FTB on darwin aarch64
 
       # Terraform
