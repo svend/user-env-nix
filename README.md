@@ -97,8 +97,16 @@ EMACSLOADPATH= result/bin/emacs
 
 ### REPL
 
+https://github.com/NixOS/nix/issues/8059
+
+``` shell
+nix repl --file repl.nix
+nix repl --extra-experimental-features repl-flake .#
+nix repl (followed by ":lf .")
 ```
-$ nix repl repl.nix
+
+```
+$ nix repl --file repl.nix
 nix-repl> :b outputs.packages.x86_64-linux.gitWithConfig
 this derivation produced the following outputs:
   out -> /nix/store/1s5d89anqhq1f6a1bgyagvri4q82918j-gitWithConfig
