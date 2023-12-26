@@ -7,7 +7,7 @@ import os
 import subprocess
 import sys
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 TARGETS = ["~"]
 DATE_FILE = os.path.expanduser("~/.backup-laptop-dates")
@@ -80,7 +80,7 @@ def backup(repo, dry_run):
     duration = timedelta(seconds=int(end_time - start_time))
     if not dry_run:
         with open(DATE_FILE, "a") as f:
-            timestamp = datetime.utcnow().isoformat()
+            timestamp = datetime.now(timezone.utc).isoformat()
             f.write(f"{timestamp} backup: {repo} (duration: {duration})\n")
 
 
