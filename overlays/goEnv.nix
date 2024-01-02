@@ -16,7 +16,6 @@ self: super:
       gotools # godoc (doc web server), goimports
       govulncheck
 
-      go2nix
       pprof
     ];
   };
