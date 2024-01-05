@@ -41,8 +41,7 @@
       nixpkgsFor = pkgImport nixpkgs-unstable;
     in
     {
-      # TODO: commented this out. Is this useful?
-      # packages = forAllSystems (system: nixpkgsFor."${system}");
+      packages = forAllSystems (system: nixpkgsFor."${system}");
 
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
     };
