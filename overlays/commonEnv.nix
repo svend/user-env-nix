@@ -36,7 +36,7 @@ self: super:
       gzip
       htop
       imagemagick
-      jsonnet
+      # jsonnet # TODDO 2024-01-22 FTB ruby3.1.4-nokogiri-1.13.9
       jq
       gnuplot
       ledger
