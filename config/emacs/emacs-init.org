@@ -380,12 +380,12 @@ Turn on flyspell and goto-address for all text buffers.
 (add-hook 'text-mode-hook #'variable-pitch-mode)
 #+end_src
 
-Turn on flyspell, goto-address, line numbers, and whitespace for programming
+Turn on flymake, goto-address, line numbers, and whitespace for programming
 buffers.
 
 #+begin_src emacs-lisp
 (defun my-prog-mode-hook()
-  (flyspell-prog-mode)
+  (flymake-mode)
   (goto-address-prog-mode)
   (setq show-trailing-whitespace t
         truncate-lines t))
@@ -472,7 +472,6 @@ Press =C-c C-h= to show all of these.
  :prefix-docstring "Keymap for commands that toggle various settings."
  ("a" . my-toggle-auto-hscroll-mode)
  ("b" . scroll-bar-mode)
- ("c" . flycheck-mode)
  ("f" . variable-pitch-mode)
  ("h" . global-hl-line-mode)
  ("l" . visual-line-mode)
@@ -1038,16 +1037,8 @@ Add more password prompts.
         flycheck-python-pylint-executable "python3")
   (flycheck-add-mode #'yaml-ruby #'ansible-playbook-mode)
   (flycheck-add-next-checker 'chef-foodcritic 'ruby-rubocop)
-  (add-hook 'after-init-hook #'global-flycheck-mode))
-#+end_src
-
-** flymake-shellcheck
-
-#+begin_src emacs-lisp
-(use-package flymake-shellcheck
-  :commands flymake-shellcheck-load
-  :init
-  (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
+  ;; (add-hook 'after-init-hook #'global-flycheck-mode)
+  )
 #+end_src
 
 ** git
@@ -1681,7 +1672,6 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
   :config
   (defun my-ruby-mode-defaults ()
     (inf-ruby-minor-mode 1)
-    (ruby-tools-mode 1)
     ;; CamelCase aware editing operations
     (subword-mode 1))
   (add-hook 'ruby-mode-hook #'my-ruby-mode-defaults))
@@ -1847,13 +1837,6 @@ https://github.com/bbatsov/super-save#use-package
   (add-hook 'hexl-mode-hook (lambda () (super-save-mode -1))))
   :init
   (super-save-mode 1)
-#+end_src
-
-** swiper
-
-#+begin_src emacs-lisp
-(use-package swiper
-  :bind (("C-c s" . swiper)))
 #+end_src
 
 ** swiper

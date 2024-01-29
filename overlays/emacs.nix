@@ -71,7 +71,6 @@ self: super:
       company-go
       detached
       epresent
-      flymake-shellcheck # included with Emacs 29
       flycheck-rust
       flycheck-golangci-lint
       git-link
@@ -85,7 +84,6 @@ self: super:
       password-store
       pdf-tools
       ripgrep # https://github.com/nlamirault/ripgrep.el/compare/0.4.0...master
-      ruby-tools
       smartparens # https://github.com/Fuco1/smartparens/compare/1.11.0...master
       swiper # isearch with an overview
       visual-fill-column # https://github.com/joostkremers/visual-fill-column/compare/1.11...master
