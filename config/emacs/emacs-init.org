@@ -1466,8 +1466,10 @@ for count in 0..2 {
 
 #+begin_src emacs-lisp
 (use-package orderless
-  :demand t
-  :config (setq completion-styles '(orderless)))
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
 
 ** org
