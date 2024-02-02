@@ -6,13 +6,14 @@ DATE="${1:-now}"
 shift
 
 print_dates() {
-  echo -n "default:	"
-  date -d "$DATE" "$@"
-
-  for TZ in "${TZS[@]}"; do
-    echo -n "$TZ:	"
-    TZ=$TZ date -d "$DATE" "$@"
+  for TZ in "" "${TZS[@]}"; do
+    if [ -z "$TZ" ]; then
+      echo -n "local: "
+    else
+      echo -n "$TZ: "
+    fi
+    TZ=$TZ date --date "$DATE" -Iminutes "$@"
   done
 }
 
-print_dates "$@" | column -s'	' -t
+print_dates "$@" | column -t
