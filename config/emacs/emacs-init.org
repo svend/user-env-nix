@@ -1492,6 +1492,10 @@ for count in 0..2 {
         org-ellipsis "…"
         org-refile-targets '((nil :maxlevel . 9))
         org-reverse-note-order t
+
+        org-goto-interface 'outline-path-completionp ;; use mini-buffer to jump to heading
+        org-outline-path-complete-in-steps nil ;; show all heading levels
+
         org-src-ask-before-returning-to-edit-buffer nil
         org-src-preserve-indentation t
         org-src-window-setup 'current-window
