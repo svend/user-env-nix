@@ -3,7 +3,7 @@ self: super:
   goEnv = with self; super.buildEnv {
     name = "goEnv";
     paths = [
-      go
+      go_1_22
 
       # # Legacy dependency management tools
       # dep
