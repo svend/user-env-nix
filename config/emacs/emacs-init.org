@@ -554,6 +554,7 @@ Misc settings.
 ;; ediff options
 (setq ediff-split-window-function (quote split-window-horizontally))
 (setq ediff-window-setup-function (quote ediff-setup-windows-plain))
+(setq xref-search-program 'ripgrep) ;; use ripgrep for grep search
 #+end_src
 
 Wrap lines at N columns instead of 70.
