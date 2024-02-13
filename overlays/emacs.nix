@@ -40,7 +40,6 @@ self: super: {
       expand-region
       flycheck
       gnuplot
-      keycast # display key presses
       magit
       notmuch
       nov # epub reader
@@ -94,7 +93,6 @@ self: super: {
       tao-theme # monochrome dark/light theme
 
       # Modes
-      dhall-mode
       groovy-mode
       jsonnet-mode
       markdown-mode # something installs this from melpa non-stable
