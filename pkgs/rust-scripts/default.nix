@@ -1,4 +1,9 @@
-{ lib, stdenv, fetchFromGitHub, rustPlatform }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  rustPlatform,
+}:
 
 with rustPlatform;
 
@@ -18,7 +23,7 @@ buildRustPackage rec {
 
   meta = with lib; {
     description = "Various rust scripts";
-    homepage = https://github.com/svend/rust-scripts;
+    homepage = "https://github.com/svend/rust-scripts";
     license = with licenses; [ unlicense ];
     maintainers = [ ];
     platforms = platforms.all;

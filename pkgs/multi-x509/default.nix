@@ -1,4 +1,9 @@
-{ lib, stdenv, fetchFromGitHub, rustPlatform }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  rustPlatform,
+}:
 
 with rustPlatform;
 
@@ -20,9 +25,9 @@ buildRustPackage {
   # checksum can be then take from the failed build.
   cargoSha256 = "sha256-52jz9EjU+x3dp3OxpHHsk455lK1PHYC2jdGjbByvodw=";
 
-  meta = with  lib; {
+  meta = with lib; {
     description = "Run a command on each x509 certificate";
-    homepage = https://github.com/svend/multi-x509;
+    homepage = "https://github.com/svend/multi-x509";
     license = with licenses; [ unlicense ];
     maintainers = [ ];
     platforms = platforms.all;

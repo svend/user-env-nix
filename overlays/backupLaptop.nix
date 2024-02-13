@@ -3,15 +3,14 @@ let
   systemdDir = "etc/xdg/systemd/user";
 in
 {
-  backupLaptopService =
-    super.writeTextDir "${systemdDir}/backup-laptop.service" ''
-      [Unit]
-      Description=Laptop backup service
+  backupLaptopService = super.writeTextDir "${systemdDir}/backup-laptop.service" ''
+    [Unit]
+    Description=Laptop backup service
 
-      [Service]
-      Type=oneshot
-      ExecStart=${self.myScripts}/bin/backup-laptop /run/media/svend/usb-samsung-1tb/restic-repo
-    '';
+    [Service]
+    Type=oneshot
+    ExecStart=${self.myScripts}/bin/backup-laptop /run/media/svend/usb-samsung-1tb/restic-repo
+  '';
 
   backupLaptopTimer = super.writeTextDir "${systemdDir}/backup-laptop.timer" ''
     [Unit]
@@ -26,11 +25,13 @@ in
     WantedBy=timers.target
   '';
 
-  backupLaptopUnits = with self; super.buildEnv {
-    name = "systemdServices";
-    paths = [
-      backupLaptopTimer
-      backupLaptopService
-    ];
-  };
+  backupLaptopUnits =
+    with self;
+    super.buildEnv {
+      name = "systemdServices";
+      paths = [
+        backupLaptopTimer
+        backupLaptopService
+      ];
+    };
 }

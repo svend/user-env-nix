@@ -1,4 +1,1 @@
-self: super:
-{
-  aspellWithDicts = super.aspellWithDicts (ps: with ps; [ en ]);
-}
+self: super: { aspellWithDicts = super.aspellWithDicts (ps: with ps; [ en ]); }

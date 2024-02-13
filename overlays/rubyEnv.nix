@@ -1,9 +1,8 @@
-self: super:
-{
-  rubyEnv = with self; super.buildEnv {
-    name = "rubyEnv";
-    paths = [
-      ruby
-    ];
-  };
+self: super: {
+  rubyEnv =
+    with self;
+    super.buildEnv {
+      name = "rubyEnv";
+      paths = [ ruby ];
+    };
 }

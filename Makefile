@@ -17,4 +17,4 @@ emacs:
 	EMACSLOADPATH= result/bin/emacs &
 
 format:
-	nixpkgs-fmt .
+	nix run nixpkgs#nixfmt-rfc-style --  --verify .

@@ -1,37 +1,35 @@
-self: super:
-{
-  emacsConfig = super.stdenv.mkDerivation
-    {
-      name = "emacs-config";
-      buildInputs = [ self.emacs29 ];
-      src = ../config/emacs;
+self: super: {
+  emacsConfig = super.stdenv.mkDerivation {
+    name = "emacs-config";
+    buildInputs = [ self.emacs29 ];
+    src = ../config/emacs;
 
-      unpackPhase = ''
-        cp -r $src/* .
-      '';
+    unpackPhase = ''
+      cp -r $src/* .
+    '';
 
-      buildPhase = ''
-        emacs \
-          --batch \
-          --load ob-tangle \
-          --eval "(org-babel-tangle-file \"emacs-init.org\" \"init.el\" \"emacs-lisp\")"
-      '';
+    buildPhase = ''
+      emacs \
+        --batch \
+        --load ob-tangle \
+        --eval "(org-babel-tangle-file \"emacs-init.org\" \"init.el\" \"emacs-lisp\")"
+    '';
 
-      installPhase = ''
-        mkdir -p $out/share/emacs/site-lisp
-        cp init.el $out/share/emacs/site-lisp/default.el
-        cp -r themes $out/share/emacs/site-lisp/
-      '';
-    };
+    installPhase = ''
+      mkdir -p $out/share/emacs/site-lisp
+      cp init.el $out/share/emacs/site-lisp/default.el
+      cp -r themes $out/share/emacs/site-lisp/
+    '';
+  };
 
-  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs29).emacsWithPackages (epkgs:
+  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs29).emacsWithPackages (
+    epkgs:
     [
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
       self.myPkgs
-    ] ++
-    (with epkgs.melpaStablePackages;
-    [
+    ]
+    ++ (with epkgs.melpaStablePackages; [
       ace-link
       ace-window
       aggressive-indent
@@ -65,8 +63,8 @@ self: super:
       nginx-mode
       terraform-mode
       yaml-mode
-    ]) ++
-    (with epkgs.melpaPackages; [
+    ])
+    ++ (with epkgs.melpaPackages; [
       blacken # support for python "black" code-formatter
       company-go
       detached
@@ -103,8 +101,8 @@ self: super:
       nix-mode
       rust-mode # https://github.com/rust-lang/rust-mode/compare/0.4.0...master
       toml-mode
-    ]) ++
-    (with epkgs.elpaPackages; [
+    ])
+    ++ (with epkgs.elpaPackages; [
       csv-mode
       eglot # language server support
       modus-themes # well-designed dark/light theme

@@ -72,12 +72,14 @@ in
     WantedBy=mbsync.service
   '';
 
-  mailSyncUnits = with self; super.buildEnv {
-    name = "systemdServices";
-    paths = [
-      mbsyncTimer
-      mbsyncService
-      commitMailService
-    ];
-  };
+  mailSyncUnits =
+    with self;
+    super.buildEnv {
+      name = "systemdServices";
+      paths = [
+        mbsyncTimer
+        mbsyncService
+        commitMailService
+      ];
+    };
 }

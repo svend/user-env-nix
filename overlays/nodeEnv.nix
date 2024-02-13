@@ -1,9 +1,8 @@
-self: super:
-{
-  nodeEnv = with self; super.buildEnv {
-    name = "nodeEnv";
-    paths = [
-      nodejs
-    ];
-  };
+self: super: {
+  nodeEnv =
+    with self;
+    super.buildEnv {
+      name = "nodeEnv";
+      paths = [ nodejs ];
+    };
 }
