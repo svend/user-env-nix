@@ -126,6 +126,7 @@ self: super: {
 
           # Nix
           nix-info # https://github.com/NixOS/nix/issues/3085
+          nixfmt-rfc-style
           nixpkgs-fmt
         ]
         ++ lib.optionals stdenv.isLinux [
