@@ -705,6 +705,7 @@ Continue to show region in inactive windows.
 (defun my-insert-date (arg)
   "Insert date string"
   (interactive "p")
+  (if (region-active-p) (delete-region (region-beginning) (region-end)))
   (cond ((= arg 1)
          (insert (format-time-string "%F")))
         ((= arg 4)
