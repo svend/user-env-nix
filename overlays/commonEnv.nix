@@ -64,6 +64,7 @@ self: super: {
           watch
           xsv # csv utility
           xz # file compression
+          yq-go # like jq, but for YAML
           zookeeper
           zshWithConfig
           haskellPackages.ShellCheck

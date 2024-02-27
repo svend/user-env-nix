@@ -9,6 +9,7 @@ self: super: {
         kubectl
         kubernetes-helm
         kustomize
+        stern # follow logs
       ];
     };
 }
