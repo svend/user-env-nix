@@ -1,7 +1,7 @@
 self: super: {
   emacsConfig = super.stdenv.mkDerivation {
     name = "emacs-config";
-    buildInputs = [ self.emacs29 ];
+    buildInputs = [ self.emacs ];
     src = ../config/emacs;
 
     unpackPhase = ''
