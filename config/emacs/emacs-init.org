@@ -37,16 +37,12 @@ Maybe use https://github.com/renzmann/treesit-auto ?
 
 #+begin_src emacs-lisp
 (setq major-mode-remap-alist
-      '((awk-mode . awk-ts-mode)
-        (bash-mode . bash-ts-mode)
+      '((bash-mode . bash-ts-mode)
         (conf-toml-mode . toml-ts-mode)
         (dockerfile-mode . dockerfile-ts-mode)
         (go-mod-mode . go-mod-ts-mode)
         (go-mode . go-ts-mode)
         (json-mode . json-ts-mode)
-        (latex-mode . latex-ts-mode)
-        (lua-mode . lua-ts-mode)
-        (makefile-mode . makefile-ts-mode)
         (python-mode . python-ts-mode)
         (ruby-mode . ruby-ts-mode)
         (rust-mode . rust-ts-mode)
