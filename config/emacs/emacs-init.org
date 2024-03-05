@@ -980,7 +980,8 @@ Add more password prompts.
                     (:enabled :json-false)))
                   ;; https://github.com/golang/tools/blob/master/gopls/doc/settings.md
                   :gopls
-                  (:usePlaceholders t)))
+                  (:usePlaceholders t
+                                    :gofumpt t)))
 
   (add-hook 'eglot-managed-mode-hook #'my-eglot-hook)
   :hook
@@ -1184,14 +1185,9 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
 (use-package go-mode
   :defer t
   :config
-  (setq gofmt-command "gofumpt")
-
   (defun my-go-mode-defaults ()
     ;; CamelCase aware editing operations
-    (subword-mode 1)
-    ;; Use eglot-format-buffer hook
-    ;; (add-hook 'before-save-hook #'gofmt-before-save nil t)
-    )
+    (subword-mode 1))
   (add-hook 'go-mode-hook #'my-go-mode-defaults)
   (setq go-ts-mode-hook #'go-mode-hook))
 #+end_src
@@ -1721,11 +1717,7 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
 
 #+begin_src emacs-lisp
 (use-package rust-mode
-  :defer t
-  :config
-  ;; Use eglot-format-buffer hook
-  ;; (setq rust-format-on-save t)
-  )
+  :defer t)
 #+end_src
 
 ** savehist
