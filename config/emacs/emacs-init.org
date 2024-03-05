@@ -49,6 +49,11 @@ Maybe use https://github.com/renzmann/treesit-auto ?
         (sh-mode . bash-ts-mode)
         (toml-mode . toml-ts-mode)
         (yaml-mode . yaml-ts-mode)))
+
+;; TODO (setq go-ts-mode-hook #'go-mode-hook) doesn't work
+(setq go-ts-mode-hook (lambda () (run-hook-with-args #'go-mode-hook)))
+(setq yaml-ts-mode-hook (lambda () (run-hook-with-args #'yaml-mode-hook)))
+(setq rust-ts-mode-hook (lambda () (run-hook-with-args #'rust-mode-hook)))
 #+end_src
 
 * icomplete
@@ -2065,8 +2070,7 @@ layouts.
     (setq-local outline-regexp yaml-outline-regex)
     (setq-local outline-level #'yaml-outline-level))
 
-  (add-hook 'yaml-mode-hook #'my-yaml-mode-hook)
-  (setq yaml-ts-mode-hook #'yaml-mode-hook))
+  (add-hook 'yaml-mode-hook #'my-yaml-mode-hook))
 #+end_src
 
 ** yasnippet
