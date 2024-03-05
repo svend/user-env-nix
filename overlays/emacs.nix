@@ -28,6 +28,7 @@ self: super: {
       self.emacsConfig
       self.unzip # required for Emacs nov.el package
       self.myPkgs
+      epkgs.treesit-grammars.with-all-grammars
     ]
     ++ (with epkgs.melpaStablePackages; [
       ace-link
