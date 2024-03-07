@@ -14,8 +14,7 @@ update-lockfile:
 	nix flake update
 
 emacs:
-	EMACSLOADPATH= result/bin/emacs &
+	env -i result/bin/emacs &
 
 format:
 	nixfmt --verify .
-	# nix run nixpkgs#nixfmt-rfc-style --  --verify .
