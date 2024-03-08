@@ -1,6 +1,6 @@
-self: super: {
-  gotools = super.gotools.overrideAttrs (old: rec {
+final: prev: {
+  gotools = prev.gotools.overrideAttrs (old: rec {
     # Do not install bundle (conflicts with ruby bundler)
-    excludedPackages = with super; "\\(" + pkgs.lib.concatStringsSep "\\|" ([ "bundle" ]) + "\\)";
+    excludedPackages = with prev; "\\(" + pkgs.lib.concatStringsSep "\\|" ([ "bundle" ]) + "\\)";
   });
 }

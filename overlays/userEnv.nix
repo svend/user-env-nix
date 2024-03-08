@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   myPkgs =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "myPkgs";
       paths = [
         myScripts
@@ -18,8 +18,8 @@ self: super: {
     };
 
   userEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "userEnv";
       paths =
         [

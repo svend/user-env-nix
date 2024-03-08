@@ -1,12 +1,12 @@
-self: super: {
-  zshWithConfig = super.buildEnv {
+final: prev: {
+  zshWithConfig = prev.buildEnv {
     name = "zshWithConfig";
-    buildInputs = [ super.makeWrapper ];
-    paths = [ self.zsh ];
+    buildInputs = [ prev.makeWrapper ];
+    paths = [ final.zsh ];
     postBuild = ''
       unlink "$out/bin"
       mkdir -p "$out/bin"
-      for path in "${self.zsh}"/bin/*; do
+      for path in "${final.zsh}"/bin/*; do
         bin=$(basename "$path")
         makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${../config/zsh}"
       done

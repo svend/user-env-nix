@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   kubernetesEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "kubernetesEnv";
       paths = [
         kind

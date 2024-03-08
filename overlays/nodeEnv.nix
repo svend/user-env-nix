@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   nodeEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "nodeEnv";
       paths = [ nodejs ];
     };

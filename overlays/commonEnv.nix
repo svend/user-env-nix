@@ -1,10 +1,10 @@
-self: super: {
-  # iosevka-bin = super.iosevka-bin.override { variant = "sgr-iosevka"; };
-  iosevka-aile-bin = super.iosevka-bin.override { variant = "aile"; };
+final: prev: {
+  # iosevka-bin = prev.iosevka-bin.override { variant = "sgr-iosevka"; };
+  iosevka-aile-bin = prev.iosevka-bin.override { variant = "aile"; };
 
   commonEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "commonEnv";
       paths =
         [
@@ -79,11 +79,11 @@ self: super: {
           age
           rage
           age-plugin-yubikey
-          (self.passage.override {
+          (final.passage.override {
             age = age;
             git = gitWithConfig;
           }) # requires homebrew gnu-getopt
-          (self.pass.override { git = gitWithConfig; })
+          (final.pass.override { git = gitWithConfig; })
           pwgen
           qrencode
           yubikey-manager

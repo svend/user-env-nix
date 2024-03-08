@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   clojureEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "clojureEnv";
       paths = [
         clojure

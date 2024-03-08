@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   rubyEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "rubyEnv";
       paths = [ ruby ];
     };

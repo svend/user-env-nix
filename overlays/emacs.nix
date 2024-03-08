@@ -1,7 +1,7 @@
-self: super: {
-  emacsConfig = super.stdenv.mkDerivation {
+final: prev: {
+  emacsConfig = prev.stdenv.mkDerivation {
     name = "emacs-config";
-    buildInputs = [ self.emacs ];
+    buildInputs = [ final.emacs ];
     src = ../config/emacs;
 
     unpackPhase = ''
@@ -22,12 +22,12 @@ self: super: {
     '';
   };
 
-  emacsWithConfig = (super.pkgs.emacsPackagesFor self.emacs29).emacsWithPackages (
+  emacsWithConfig = (prev.pkgs.emacsPackagesFor final.emacs29).emacsWithPackages (
     epkgs:
     [
-      self.emacsConfig
-      self.unzip # required for Emacs nov.el package
-      self.myPkgs
+      final.emacsConfig
+      final.unzip # required for Emacs nov.el package
+      final.myPkgs
       epkgs.treesit-grammars.with-all-grammars
     ]
     ++ (with epkgs.melpaStablePackages; [

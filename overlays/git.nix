@@ -1,14 +1,14 @@
-self: super: {
+final: prev: {
   gitConfig =
     let
-      gitIgnore = super.fetchFromGitHub {
+      gitIgnore = prev.fetchFromGitHub {
         owner = "github";
         repo = "gitignore";
         rev = "218a941be92679ce67d0484547e3e142b2f5f6f0";
         sha256 = "sha256-iNpWJxBO5UZoNtfxu27u2wJxTyphk51kywn3WEkHVPk=";
       };
     in
-    super.runCommand "gitConfig"
+    prev.runCommand "gitConfig"
       {
         config = ../config/git/config;
         localIgnore = ../config/git/ignore.local;
@@ -22,16 +22,16 @@ self: super: {
         done
       '';
 
-  gitWithConfig = super.buildEnv {
+  gitWithConfig = prev.buildEnv {
     name = "gitWithConfig";
-    buildInputs = [ super.makeWrapper ];
-    paths = [ self.git ];
+    buildInputs = [ prev.makeWrapper ];
+    paths = [ final.git ];
     postBuild = ''
       unlink "$out/bin"
       mkdir -p "$out/bin"
-      for path in "${self.git}"/bin/*; do
+      for path in "${final.git}"/bin/*; do
         bin=$(basename "$path")
-        makeWrapper "$path" "$out/bin/$bin" --set XDG_CONFIG_HOME "${self.gitConfig}"
+        makeWrapper "$path" "$out/bin/$bin" --set XDG_CONFIG_HOME "${final.gitConfig}"
       done
     '';
   };

@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   rustEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "rustEnv";
       paths =
         [

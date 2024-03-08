@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   goEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "goEnv";
       paths = [
         # Default version of go:

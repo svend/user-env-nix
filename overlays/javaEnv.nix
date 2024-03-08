@@ -1,7 +1,7 @@
-self: super: {
+final: prev: {
   javaEnv =
-    with self;
-    super.buildEnv {
+    with final;
+    prev.buildEnv {
       name = "javaEnv";
       paths = [ maven ];
     };

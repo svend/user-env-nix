@@ -1,10 +1,10 @@
-self: super: {
-  # age-plugin-yubikey = super.rustPlatform.buildRustPackage rec {
-  #   inherit (super.age-plugin-yubikey.drvAttrs) pname nativeBuildInputs buildInputs;
-  #   inherit (super.age-plugin-yubikey) meta;
+final: prev: {
+  # age-plugin-yubikey = prev.rustPlatform.buildRustPackage rec {
+  #   inherit (prev.age-plugin-yubikey.drvAttrs) pname nativeBuildInputs buildInputs;
+  #   inherit (prev.age-plugin-yubikey) meta;
   #   version = "0.3.2";
 
-  #   src = super.fetchFromGitHub {
+  #   src = prev.fetchFromGitHub {
   #     owner = "str4d";
   #     repo = pname;
   #     rev = "v${version}";

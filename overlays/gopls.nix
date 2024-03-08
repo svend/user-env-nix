@@ -1,11 +1,11 @@
 # TODO: Difficult to override go modules
 # Bug report: https://github.com/NixOS/nixpkgs/issues/86349
 # Workaround: https://discourse.nixos.org/t/inconsistent-vendoring-in-buildgomodule-when-overriding-source/9225/3
-self: super: {
+final: prev: {
   # TODO: Build with go 1.22
   # https://github.com/NixOS/nixpkgs/pull/290212
   # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/development/tools/language-servers/gopls/default.nix
-  gopls = with super; buildGo122Module rec {
+  gopls = with prev; buildGo122Module rec {
     pname = "gopls";
     version = "0.15.1";
 
