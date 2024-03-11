@@ -1,6 +1,6 @@
 final: prev: {
   # iosevka-bin = prev.iosevka-bin.override { variant = "sgr-iosevka"; };
-  iosevka-aile-bin = prev.iosevka-bin.override { variant = "aile"; };
+  iosevka-aile-bin = prev.iosevka-bin.override { variant = "Aile"; };
 
   commonEnv =
     with final;

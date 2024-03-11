@@ -21,10 +21,6 @@ final: prev: {
           }
         )
 
-        # python310 # default
-        # python39 # is the default
-        # python38
-
         pipenv # pipenv needs to be outside python.buildEnv
       ];
     };
