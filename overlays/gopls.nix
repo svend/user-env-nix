@@ -4,6 +4,7 @@
 final: prev: {
   # # TODO: Build with go 1.22
   # # https://github.com/NixOS/nixpkgs/pull/290212
+  # # https://nixpk.gs/pr-tracker.html?pr=290212
   # # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/development/tools/language-servers/gopls/default.nix
   # gopls = with prev; buildGo122Module rec {
   #   pname = "gopls";
