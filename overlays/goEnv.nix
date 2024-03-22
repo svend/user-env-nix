@@ -6,8 +6,7 @@ final: prev: {
       paths = [
         # Default version of go:
         # https://search.nixos.org/packages?channel=unstable&show=go&from=0&size=50&sort=relevance&type=packages&query=go
-        # go
-        go_1_22
+        go
 
         # # Legacy dependency management tools
         # dep
