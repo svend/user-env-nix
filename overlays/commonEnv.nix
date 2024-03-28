@@ -17,7 +17,7 @@ final: prev: {
           coreutils
           cue
           cuelsp
-          # d2 # 2024-03-22 FTB
+          # d2 # 2024-03-28 FTB
           dhall
           dhall-json
           diffutils
@@ -38,7 +38,7 @@ final: prev: {
           gzip
           htop
           imagemagick
-          # jsonnet # TODO 2024-02-22 FTB ruby3.1.4-nokogiri-1.13.9
+          jsonnet # TODO 2024-02-22 FTB ruby3.1.4-nokogiri-1.13.9
           jq
           gnuplot
           ledger
@@ -107,7 +107,7 @@ final: prev: {
           vault
           wget
           whois
-          # wrk2 # HTTP benchmarking tool # 2023-07-24 FTB on darwin aarch64
+          # wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64
 
           # Terraform
           # terraform # Using tfenv from homebrew
@@ -128,7 +128,6 @@ final: prev: {
           # Nix
           nix-info # https://github.com/NixOS/nix/issues/3085
           nixfmt-rfc-style
-          nixpkgs-fmt
         ]
         ++ lib.optionals stdenv.isLinux [
           gitAndTools.git-annex # slow to build, linux has pre-built binaries
