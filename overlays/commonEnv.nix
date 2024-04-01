@@ -17,7 +17,7 @@ final: prev: {
           coreutils
           cue
           cuelsp
-          # d2 # 2024-03-28 FTB
+          d2 # 2024-03-28 FTB
           dhall
           dhall-json
           diffutils
@@ -38,7 +38,7 @@ final: prev: {
           gzip
           htop
           imagemagick
-          jsonnet # TODO 2024-02-22 FTB ruby3.1.4-nokogiri-1.13.9
+          jsonnet
           jq
           gnuplot
           ledger
