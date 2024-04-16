@@ -79,6 +79,7 @@ nix flake update
 Update a single input:
 
 ``` shell
+nix flake metadata
 nix flake lock --update-input nixpkgs-unstable
 ```
 
