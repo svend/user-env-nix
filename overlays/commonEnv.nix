@@ -17,7 +17,7 @@ final: prev: {
           coreutils
           cue
           cuelsp
-          d2 # 2024-03-28 FTB
+          d2
           dhall
           dhall-json
           diffutils
