@@ -8,8 +8,9 @@ KEY=$3
 
 scp "$CERT" "$TARGET":
 scp "$KEY" "$TARGET":
+sleep 1 # files may not be available immediately
 
-# Import new certificate
+# Import new certificate and key
 ssh "$TARGET" "/certificate/remove server-new" || true
 ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $CERT)"
@@ -17,12 +18,12 @@ ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $KEY) pa
 ssh "$TARGET" "/file/remove $(basename $KEY)"
 
 # Point to new certificate
-ssh "$TARGET" "/ip/service/set www-ssl certificate=server-new disabled=no tls-version=only-1.2"
-ssh "$TARGET" "/ip/service/set api-ssl certificate=server-new disabled=no tls-version=only-1.2"
+ssh "$TARGET" "/ip/service/set www-ssl certificate=server-new"
+ssh "$TARGET" "/ip/service/set api-ssl certificate=server-new"
 
 # Move old certificate
 ssh "$TARGET" "/certificate/remove server-old" || true
-ssh "$TARGET" "/certificate/set server name=server-old"
+ssh "$TARGET" "/certificate/set server name=server-old" || true
 
 # Rename new certificate
 ssh "$TARGET" "/certificate/set server-new name=server"
