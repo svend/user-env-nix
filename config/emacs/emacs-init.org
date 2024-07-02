@@ -869,6 +869,9 @@ Add more password prompts.
                 ;; sshuttle
                 "[local sudo] Password:"
                 "\\|"
+                ;; redis-cli
+                "Please input password:"
+                "\\|"
                 ;; Java keytool
                 "Enter keystore password:"))
 
