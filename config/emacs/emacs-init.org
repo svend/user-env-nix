@@ -182,7 +182,7 @@ Larger font on macOS vs Linux.
 
 Font to use.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (progn
   (set-face-attribute 'default nil :family "Iosevka Term" :width 'expanded)
   (set-face-attribute 'fixed-pitch nil :family "Iosevka Term" :width 'expanded)
@@ -203,7 +203,7 @@ Font to use.
   (set-face-attribute 'variable-pitch nil :family "Iosevka Aile"))
 #+end_src
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (progn
   (set-face-attribute 'default nil :family "DejaVu Sans Mono" :width 'normal)
   (set-face-attribute 'fixed-pitch nil :family "DejaVu Sans Mono" :width 'normal)

@@ -53,7 +53,13 @@ systemctl --user daemon-reload
 NixOS adds `~/.nix-profile/etc/xdg/systemd/user` to the user unit search path.
 
 ``` shell
-systemd-path systemd-search-user-unit
+systemd-path systemd-search-user-unit | tr : '\n'
+```
+
+Check for failed units.
+
+``` shell
+systemctl --user --failed
 ```
 
 To start from scratch:
