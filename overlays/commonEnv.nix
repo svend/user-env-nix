@@ -75,7 +75,7 @@ final: prev: {
           gitWithConfig
           mercurial
 
-          # Password management
+          # Encryption/password management
           age
           rage
           age-plugin-yubikey
@@ -87,6 +87,7 @@ final: prev: {
           pwgen
           qrencode
           yubikey-manager
+          bitwarden-cli
 
           # Network tools
           # netcat # use nmap/ncat
