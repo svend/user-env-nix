@@ -87,7 +87,6 @@ final: prev: {
           pwgen
           qrencode
           yubikey-manager
-          bitwarden-cli
 
           # Network tools
           # netcat # use nmap/ncat
@@ -131,6 +130,7 @@ final: prev: {
           nixfmt-rfc-style
         ]
         ++ lib.optionals stdenv.isLinux [
+          bitwarden-cli # FTB on darwin: FileNotFoundError: [Errno 2] No such file or directory: 'xcrun'
           gitAndTools.git-annex # slow to build, linux has pre-built binaries
           # TODO: installing inetutils results in ping without root permissions
           # inetutils # (dnsdomainname ftp hostname ifconfig logger ping ping6 rcp rexec rlogin rsh talk telnet tftp traceroute whois)
