@@ -96,7 +96,7 @@ def forget(repo, dry_run):
             "restic",
             "forget",
             "--prune",
-            "--key-hourlly=24",
+            "--key-hourly=24",
             "--keep-daily=7",
             "--keep-weekly=5",
             "--keep-monthly=12",
