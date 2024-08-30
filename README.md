@@ -66,8 +66,8 @@ To start from scratch:
 
 ``` shell
 rm -rf ~/.config/systemd/user
-systemctl --user enable backup-laptop.timer
-systemctl --user enable mbsync.timer
+systemctl --user enable --now backup-laptop.timer
+systemctl --user enable --now mbsync.timer
 systemctl --user add-wants mbsync.service commit-mail@fastmail.service
 systemctl --user add-wants mbsync.service commit-mail@gmail.service
 systemctl --user daemon-reload
