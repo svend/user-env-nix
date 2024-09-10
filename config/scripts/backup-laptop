@@ -77,7 +77,9 @@ def backup(repo, dry_run):
 
     start_time = time.time()
     run_command(
-        ["restic", "backup", "--one-file-system"] + excludes + targets(),
+        ["ionice", "-c2", "nice", "-n19", "restic", "backup", "--one-file-system"]
+        + excludes
+        + targets(),
         dry_run=dry_run,
     )
     end_time = time.time()
@@ -93,6 +95,10 @@ def forget(repo, dry_run):
     start_time = time.time()
     run_command(
         [
+            "ionice",
+            "-c2",
+            "nice",
+            "-n19",
             "restic",
             "forget",
             "--prune",
