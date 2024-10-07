@@ -38,7 +38,7 @@ final: prev: {
           gzip
           htop
           imagemagick
-          jsonnet
+          # jsonnet # FTB (buf)
           jq
           gnuplot
           ledger
