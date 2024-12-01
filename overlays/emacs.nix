@@ -47,7 +47,6 @@ final: prev: {
       package-lint
       py-isort
       super-save
-      use-package
       yasnippet
 
       # Modes
@@ -58,7 +57,7 @@ final: prev: {
       go-mode
       haskell-mode
       json-mode
-      ledger-mode
+      # ledger-mode # 2024-12-01
       lua-mode
       nginx-mode
       terraform-mode
@@ -96,6 +95,7 @@ final: prev: {
       # Modes
       groovy-mode
       jsonnet-mode
+      ledger-mode
       markdown-mode # something installs this from melpa non-stable
       nix-mode
       rust-mode # https://github.com/rust-lang/rust-mode/compare/0.4.0...master
@@ -106,6 +106,7 @@ final: prev: {
       eglot # language server support
       modus-themes # well-designed dark/light theme
       project # required by eglot
+      use-package
     ])
   );
 }
