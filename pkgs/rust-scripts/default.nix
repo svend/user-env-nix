@@ -19,7 +19,7 @@ buildRustPackage rec {
     sha256 = "sha256-MehfNWSNCTSw4rZ4QnoMvYSwU6cDRyVFyWw0z3Qsp0U=";
   };
 
-  cargoSha256 = "sha256-zSdVAUPGKSlD2Xma4piCyHO9eHcIJd+o3xMZCcIGSjk=";
+  cargoHash = "sha256-zSdVAUPGKSlD2Xma4piCyHO9eHcIJd+o3xMZCcIGSjk=";
 
   meta = with lib; {
     description = "Various rust scripts";

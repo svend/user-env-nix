@@ -23,7 +23,7 @@ buildRustPackage {
   # crate sources of this package. Currently it is obtained by inserting a fake
   # checksum into the expression and building the package once. The correct
   # checksum can be then take from the failed build.
-  cargoSha256 = "sha256-52jz9EjU+x3dp3OxpHHsk455lK1PHYC2jdGjbByvodw=";
+  cargoHash = "sha256-52jz9EjU+x3dp3OxpHHsk455lK1PHYC2jdGjbByvodw=";
 
   meta = with lib; {
     description = "Run a command on each x509 certificate";
