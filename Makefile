@@ -8,7 +8,7 @@ install-local:
 	nix profile install .#userEnv
 
 upgrade:
-	nix profile upgrade --refresh --verbose '.*\.userEnv'
+	nix profile upgrade --refresh userEnv
 
 update-lockfile:
 	nix flake update
