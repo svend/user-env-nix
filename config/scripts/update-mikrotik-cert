@@ -6,26 +6,43 @@ TARGET=$1
 CERT=$2
 KEY=$3
 
+echo "existing certificates"
+ssh "$TARGET" "/certificate/print"
+
 scp "$CERT" "$TARGET":
 scp "$KEY" "$TARGET":
 sleep 1 # files may not be available immediately
 
 # Import new certificate and key
-ssh "$TARGET" "/certificate/remove server-new" || true
-ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\""
+ssh "$TARGET" "/certificate/remove [find name=server-new]"
+OUTPUT=$(ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\"")
+echo "$OUTPUT"
 ssh "$TARGET" "/file/remove $(basename $CERT)"
+
+echo "imported cert"
+ssh "$TARGET" "/certificate/print"
+
 ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $KEY) passphrase=\"\""
 ssh "$TARGET" "/file/remove $(basename $KEY)"
+
+echo "imported key"
+ssh "$TARGET" "/certificate/print"
+
+if echo "$OUTPUT" | grep -q 'certificates-imported: 0'; then
+    echo "no certificates imported"
+    exit 1
+fi
 
 # Point to new certificate
 ssh "$TARGET" "/ip/service/set www-ssl certificate=server-new"
 ssh "$TARGET" "/ip/service/set api-ssl certificate=server-new"
 
 # Move old certificate
-ssh "$TARGET" "/certificate/remove server-old" || true
+ssh "$TARGET" "/certificate/remove [find name=server-old]"
 ssh "$TARGET" "/certificate/set server name=server-old" || true
 
 # Rename new certificate
 ssh "$TARGET" "/certificate/set server-new name=server"
 
-ssh "$TARGET" "/certificate/print detail"
+echo "complete cert"
+ssh "$TARGET" "/certificate/print"
