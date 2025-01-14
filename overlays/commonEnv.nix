@@ -135,6 +135,7 @@ final: prev: {
           # TODO: installing inetutils results in ping without root permissions
           # inetutils # (dnsdomainname ftp hostname ifconfig logger ping ping6 rcp rexec rlogin rsh talk telnet tftp traceroute whois)
           isync
+          joplin-desktop
           gthumb
           librecad
           notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
