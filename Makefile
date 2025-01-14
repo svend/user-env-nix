@@ -17,4 +17,4 @@ emacs:
 	env -i result/bin/emacs &
 
 format:
-	nixfmt --verify .
+	find -name '*.nix' | xargs nixfmt --verify
