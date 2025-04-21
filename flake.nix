@@ -50,11 +50,14 @@
           }
         );
 
+      nixosFor = pkgImport nixos;
       nixpkgsFor = pkgImport nixpkgs-unstable;
     in
     {
       packages = forAllSystems (system: nixpkgsFor."${system}");
 
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
+
+      formatter = forAllSystems (system: nixosFor."${system}".nixfmt-rfc-style);
     };
 }
