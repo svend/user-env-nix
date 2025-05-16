@@ -62,7 +62,6 @@ final: prev: {
           tree
           unzip
           watch
-          xsv # csv utility
           xz # file compression
           yq-go # like jq, but for YAML
           zookeeper
