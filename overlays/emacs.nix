@@ -22,7 +22,7 @@ final: prev: {
     '';
   };
 
-  emacsWithConfig = (prev.pkgs.emacsPackagesFor final.emacs29).emacsWithPackages (
+  emacsWithConfig = (prev.pkgs.emacsPackagesFor final.emacs).emacsWithPackages (
     epkgs:
     [
       final.emacsConfig

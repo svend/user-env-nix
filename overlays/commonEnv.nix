@@ -52,7 +52,7 @@ final: prev: {
           redis
           restic
           ripgrep
-          rust-scripts
+          # rust-scripts # need to fix cargo keyerror
           sops
           sqlfluff # format SQL
           steampipe
