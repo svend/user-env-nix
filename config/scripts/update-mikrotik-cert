@@ -17,13 +17,11 @@ sleep 1 # files may not be available immediately
 ssh "$TARGET" "/certificate/remove [find name=server-new]"
 OUTPUT=$(ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\"")
 echo "$OUTPUT"
-ssh "$TARGET" "/file/remove $(basename $CERT)"
 
 echo "imported cert"
 ssh "$TARGET" "/certificate/print"
 
 ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $KEY) passphrase=\"\""
-ssh "$TARGET" "/file/remove $(basename $KEY)"
 
 echo "imported key"
 ssh "$TARGET" "/certificate/print"
@@ -34,8 +32,8 @@ if echo "$OUTPUT" | grep -q 'certificates-imported: 0'; then
 fi
 
 # Point to new certificate
-ssh "$TARGET" "/ip/service/set www-ssl certificate=server-new"
-ssh "$TARGET" "/ip/service/set api-ssl certificate=server-new"
+ssh "$TARGET" "/ip/service/set [find name=api-ssl and dynamic=no] certificate=server-new"
+ssh "$TARGET" "/ip/service/set [find name=www-ssl and dynamic=no] certificate=server-new"
 
 # Move old certificate
 ssh "$TARGET" "/certificate/remove [find name=server-old]"
