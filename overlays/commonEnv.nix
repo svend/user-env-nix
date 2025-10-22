@@ -21,7 +21,7 @@ final: prev: {
           dhall
           dhall-json
           diffutils
-          dig
+          # dig
           dtach
           duckdb # query CSV files with SQL
           etcd
@@ -103,7 +103,7 @@ final: prev: {
           openssl
           rsync
           step-cli
-          vault
+          # vault
           wget
           whois
           # wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64
