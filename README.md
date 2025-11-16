@@ -62,13 +62,19 @@ Check for failed units.
 systemctl --user --failed
 ```
 
+Check for broken unit files.
+
+```shell
+find ~/.config/systemd/user -xtype l
+```
+
 To start from scratch:
 
 ``` shell
-rm -rf ~/.config/systemd/user
-systemctl --user enable --now backup-laptop.timer
-systemctl --user enable --now mbsync.timer
-systemctl --user add-wants mbsync.service commit-mail@fastmail.service
+# rm -rf ~/.config/systemd/user
+systemctl --user enable --force --now backup-laptop.timer
+systemctl --user enable --force --now mbsync.timer
+systemctl --user add-wants --force mbsync.service commit-mail@fastmail.service
 systemctl --user daemon-reload
 systemctl --user --failed
 ```

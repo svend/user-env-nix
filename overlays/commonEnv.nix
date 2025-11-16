@@ -21,7 +21,7 @@ final: prev: {
           dhall
           dhall-json
           diffutils
-          # dig
+          dnsutils # bind: dev, dig, nslookup
           dtach
           duckdb # query CSV files with SQL
           etcd
