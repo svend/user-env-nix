@@ -38,7 +38,7 @@ final: prev: {
           gzip
           htop
           imagemagick
-          # jsonnet # FTB (buf)
+          jsonnet
           jq
           gnuplot
           ledger
@@ -103,10 +103,10 @@ final: prev: {
           openssl
           rsync
           step-cli
-          # vault
+          vault
           wget
           whois
-          # wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64
+          wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64
 
           # Terraform
           # terraform # Using tfenv from homebrew
