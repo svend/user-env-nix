@@ -66,12 +66,10 @@ Check for broken unit files.
 
 ```shell
 find ~/.config/systemd/user -xtype l
-```
-
-To start from scratch:
 
 ``` shell
 # rm -rf ~/.config/systemd/user
+find ~/.config/systemd/user -xtype l | xargs rm
 systemctl --user enable --force --now backup-laptop.timer
 systemctl --user enable --force --now mbsync.timer
 systemctl --user add-wants --force mbsync.service commit-mail@fastmail.service
