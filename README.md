@@ -73,8 +73,9 @@ find ~/.config/systemd/user -xtype l | xargs rm
 systemctl --user enable --force --now backup-laptop.timer
 systemctl --user enable --force --now mbsync.timer
 systemctl --user add-wants --force mbsync.service commit-mail@fastmail.service
-# systemctl --user daemon-reload
-# systemctl --user --failed
+
+systemctl --user daemon-reload
+systemctl --user --failed
 ```
 
 ## Updating
