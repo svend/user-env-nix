@@ -103,10 +103,10 @@ final: prev: {
           openssl
           rsync
           step-cli
-          vault
+          # vault # TODO FTB 2025-12-28
           wget
           whois
-          wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64
+          # wrk2 # HTTP benchmarking tool # 2024-03-28 FTB on darwin aarch64 # 2025-12-28 marked as broken on linux arch
 
           # Terraform
           # terraform # Using tfenv from homebrew
