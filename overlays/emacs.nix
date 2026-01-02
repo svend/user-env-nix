@@ -26,7 +26,6 @@ final: prev: {
     epkgs:
     [
       final.emacsConfig
-      # final.unzip # required for Emacs nov.el package (TODO now generating a conflict, remove this line?)
       final.myPkgs
       epkgs.treesit-grammars.with-all-grammars
     ]
