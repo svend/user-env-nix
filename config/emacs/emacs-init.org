@@ -166,10 +166,8 @@ Note: setting inhibit-startup-screen has no effect when set in =share/emacs/site
 
 Enable smooth scrolling.
 
-TODO: Disabled, this doesn't make scrolling much smoother, and it slows down scrolling
-
-#+begin_src emacs-lisp :tangle no
-(pixel-scroll-mode 1)
+#+begin_src emacs-lisp
+(pixel-scroll-precision-mode 1)
 #+end_src
 
 ** Fonts
