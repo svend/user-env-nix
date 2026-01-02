@@ -1189,8 +1189,7 @@ pass show smtp.gmail.com | sed -e '1s/.*/PASSWORD/' -e '/user:/s/[^ ]*$/EMAIL/'
   (defun my-go-mode-defaults ()
     ;; CamelCase aware editing operations
     (subword-mode 1))
-  (add-hook 'go-mode-hook #'my-go-mode-defaults)
-  (setq go-ts-mode-hook #'go-mode-hook))
+  (add-hook 'go-mode-hook #'my-go-mode-defaults))
 #+end_src
 
 ** groovy-mode
@@ -1330,22 +1329,19 @@ Hides all minor-modes in the status bar behind a symbol.
 ** modus-themes
 
 #+begin_src emacs-lisp
-(use-package modus-themes
-  :ensure t
-  :config
-  (setq modus-themes-common-palette-overrides
-        '((bg-main "#fcfbfb") ; off-white background
-          (fg-line-number-inactive "gray50")
-          (fg-line-number-active fg-main)
-          (bg-line-number-inactive unspecified)
-          (bg-line-number-active unspecified)
-          (fringe unspecified) ; make the fringe invisible
-          )
-        modus-themes-italic-constructs t
-        modus-themes-org-blocks 'gray-background; gray background for org code blocks
-        modus-themes-mixed-fonts t ; esure things like org tables are fixed-pitch
-        modus-themes-variable-pitch-ui t)
-  (load-theme 'modus-operandi))
+(setq modus-themes-common-palette-overrides
+      '((bg-main "#fcfbfb") ; off-white background
+        (fg-line-number-inactive "gray50")
+        (fg-line-number-active fg-main)
+        (bg-line-number-inactive unspecified)
+        (bg-line-number-active unspecified)
+        (fringe unspecified) ; make the fringe invisible
+        )
+      modus-themes-italic-constructs t
+      modus-themes-org-blocks 'gray-background; gray background for org code blocks
+      modus-themes-mixed-fonts t ; esure things like org tables are fixed-pitch
+      modus-themes-variable-pitch-ui t)
+(load-theme 'modus-operandi)
 #+end_src
 
 ** native-complete

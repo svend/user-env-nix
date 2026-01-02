@@ -102,10 +102,6 @@ final: prev: {
     ])
     ++ (with epkgs.elpaPackages; [
       csv-mode
-      eglot # language server support
-      modus-themes # well-designed dark/light theme
-      project # required by eglot
-      use-package
     ])
   );
 }
