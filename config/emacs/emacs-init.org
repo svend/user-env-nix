@@ -50,7 +50,6 @@ Maybe use https://github.com/renzmann/treesit-auto ?
         (toml-mode . toml-ts-mode)
         (yaml-mode . yaml-ts-mode)))
 
-;; TODO (setq go-ts-mode-hook #'go-mode-hook) doesn't work
 (setq go-ts-mode-hook (lambda () (run-hook-with-args #'go-mode-hook)))
 (setq yaml-ts-mode-hook (lambda () (run-hook-with-args #'yaml-mode-hook)))
 (setq rust-ts-mode-hook (lambda () (run-hook-with-args #'rust-mode-hook)))
@@ -1658,7 +1657,6 @@ The following patched =org-babel-execute:calc= fixes the error:
     )
 
   (add-hook 'python-mode-hook #'my-python-mode-defaults)
-  (setq python-ts-mode-hook #'python-mode-hook)
 
   (defun my-inferior-python-mode-setup ()
     (setq comint-input-ring-file-name "~/.python_history")
@@ -1706,8 +1704,7 @@ Ruby auto-modes. These are from [[https://github.com/bbatsov/prelude/blob/0a1e8e
     (inf-ruby-minor-mode 1)
     ;; CamelCase aware editing operations
     (subword-mode 1))
-  (add-hook 'ruby-mode-hook #'my-ruby-mode-defaults)
-  (setq ruby-ts-mode-hook #'ruby-mode-hook))
+  (add-hook 'ruby-mode-hook #'my-ruby-mode-defaults))
 #+end_src
 
 ** rust-mode
@@ -1758,8 +1755,7 @@ Start Emacs server unless one is already running. =server-running-p= requires
     (setq sh-indent-for-case-alt '+)
     (setq sh-indent-for-case-label 0))
 
-  (add-hook 'sh-mode-hook #'my-setup-sh-mode)
-  (setq sh-ts-mode-hook #'sh-mode-hook))
+  (add-hook 'sh-mode-hook #'my-setup-sh-mode))
 #+end_src
 
 ** shell
