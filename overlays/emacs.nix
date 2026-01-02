@@ -40,7 +40,6 @@ final: prev: {
       expand-region
       flycheck
       gnuplot
-      magit
       notmuch
       nov # epub reader
       package-lint
@@ -53,7 +52,6 @@ final: prev: {
       cue-mode
       dockerfile-mode
       git-modes
-      go-mode
       haskell-mode
       json-mode
       # ledger-mode # 2024-12-01
@@ -71,6 +69,7 @@ final: prev: {
       flycheck-golangci-lint
       git-link
       gnus-alias
+      magit
       minions # hide minor modes in mode-line
       native-complete # shell (bash/zsh) completion
       ob-go
@@ -92,6 +91,7 @@ final: prev: {
       tao-theme # monochrome dark/light theme
 
       # Modes
+      go-mode
       groovy-mode
       jsonnet-mode
       ledger-mode
