@@ -21,14 +21,13 @@ final: prev: {
     with final;
     prev.buildEnv {
       name = "userEnv";
-      paths =
-        [
-          myPkgs
-          emacsWithConfig
-        ]
-        ++ lib.optionals stdenv.isLinux [
-          backupLaptopUnits
-          mailSyncUnits
-        ];
+      paths = [
+        myPkgs
+        emacsWithConfig
+      ]
+      ++ lib.optionals stdenv.isLinux [
+        backupLaptopUnits
+        mailSyncUnits
+      ];
     };
 }

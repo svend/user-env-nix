@@ -28,12 +28,11 @@
 
       forAllSystems = f: lib.genAttrs systems (system: f system);
 
-      overlays =
-        [
-          emacs-overlay.overlay
-          rust-overlay.overlays.default
-        ]
-        ++
+      overlays = [
+        emacs-overlay.overlay
+        rust-overlay.overlays.default
+      ]
+      ++
         # All overlays in the overlays directory
         map (name: import (./overlays + "/${name}")) (builtins.attrNames (builtins.readDir ./overlays));
 
@@ -60,5 +59,7 @@
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
 
       formatter = forAllSystems (system: nixosFor."${system}".nixfmt-rfc-style);
+
+      overlays.default = final: prev: import ./overlays final prev;
     };
 }
