@@ -26,7 +26,6 @@ final: prev: {
         emacsWithConfig
       ]
       ++ lib.optionals stdenv.isLinux [
-        backupLaptopUnits
         mailSyncUnits
       ];
     };
