@@ -13,6 +13,9 @@ upgrade:
 update-lockfile:
 	nix flake update
 
+repl:
+	nix repl .
+
 emacs:
 	env -i result/bin/emacs &
 
