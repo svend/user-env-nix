@@ -44,6 +44,8 @@ nix profile upgrade --refresh --verbose '.*\.userEnv'
 
 ### Systemd
 
+https://nixos.org/manual/nixos/stable/#sect-nixos-systemd-nixos
+
 On NixOS, refresh user systemd unit files.
 
 ``` shell
@@ -70,8 +72,11 @@ find ~/.config/systemd/user -xtype l
 ``` shell
 # rm -rf ~/.config/systemd/user
 find ~/.config/systemd/user -xtype l | xargs rm
-systemctl --user enable --force --now mbsync.timer
-systemctl --user add-wants --force mbsync.service commit-mail@fastmail.service
+
+mkdir -p ~/.config/systemd/user/timers.target.wants
+ln -s ~/.nix-profile/etc/xdg/systemd/user/mbsync.timer ~/.config/systemd/user/timers.target.wants/
+mkdir -p ~/.config/systemd/user/mbsync.service.wants
+ln -s .nix-profile/etc/xdg/systemd/user/commit-mail@.service ~/.config/systemd/user/mbsync.service.wants/
 
 systemctl --user daemon-reload
 systemctl --user --failed
