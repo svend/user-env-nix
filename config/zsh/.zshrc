@@ -56,43 +56,51 @@ setopt PROMPT_SUBST
 prompt_duration_start() { _LAST_SECONDS=$SECONDS }
 prompt_duration() {
   if [[ -v _LAST_SECONDS ]]; then
-    _LAST_DURATION=$((SECONDS - _LAST_SECONDS))
+    _MYPROMPT_LAST_DURATION=$((SECONDS - _LAST_SECONDS))
     unset _LAST_SECONDS
   else
-    _LAST_DURATION=0
+    _MYPROMPT_LAST_DURATION=0
   fi
 }
-preexec_functions+=(prompt_duration_start)
-precmd_functions+=(prompt_duration)
+ preexec_functions+=(prompt_duration_start)
+ precmd_functions+=(prompt_duration)
 
-PROMPT='%F{blue}[%T/%?/'\${_LAST_DURATION}'s'\$vcs_info_msg_0_' %~]%f'$'\n$ '
+ # Add hostname:directory to the prompt
+ # Only add hostname if remote
+ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+   _MYPROMPT_HOSTNAME='%m:'
+ else
+   _MYPROMPT_HOSTNAME=
+ fi
 
-# Emacs vterm setup (must come after prompt setup)
-# https://github.com/akermu/emacs-libvterm#directory-tracking-and-prompt-tracking
+ PROMPT='%F{blue}[%T/%?/'\${_MYPROMPT_LAST_DURATION}'s'\$vcs_info_msg_0_' ${_MYPROMPT_HOSTNAME}%~]%f'$'\n$ '
 
-vterm_printf() {
-  if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-    # Tell tmux to pass the escape sequences through
-    printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-  elif [ "${TERM%%-*}" = "screen" ]; then
-    # GNU screen (screen, screen-256color, screen-256color-bce)
-    printf "\eP\e]%s\007\e\\" "$1"
-  else
-    printf "\e]%s\e\\" "$1"
-  fi
-}
+ # Emacs vterm setup (must come after prompt setup)
+ # https://github.com/akermu/emacs-libvterm#directory-tracking-and-prompt-tracking
 
-vterm_prompt_end() {
-  vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
-}
-if [[ "$INSIDE_EMACS" == "vterm" ]]; then
-  PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-fi
+ vterm_printf() {
+   if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
+     # Tell tmux to pass the escape sequences through
+     printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+   elif [ "${TERM%%-*}" = "screen" ]; then
+     # GNU screen (screen, screen-256color, screen-256color-bce)
+     printf "\eP\e]%s\007\e\\" "$1"
+   else
+     printf "\e]%s\e\\" "$1"
+   fi
+ }
 
-# Emacs shell setup
-if [[ "$INSIDE_EMACS" == *",comint" ]]; then
-  # Unsetting ZLE is required to disable terminal echo, which results in the
-  # command being printed twice
-  unsetopt ZLE
-  stty -echo
-fi
+ vterm_prompt_end() {
+   vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+ }
+ if [[ "$INSIDE_EMACS" == "vterm" ]]; then
+   PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+ fi
+
+ # Emacs shell setup
+ if [[ "$INSIDE_EMACS" == *",comint" ]]; then
+   # Unsetting ZLE is required to disable terminal echo, which results in the
+   # command being printed twice
+   unsetopt ZLE
+   stty -echo
+ fi
