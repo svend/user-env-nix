@@ -1,11 +1,11 @@
 build:
 	nix build --print-build-logs
 
-install:
-	nix profile install github:svend/user-env-nix#userEnv
+add:
+	nix profile add github:svend/user-env-nix#userEnv
 
-install-local:
-	nix profile install .#userEnv
+add-local:
+	nix profile add .#userEnv
 
 upgrade:
 	nix profile upgrade --refresh userEnv
