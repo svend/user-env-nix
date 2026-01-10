@@ -9,7 +9,7 @@ in
         IMAPAccount fastmail
         Host imap.fastmail.com
         User svend@svends.net
-        PassCmd "${final.pass}/bin/pass show imap.fastmail.com"
+        PassCmd "cat ~/.secrets/fastmail-imap-token"
         SSLType IMAPS
 
         IMAPStore fastmail-remote
