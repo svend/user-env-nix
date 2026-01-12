@@ -143,11 +143,6 @@ final: prev: {
         gnupg # NixOS configuration includes gnupg
         pinentry_mac
         terminal-notifier
-
-        # On macOS, link passff.json:
-        # mkdir -p ~/'Library/Application Support/Mozilla/NativeMessagingHosts'
-        # ln -s ../../../../.nix-profile/lib/mozilla/native-messaging-hosts/passff.json ~/'Library/Application Support/Mozilla/NativeMessagingHosts/passff.json'
-        passff-host # included with Firefox config on NixOS
       ];
     };
 }
