@@ -1,3 +1,4 @@
+# TODO: Remove file, no longer used
 final: prev:
 let
   systemdDir = "etc/xdg/systemd/user";

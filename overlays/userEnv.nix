@@ -24,9 +24,6 @@ final: prev: {
       paths = [
         myPkgs
         emacsWithConfig
-      ]
-      ++ lib.optionals stdenv.isLinux [
-        mailSyncUnits
       ];
     };
 }
