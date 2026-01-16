@@ -125,7 +125,7 @@ final: prev: {
 
         # Nix
         nix-info # https://github.com/NixOS/nix/issues/3085
-        nixfmt-rfc-style
+        nixfmt
       ]
       ++ lib.optionals stdenv.isLinux [
         bitwarden-cli # FTB on darwin: FileNotFoundError: [Errno 2] No such file or directory: 'xcrun'
