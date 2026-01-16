@@ -1412,9 +1412,9 @@ open -a ~/.nix-profile/Applications/Emacs.app --new --args -q --load ~/src/emacs
   ;; Show newest mail first
   (setq-default notmuch-search-oldest-first nil)
 
-  ;; ;; Notmuch remote setup (on all hosts except garnet)
-  ;; (when (not (string= system-name "garnet.ciffer.net"))
-  ;;   (setq notmuch-command "notmuch-remote"))
+  ;; Notmuch remote setup (on all hosts except notmuch host)
+  (when (not (string= system-name "shale"))
+    (setq notmuch-command "notmuch-remote"))
 
   ;; Getting Things Done (GTD) keybindings
 
