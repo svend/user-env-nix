@@ -58,7 +58,7 @@
 
       defaultPackage = forAllSystems (system: nixpkgsFor."${system}".userEnv);
 
-      formatter = forAllSystems (system: nixosFor."${system}".nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixosFor."${system}".nixfmt);
 
       overlays.default = final: prev: import ./overlays final prev;
     };
