@@ -12,6 +12,8 @@ final: prev: {
       done
     '';
     passthru = {
+      # Required to use zshWithConfig as users.sers.*.shell or it fails with
+      # zshWithConfig is not a shell package
       shellPath = "/bin/zsh";
     };
   };
