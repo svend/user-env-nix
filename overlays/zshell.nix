@@ -11,5 +11,8 @@ final: prev: {
         makeWrapper "$path" "$out/bin/$bin" --set-default ZDOTDIR "${../config/zsh}"
       done
     '';
+    passthru = {
+      shellPath = "/bin/zsh";
+    };
   };
 }
