@@ -127,7 +127,7 @@ final: prev: {
         nix-info # https://github.com/NixOS/nix/issues/3085
         nixfmt
       ]
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         bitwarden-cli # FTB on darwin: FileNotFoundError: [Errno 2] No such file or directory: 'xcrun'
         git-annex # slow to build, linux has pre-built binaries
         # TODO: installing inetutils results in ping without root permissions
@@ -139,7 +139,7 @@ final: prev: {
         notmuchWithConfig # FTB on darwin: gpg: can't connect to the agent: File name too long
         rclone
       ]
-      ++ lib.optionals stdenv.isDarwin [
+      ++ lib.optionals stdenv.hostPlatform.isDarwin [
         gnupg # NixOS configuration includes gnupg
         pinentry_mac
         terminal-notifier

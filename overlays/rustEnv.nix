@@ -11,7 +11,7 @@ final: prev: {
         rust-analyzer
         rust-script
       ]
-      ++ lib.optionals stdenv.isLinux [
+      ++ lib.optionals stdenv.hostPlatform.isLinux [
         # Tools required by rust-overlay on Linux
         gcc # for `cc`
         # TODO: Are these required?
