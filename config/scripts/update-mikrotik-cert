@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Can't specify name=server-new in import, otherwise all certificates
+# in the bundle get the same name
+# https://forum.mikrotik.com/t/problem-importing-certificates-from-p12-pkcs-12-file-with-multiple-certificates/271203
+
 set -euf -o pipefail
 
 TARGET=$1
@@ -9,19 +13,19 @@ KEY=$3
 echo "existing certificates"
 ssh "$TARGET" "/certificate/print"
 
-scp "$CERT" "$TARGET":
-scp "$KEY" "$TARGET":
+scp "$CERT" "$TARGET":server-new
+scp "$KEY" "$TARGET":server-new.key
 sleep 1 # files may not be available immediately
 
 # Import new certificate and key
 ssh "$TARGET" "/certificate/remove [find name=server-new]"
-OUTPUT=$(ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $CERT) passphrase=\"\"")
+OUTPUT=$(ssh "$TARGET" "/certificate/import file-name=server-new passphrase=\"\"")
 echo "$OUTPUT"
 
 echo "imported cert"
 ssh "$TARGET" "/certificate/print"
 
-ssh "$TARGET" "/certificate/import name=server-new file-name=$(basename $KEY) passphrase=\"\""
+ssh "$TARGET" "/certificate/import file-name=server-new.key passphrase=\"\""
 
 echo "imported key"
 ssh "$TARGET" "/certificate/print"
@@ -32,15 +36,15 @@ if echo "$OUTPUT" | grep -q 'certificates-imported: 0'; then
 fi
 
 # Point to new certificate
-ssh "$TARGET" "/ip/service/set [find name=api-ssl and dynamic=no] certificate=server-new"
-ssh "$TARGET" "/ip/service/set [find name=www-ssl and dynamic=no] certificate=server-new"
+ssh "$TARGET" "/ip/service/set [find name=api-ssl and dynamic=no] certificate=server-new_0"
+ssh "$TARGET" "/ip/service/set [find name=www-ssl and dynamic=no] certificate=server-new_0"
 
 # Move old certificate
 ssh "$TARGET" "/certificate/remove [find name=server-old]"
 ssh "$TARGET" "/certificate/set server name=server-old" || true
 
 # Rename new certificate
-ssh "$TARGET" "/certificate/set server-new name=server"
+ssh "$TARGET" "/certificate/set server-new_0 name=server"
 
 echo "complete cert"
 ssh "$TARGET" "/certificate/print"
