@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (deftheme svend
   "Created 2015-03-11.")
 
