@@ -1,5 +1,11 @@
 #+TITLE: Emacs Configuration
 
+This must be the first line in the file
+
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
+#+end_src
+
 * User information
 
 #+begin_src emacs-lisp
